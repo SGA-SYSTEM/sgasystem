@@ -13,5 +13,4 @@
 *.sqlite3
 .DS_Store
 /.env
-staticfiles/
 .idea/
