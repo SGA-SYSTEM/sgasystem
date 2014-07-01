@@ -1,7 +1,6 @@
 #coding: utf-8
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-# Create your models here.
 
 class Prova(models.Model):
 	titulo = models.CharField(_('titulo')max_length=200, blank=True, null=False)
@@ -16,7 +15,6 @@ class Prova(models.Model):
 		verbose_name = 'Prova'
 		verbose_name_plural = 'Provas'
 			
-
 class Questao(models.Model):
 	TIPO = (
 			(u'ME', u'Multipla Escolha'),
@@ -47,7 +45,6 @@ class QuestaoSobre(models.Model):
 		verbose_name = 'Assunto'
 		verbose_name_plural = 'Assuntos'
 			
-
 class QuestaoDificuldade(models.Model):
 	dificuldade = models.CharField(max_length=10)
 	peso = models.IntegerField(max_digits=1)
@@ -59,7 +56,6 @@ class QuestaoDificuldade(models.Model):
 		verbose_name = 'Dificuldade'
 		verbose_name_plural = 'Dificuldades'
 			
-
 class Resposta(models.Model):
 	resposta = models.CharField(max_length=10)
 	correta = models.BooleanField()
@@ -72,7 +68,6 @@ class Resposta(models.Model):
 		verbose_name = 'Resposta'
 		verbose_name_plural = 'Respostas'
 			
-
 class UsuarioProva(models.Model):
 	user = models.ForeignKey(User)
 	prova = models.ForeignKey(Prova)
@@ -94,6 +89,3 @@ class UsuarioProvaResposta(models.Models):
 	usuario_prova = models.ForeignKey(UsuarioProva)
 	questao = models.ForeignKey(Questao)
 	resposta_alternativa = models.ForeignKey(Resposta)
-				
-		
-		
