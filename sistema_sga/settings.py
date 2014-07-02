@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'south',
     'sistema_sga.core',
+    'sistema_sga.prova',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,6 +93,8 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR.child('staticfiles')
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = BASE_DIR.child('media')
+MEDIA_URL = '/media/'
 
 # Cache
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
