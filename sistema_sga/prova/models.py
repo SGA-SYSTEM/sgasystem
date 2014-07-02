@@ -8,7 +8,8 @@ from django.contrib.auth.models import User
 class Prova(models.Model):
 	titulo = models.CharField(_('titulo'), max_length=200, blank=True, null=False)
 	created_at = models.DateTimeField(_('criado em'), auto_now_add=True, auto_now=False)
-	questoes = models.ForeignKey('Questao', verbose_name=_('Questões'))
+	sobre = models.ForeignKey('ProvaSobre')
+	questoes = models.ManyToManyField('Questao', verbose_name=_('Questões'))
 	duracao = models.IntegerField(_('Período'))
 
 	def __unicode__(self):
@@ -17,6 +18,16 @@ class Prova(models.Model):
 	class Meta:
 		verbose_name = 'Prova'
 		verbose_name_plural = 'Provas'
+
+class ProvaSobre(models.Model):
+	assunto = models.CharField(max_length=50)
+
+	def __unicode__(self):
+		return self.assunto
+	
+	class Meta:
+		verbose_name = 'Tópico'
+		verbose_name_plural = 'Tópicos'
 			
 class Questao(models.Model):
 	TIPO = (
