@@ -6,5 +6,5 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('sistema_sga.prova.views',
-    url(r'^(?P<prova_id>/d+)/$', 'prova', name='provas'),
+    url(r'^$', 'prova', name='provas'),
 )

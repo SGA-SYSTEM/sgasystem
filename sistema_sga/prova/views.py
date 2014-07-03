@@ -5,5 +5,5 @@ from sistema_sga.prova.models import Prova
 
 def prova(request):
 	provas = Prova.objects.all()
-	context = ({'provas':provas},)
+	context = {'provas':provas}
 	return render(request, 'prova/provas.html', context)
