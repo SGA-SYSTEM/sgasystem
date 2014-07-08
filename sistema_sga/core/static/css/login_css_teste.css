@@ -1,0 +1,52 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:white;
+}
+
+
+
+#window{
+  margin-top: 100px;
+  width:320px;
+  height:400px;
+  background: #669966;
+  border-radius: 10%;
+}
+
+
+#logo{
+  margin-top: 20px;
+  margin-bottom: 10px; 
+  border-radius: 100%;
+}
+
+input{ 
+  margin:1px;
+  width: 200px;
+  border:0;
+  padding: 15px;
+  color:#669966;
+}
+
+input[type=submit]{
+  width: 230px;
+  color:#669966;
+  background: white;
+}
+
+
+
+#error_box{
+  display:none;
+  border-left: 3px solid #669966;
+  background: #CCFFCC;
+  padding: 15px;
+  color: #669966; 
+  margin: 10px;
+  width: 260px; 
+
+}

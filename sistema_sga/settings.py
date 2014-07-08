@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'registration',
     'south',
     'sistema_sga.core',
     'sistema_sga.prova',
@@ -57,6 +58,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 )
+
+ACCOUNT_ACIVATION_DAYS = 7
+
+AUTH_PROFILE_MODULE = "ecommerce_free.profile.profile"
 
 ROOT_URLCONF = 'sistema_sga.urls'
 

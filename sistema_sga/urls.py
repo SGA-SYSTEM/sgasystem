@@ -7,6 +7,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'sistema_sga.core.views.home', name='home'),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^prova/', include('sistema_sga.prova.urls')),
     url(r'^admin/', include(admin.site.urls)),
+
 )
