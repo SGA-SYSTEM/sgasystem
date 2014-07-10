@@ -40,7 +40,7 @@ form input[type="password"] {
 form input[type="text"] {
     border-radius: 10px 10px 0 0;
     border: 1px solid #ffffff;
-    margin: 30px 0 0 20px;
+    margin: 0px 0 0 20px;
     font-size: 1em;
     padding: 0 0 0 10px;
 }
@@ -71,7 +71,31 @@ form input[type="password"] {
      font-style: bold; 
 }
 
+#id_username::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
 #id_password::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_password1::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_password2::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_email::-webkit-input-placeholder{
      color:#ffffff; 
      text-transform: uppercase; 
      font-style: bold; 
