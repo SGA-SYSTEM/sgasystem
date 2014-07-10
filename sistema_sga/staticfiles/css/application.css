@@ -260,7 +260,7 @@ datalist {
   margin-right: 8px; }
 
 #header {
-  background-color: #31924d ;
+  background-color: #2b4d19 ;
   padding: 32px;
   position: fixed;
   width: 100%; }
@@ -273,7 +273,7 @@ datalist {
     float: right; }
 
 #hero {
-  background-image: linear-gradient(135deg, #7bcb64 0%, #bbe5af 100%);
+  background-image: linear-gradient(135deg, #428b2e 0%, #48c257 100%);
   color: white;
   padding: 240px 0 128px;
   text-align: center; }
@@ -313,7 +313,7 @@ datalist {
     width: 20%; }
 
 #footer {
-  background-color: #31924d;
+  background-color: #2b4d19;
   padding: 96px 0; }
 
 @viewport {
