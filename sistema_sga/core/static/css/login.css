@@ -1,12 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-html {
-    background: #75d382;
-    font-family: arial;
-}
+
 ::-webkit-input-placeholder { color: #ccc }
 #loginWrap {
     width: 300px;
@@ -47,18 +39,17 @@ form input[type="password"] {
 }
 form input[type="text"] {
     border-radius: 10px 10px 0 0;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
     margin: 30px 0 0 20px;
     font-size: 1em;
     padding: 0 0 0 10px;
 }
 form input[type="password"] {
     border-radius: 0 0 10px 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
     margin: 0 0 0 20px;
     font-size: 1em;
     padding: 0 0 0 10px;
-    border-top: none;
 }
 #loginBody button {
     width: 260px;
@@ -73,3 +64,16 @@ form input[type="password"] {
     cursor: pointer;
 }
 #loginBody button:active { background-image: -webkit-linear-gradient(top, #cc6854, #d98471) }
+
+#id_login::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_password::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+

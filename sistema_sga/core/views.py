@@ -9,6 +9,3 @@ from django.contrib.auth import authenticate, login as django_login, logout as d
 
 def home(request):
     return render(request, 'core/home.html')
-
-def login(request):
-		return render(reqeust, 'core/login.html')

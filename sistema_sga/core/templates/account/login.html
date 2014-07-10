@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+{% include 'header.html' %}
+<section id="hero" class="section" style="padding-top: 150px;">
+			<div class="container">
+				<h1>{% trans "Log in" %}</h1>
+				{% if socialaccount.providers  %}
+				{% else %}
+				<p>{% blocktrans %}If you have not created an account yet, then please
+				<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+				{% endif %}
+
+				<form class="login" method="POST" action="{% url 'account_login' %}">
+				  {% csrf_token %}
+				  {{ form|crispy }}
+				  {% if redirect_field_value %}
+				  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+				  {% endif %}
+				  <a href="{% url 'account_reset_password' %}">{% trans "Esqueceu a senha?" %} |</a>
+				  <button class="login_but" type="submit">{% trans "Iniciar Sessão" %}</button>
+				</form>
+				</div>
+			</div>
+</section>
+{% include 'body.html' %}
+{% endblock %}

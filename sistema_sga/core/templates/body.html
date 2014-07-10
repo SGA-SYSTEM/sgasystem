@@ -1,66 +1,4 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block content %}
-	<header id="header" class="section">
-
-		<div class="container">
-
-			<h1 class="brand">
-				<a href="/"><img class="brand-image" src="{% static 'img/logo2.png' %}" alt="Tsuru"></a>
-			</h1>
-
-			<nav class="navigation">
-
-				<ul class="navigation-items">
-					<li class="navigation-item"><a class="navigation-link scroll-btn" href="#features" title="Features">Recursos & Tecnologia</a></li>
-					<li class="navigation-item"><a class="navigation-link scroll-btn" href="#community" title="Community">Comunidade</a></li>
-					<li class="navigation-item"><a class="navigation-link" href="http://docs.tsuru.io/en/latest/" title="Documentation">Documentação</a></li>
-					<li class="navigation-item"><a class="navigation-link" href="#" title="Blog">Contato</a></li>
-					<li class="navigation-item"><a class="navigation-link" href="/login/" title="Blog">Login</a></li>
-				</ul>
-
-			</nav>
-
-		</div>
-
-	</header>
-<section id="hero" class="section" style="padding-top: 50px;">
-
-			<div class="container">
-				<div id="loginWrap" >
-				    <div id="loginHeader">
-				        <h2>User Login<h2>
-				    </div>    
-				    <div id="loginBody">
-				        <form method="post" action=""> {% crsf_token %}              
-				            <input type="text" placeholder="Usuário" name="username"/>
-				            <input type="password" placeholder="Senha" name="password"/>  
-				            <input type="hidden" name="next" value="/prova/">  
-				        </form>
-				        <button id="loginBtn">Sign In</button>
-				    </div> 
-				</div>
-			</div>
-</section>
-<section id="hero" class="section">
-
-			<div class="container">
-
-				<p>S.G.A é um serviço de gerenciamento avaliativo de provas e uma Plataforma completamente open source.</p>
-
-				<footer>
-
-					<a class="button github" href="https://github.com/globocom/tsuru" title="Tsuru on Github">
-						<i class="button-icon fa fa-github"></i> Veja no Github
-					</a>
-
-				</footer>
-
-			</div>
-
-		</section>
-
-		<main id="content">
+<main id="content">
 
 			<article id="features" class="content-section section">
 
@@ -164,4 +102,3 @@
 			</article>
 
 		</main>
-{% endblock content %}
