@@ -79,7 +79,7 @@ INSTALLED_APPS = (
     'sistema_sga.profiles',
     'allauth',
     'allauth.account',
-    #'allauth.socialaccount',
+    'allauth.socialaccount',
     #'allauth.socialaccount.providers.facebook',
 )
 
@@ -98,7 +98,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
-AUTH_PROFILE_MODULE = "ecommerce_free.profile.profile"
+AUTH_PROFILE_MODULE = "sistema_sga.profile.profile"
 
 ROOT_URLCONF = 'sistema_sga.urls'
 
@@ -186,13 +186,6 @@ else:  # Assume development mode
             'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
         }
     }
-
-
-# Templates
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
-TEMPLATE_CONTEXT_PROCESSORS += ('django.core.context_processors.request',)
-TEMPLATE_STRING_IF_INVALID = 'CONTEXT_ERROR'
-
 
 # Logging
 def skip_on_testing(record):
