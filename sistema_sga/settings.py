@@ -15,12 +15,6 @@ from dj_database_url import parse as db_url
 from unipath import Path
 BASE_DIR = Path(__file__).parent
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'slowtosay@gmail.com'
-EMAIL_HOST_PASSWORD = '007089'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -77,10 +71,16 @@ INSTALLED_APPS = (
     'sistema_sga.core',
     'sistema_sga.prova',
     'sistema_sga.profiles',
+    
+    #'allauth.socialaccount.providers.xing',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     #'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.hubic',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.twitter',
 )
 
 SITE_ID = 1
@@ -138,7 +138,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = None
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "Subject is: "
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
-ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = False
 ACCOUNT_LOGOUT_REDIRECT_URL = LOGIN_URL
 ACCOUNT_SIGNUP_FORM_CLASS = None
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
@@ -152,6 +152,14 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_PASSWORD_INPUT_RENDER_VALUE = False
 ACCOUNT_PASSWORD_MIN_LENGTH = 6
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+
+# Account information to facebook login
+SOCIALACCOUNT_PROVIDERS = \
+    {'facebook':
+       {'SCOPE': ['email', 'publish_stream'],
+        'AUTH_PARAMS': {'auth_type': 'https'},
+        'METHOD': 'oauth2',
+        'VERIFIED_EMAIL': False}}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/

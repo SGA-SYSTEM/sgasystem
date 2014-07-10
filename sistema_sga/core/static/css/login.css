@@ -111,3 +111,6 @@ form input[type="email"] {
      font-style: bold; 
 }
 
+#social_account {
+    margin-top: -40px;
+}
