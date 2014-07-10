@@ -15,8 +15,8 @@
 				<h1>{% trans "Log in" %}</h1>
 				{% if socialaccount.providers  %}
 				{% else %}
-				<p>{% blocktrans %}If you have not created an account yet, then please
-				<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+				<p>{% blocktrans %}Você ainda não tem uma conta? 
+				<a href="{{ signup_url }}"><b>Cadastre-se</b></a> primeiro.{% endblocktrans %}</p>
 				{% endif %}
 
 				<form class="login" method="POST" action="{% url 'account_login' %}">
@@ -26,7 +26,7 @@
 				  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
 				  {% endif %}
 				  <a href="{% url 'account_reset_password' %}">{% trans "Esqueceu a senha?" %} |</a>
-				  <button class="login_but" type="submit">{% trans "Iniciar Sessão" %}</button>
+				  <button class="login_but" type="submit" style="cursor: pointer;">{% trans "Iniciar Sessão" %}</button>
 				</form>
 				</div>
 			</div>
