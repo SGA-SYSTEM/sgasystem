@@ -114,3 +114,15 @@ form input[type="email"] {
 #social_account {
     margin-top: -40px;
 }
+
+#button_logout {
+    cursor: pointer;
+border: bold;
+    border-color: white;
+    /* border: brown; */
+    border: solid;
+    border-color: white;
+    border-radius: 10px;
+    width: 100px;
+    background-color: yellowgreen;
+}
