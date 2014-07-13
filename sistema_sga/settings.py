@@ -86,7 +86,7 @@ INSTALLED_APPS = (
     #'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.facebook',
     #'allauth.socialaccount.providers.hubic',
-    'allauth.socialaccount.providers.instagram',
+    #'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.twitter',
 )
 

@@ -117,7 +117,7 @@ form input[type="email"] {
 
 #button_logout {
     cursor: pointer;
-border: bold;
+    border: bold;
     border-color: white;
     /* border: brown; */
     border: solid;
@@ -125,4 +125,28 @@ border: bold;
     border-radius: 10px;
     width: 100px;
     background-color: yellowgreen;
+}
+
+#Twitter {
+    cursor: pointer;
+    border: bold;
+    /* border: brown; */
+    border: solid;
+    border-color: #309AEA;
+    border-radius: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #309AEA;
+}
+
+#Facebook {
+    cursor: pointer;
+    border: bold;
+    /* border: brown; */
+    border: solid;
+    border-color: #3B5998;
+    border-radius: 5px;
+    padding-left: 43px;
+    padding-right: 43px;
+    background-color: #3B5998;
 }
