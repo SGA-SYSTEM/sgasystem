@@ -60,6 +60,8 @@ LOGIN_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = (
+    'django_admin_bootstrapped',
+    'django_admin_bootstrapped.bootstrap3',
     'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,7 +79,6 @@ INSTALLED_APPS = (
     'sistema_sga.core',
     'sistema_sga.prova',
     'sistema_sga.profiles',
-    
     #'allauth.socialaccount.providers.xing',
     'allauth',
     'allauth.account',

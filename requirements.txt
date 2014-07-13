@@ -22,6 +22,7 @@ oauthlib==0.6.3
 python-openid==2.2.5
 requests==2.3.0
 requests-oauthlib==0.4.1
+django-admin-bootstrapped==1.6.5
 
 
 
