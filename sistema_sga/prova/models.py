@@ -14,22 +14,22 @@ class Prova(models.Model):
     questoes = models.ManyToManyField('Questao', verbose_name=_('Questões'))
     duracao = models.IntegerField(_('Período'))
 
-    def __unicode__(self):
-        return self.titulo
-
     class Meta:
         verbose_name = 'Prova'
         verbose_name_plural = 'Provas'
 
+    def __unicode__(self):
+        return self.titulo
+
 class ProvaSobre(models.Model):
     assunto = models.CharField(max_length=50)
 
-    def __unicode__(self):
-        return self.assunto
-    
     class Meta:
         verbose_name = 'Tópico'
         verbose_name_plural = 'Tópicos'
+
+    def __unicode__(self):
+        return self.assunto
             
 class Questao(models.Model):
     TIPO = (
@@ -37,6 +37,7 @@ class Questao(models.Model):
             (u'VF', u'Verdadeiro ou Falso'),
             (u'ES', u'Escolha Simples'),
         )
+
     questao = models.CharField(_('Questao'), max_length=300)
     sobre = models.ForeignKey('QuestaoSobre')
     tipo = models.CharField(max_length=2, choices=TIPO)
@@ -44,12 +45,12 @@ class Questao(models.Model):
     image = models.ImageField(_('Imagem'), upload_to='question/img')
     ativo = models.BooleanField(default=True)
 
-    def __unicode__(self):
-        return self.questao
-
     class Meta:
         verbose_name = 'Questão'
         verbose_name_plural = 'Questões'
+
+    def __unicode__(self):
+        return self.questao
 
 class Resposta(models.Model):
     questao = models.ForeignKey(Questao)
@@ -57,33 +58,33 @@ class Resposta(models.Model):
     correta = models.BooleanField()
     alternativa = models.CharField(max_length=1)
 
-    def __unicode__(self):
-        return self.resposta
-
     class Meta:
         verbose_name = 'Resposta'
         verbose_name_plural = 'Respostas'
+
+    def __unicode__(self):
+        return self.resposta
             
 class QuestaoSobre(models.Model):
     sobre = models.CharField(max_length=100)
 
-    def __unicode__(self):
-        return self.sobre
-
     class Meta:
         verbose_name = 'Assunto'
         verbose_name_plural = 'Assuntos'
-            
+
+    def __unicode__(self):
+        return self.sobre
+
 class QuestaoDificuldade(models.Model):
     dificuldade = models.CharField(_('dificuldade'), max_length=10)
     peso = models.IntegerField(_('peso'))
 
-    def __unicode__(self):
-        return self.dificuldade
-
     class Meta:
         verbose_name = 'Dificuldade'
         verbose_name_plural = 'Dificuldades'
+
+    def __unicode__(self):
+        return self.dificuldade
             
 class UsuarioProva(models.Model):
     user = models.ForeignKey(User)
@@ -91,6 +92,10 @@ class UsuarioProva(models.Model):
     data_expiracao = models.DateTimeField()
     tempo_inicial = models.DateTimeField(blank=True, null=True)
     tempo_final = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Aplicar Prova'
+        verbose_name_plural = 'Aplicar Provas'
 
     def __unicode__(self):
         return u"%s %s" %(self.user, self.prova)
@@ -122,10 +127,6 @@ class UsuarioProva(models.Model):
         else:
             return 'Nova'
     get_status.short_description = 'Status'                 
-
-    class Meta:
-        verbose_name = 'Aplicar Prova'
-        verbose_name_plural = 'Aplicar Provas'
 
 class UsuarioProvaResposta(models.Model):
     usuario_prova = models.ForeignKey(UsuarioProva)
