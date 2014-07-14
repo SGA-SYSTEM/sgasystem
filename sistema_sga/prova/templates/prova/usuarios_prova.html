@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+{% if usuario_prova_list %}
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Aluno</th>
+				<th>Prova</th>
+				<th>Data de expiração</th>
+				<th>Progresso</th>
+				<th>Status</th>
+				<th>Ação</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for prova in usuario_prova_list %}
+			<tr>
+				<td>{{prova.id}}</td>
+				<td>{{prova.user}}</td>
+				<td>{{prova.prova}}</td>
+				<td {% if prova.has_expired and not prova.tempo_final %} style="color: red;" {% endif %}>{{ prova.data_expiracao|date:"d/m/Y à\s H:i" }}</td>
+				<td>{{prova.get_progress}}</td>
+				<td>{{prova.get_status}}</td>
+				<td>
+              {% if not prova.has_expired %}
+                {% if not prova.tempo_inicial %}
+                  <a href="/prova/{{ prova.id }}/start/" class="btn btn-small btn-success">Iniciar</a>
+                {% elif prova.tempo_inicial and not prova.tempo_final %}
+                  <a href="/prova/{{ prova.id }}/" class="btn btn-small btn-warning">Continuar</a>
+                  {% if prova.get_progress == '100%' %}
+                    <a href="/prova/{{ prova.id }}/enviar/" class="btn btn-small btn-primary">Enviar</a>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+{% endif %}
+</html>

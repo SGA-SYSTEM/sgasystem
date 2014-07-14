@@ -8,4 +8,5 @@ from django.contrib.auth import authenticate, login as django_login, logout as d
 
 
 def home(request):
+    print request.user.id
     return render(request, 'core/home.html')

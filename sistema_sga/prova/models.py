@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 import datetime
 from django.utils import timezone
+import datetime
 
 # import user
 from django.contrib.auth.models import User
@@ -103,7 +104,8 @@ class UsuarioProva(models.Model):
     def has_finished(self):
         if self.tempo_inicial and self.tempo_final:
             return True
-        else: return False
+        else: 
+            return False
         get_finished.boolean = True
         get_finished.short_description = 'Prova concluida?'
 
@@ -116,13 +118,15 @@ class UsuarioProva(models.Model):
         total_questoes = self.prova.questoes.count()
         questoes_respondidas = UsuarioProvaResposta.objects.filter(usuario_prova_id=self.id).count()
         current_progress = float(questoes_respondidas) / float(total_questoes) * 100
+        current_progress = int(round(current_progress))
+        return str(current_progress) + '%'
 
     def get_status(self):
         if self.has_finished():
             return 'Finalizada!'
         elif self.has_expired():
-            return 'Expirou ;('
-        elif self.start_time and not self.end_time:
+            return 'Expirou'
+        elif self.tempo_inicial and not self.tempo_final:
             return 'Em Andamento'
         else:
             return 'Nova'

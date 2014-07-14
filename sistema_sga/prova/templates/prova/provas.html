@@ -3,32 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Provas</title>
+	<title></title>
 	<link rel="stylesheet" href="">
 </head>
 <body>
-		<h1>Provas</h1>
-		<table>
-			<thead>
-				<tr>
-					<th>Titulo</th>
-					<th>Data de Expiração</th>
-					<th>Sobre</th>
-					<th>Questões</th>
-					<th>Duração</th>
-				</tr>
-			</thead>
-			{% for prova in provas %}
-			<tbody>
-				<tr>
-					<td>prova.titulo</td>
-					<td>prova.created_at</td>
-					<td>prova.sobre</td>
-					<td>prova.questoes</td>
-					<td>prova.duracao</td>
-				</tr>
-			</tbody>
-			{% endfor %}
-		</table>
+	<li><a href="{% url 'usuario_prova' %}">Voltar a listagem de provas</a> <span class="divider">/</span></li>
+	<h2>{{usuario_prova.prova}}</h2>
+	{% if usuario_prova.prova.questoes %}
+	<ol>
+		{% for questao in usuario_prova.prova.questoes.all %}
+		<li><a href="/prova/{{usuario_prova.id}}/questao/{{questao.id}}">{{questao.questao}}</a></li>
+		{% endfor %}
+	</ol>
+	{% else %}
+	<p>Não há questão cadastrada...</p>
+	{% endif %}
+
 </body>
 </html>
