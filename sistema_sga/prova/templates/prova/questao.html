@@ -1,58 +1,111 @@
+{% extends 'base_sga.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <script src="//code.jquery.com/jquery.js"></script>
-    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    
-</head>
-<body>
-<ul>
-    <li><a href="{% url 'usuario_prova' %}">Voltar a listagem de provas</a> <span class="divider">/</span></li>
-    <li class="active">Questão</li>
-</ul>
-<p>{{questao.questao}}</p>
-<p>Escolha a resposta correta:</p>
-{% if respostas %}
-    <form id="frm-answers">
-        {% csrf_token %}
-        <input type="hidden" name="user-exam-id" value="{{usuario_prova.id}}">
-        <input type="hidden" name="question-id" value="{{questao.id}}">
-        {% for resposta in respostas %}
-            <label class="radio"><input type="radio" name="rb-answer" value="{{resposta.id}}{% if usuario_prova.resposta_alternativa.id == resposta.id %} checked {% endif %} "> {{resposta.alternativa}} - {{resposta.resposta}}</label>
-        {% endfor %}
-        <div class="form-actions">
-            <button type="button" class="btn"><i class="icon-chevron-left"></i> Anterior </button>
-            <button type="button" class="btn">Próxima <i class="icon-chevron-right"></i></button>
+{% block content %}
+<div class="header">
+     <div class="container">
+        <div class="row">
+           <div class="col-md-5">
+              <!-- Logo -->
+              <div class="logo">
+                 <h1><a href="/" style="margin-left: -110px;">SGA System</a></h1>
+              </div>
+           </div>
+           <div class="col-md-5">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="input-group form">
+                       <input type="text" class="form-control" placeholder="Search...">
+                       <span class="input-group-btn">
+                         <button class="btn btn-primary" type="button">Search</button>
+                       </span>
+                  </div>
+                </div>
+              </div>
+           </div>
+           <div class="col-md-2">
+              <div class="navbar navbar-inverse" role="banner">
+                  <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                    <ul class="nav navbar-nav">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}} <b class="caret"></b></a>
+                        <ul class="dropdown-menu animated fadeInUp">
+                          <li><a href="">Profile</a></li>
+                          <li><a href="/accounts/logout/">Logout</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </nav>
+              </div>
+           </div>
         </div>
-    </form>
-{% endif %}
-</body>
-<script>
-{% block js %}
-$(function () {
-    $("#frm-answers input[type=radio]").click(function () {
-        var answer = $(this).val();
-        $.ajax({
-            url: '/prova/send-response/',
-            data: $('#frm-answers').serialize(),
-            type: 'post',
-            cache: false
-        });
-    });
-});
-{% endblock js %}
-</script>
+     </div>
+</div>
+
+
+<div class="page-content">
+    <div class="row">
+      <div class="col-md-2" id="menu">
+        <div class="sidebar content-box" style="display: block;">
+            <ul class="nav">
+                <!-- Main menu -->
+                <li class="current"><a href="{% url 'home_sga' %}"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Usuários</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-stats"></i> Desempenho</a></li>
+                <li class="submenu">
+                     <a href="#">
+                        <i class="glyphicon glyphicon-list"></i> Ações
+                        <span class="caret pull-right"></span>
+                     </a>
+                     <!-- Sub menu -->
+                     <ul>
+                        <li><a href="#">Criar Prova</a></li>
+                        <li><a href="#">Listar Provas</a></li>
+                    </ul>
+                </li>
+            </ul>
+         </div>
+      </div>
+        <div class="row">
+                <div class="col-md-5" style="margin-top: 30px;">
+                    <div class="content-box-large">
+                    <h4>{{questao.questao}}</h3>
+                    <p>Escolha a resposta correta:</4>
+                    {% if respostas %}
+                        <form id="frm-answers">
+                            {% csrf_token %}
+                            <input type="hidden" name="user-exam-id" value="{{usuario_prova.id}}">
+                            <input type="hidden" name="question-id" value="{{questao.id}}">
+                            {% for resposta in respostas %}
+                                <label class="radio"><input type="radio" name="rb-answer" value="{{resposta.id}}{% if usuario_prova.resposta_alternativa.id == resposta.id %} checked {% endif %} "> {{resposta.alternativa}} - {{resposta.resposta}}</label>
+                            {% endfor %}
+                            <div class="form-actions">
+                                <a href="/prova/{{usuario_prova.id}}/" class="btn btn-small btn-default" >Responder próxima</a>
+                            </div>
+                        </form>
+                    {% endif %}
+                    </div>
+                </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+{% endblock content %}
+                <script>
+                {% block js %}
+                $(function () {
+                    $("#frm-answers input[type=radio]").click(function () {
+                        var answer = $(this).val();
+                        $.ajax({
+                            url: '/prova/send-response/',
+                            data: $('#frm-answers').serialize(),
+                            type: 'post',
+                            cache: false
+                        });
+                    });
+                });
+                {% endblock js %}
+                </script>
 </html>
