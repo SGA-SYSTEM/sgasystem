@@ -8,6 +8,14 @@
 </head>
 {% if usuario_prova_list %}
 <body>
+{% if messages %}
+
+{% for message in messages %}
+	<p{% if message.tags == "success" %} class="alert alert-success" style='text-align: center;' 
+	  {% endif %}>
+	  {{ message }}</p>
+{% endfor %}
+{% endif %}
 	<table>
 		<thead>
 			<tr>
