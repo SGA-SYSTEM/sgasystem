@@ -37,14 +37,14 @@ def enviar_prova(request, prova_id):
                 usuario_prova.tempo_final = timezone.now()
                 usuario_prova.save()
                 messages.add_message(request, messages.SUCCESS, 'Prova enviada!')
-                return HttpResponseRedirect('/system/')
+                return HttpResponseRedirect('/home-sga/')
             else:
                 messages.add_message(request, messages.ERROR, 'Prova em andamento.')
         else:
             messages.add_message(request, messages.ERROR, 'É preciso responder todas as questões.')
     else:
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
-    return HttpResponseRedirect('/system/')
+    return HttpResponseRedirect('/home-sga/')
 
 def prova(request, prova_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
