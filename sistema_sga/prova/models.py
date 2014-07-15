@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 
 class Prova(models.Model):
     titulo = models.CharField(_('titulo'), max_length=200, blank=True, null=False)
+    descricao = models.CharField(_('descricao'), max_length=3000, null=True, blank=True)
     created_at = models.DateTimeField(_('criado em'), auto_now_add=True, auto_now=False)
     sobre = models.ForeignKey('ProvaSobre')
     questoes = models.ManyToManyField('Questao', verbose_name=_('Questões'))

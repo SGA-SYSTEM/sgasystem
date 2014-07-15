@@ -16,7 +16,7 @@ class RespostaInline(admin.TabularInline):
     extra = 1
 
 class ProvaAdmin(admin.ModelAdmin):
-    list_display = ('titulo','duracao','created_at')
+    list_display = ('titulo','descricao','duracao','created_at')
     date_hierarchy = 'created_at' # install pytz --> pip install pytz
     search_fields = ('titulo', 'created_at')
     list_filter = ['created_at']
