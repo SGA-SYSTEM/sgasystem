@@ -24,6 +24,8 @@ footer{
    line-height:25px;
    padding:10px 0px 10px 0px;
    bottom: 0px;
+   position: fixed;
+   width: 1400px;
 }
 
 footer a{
@@ -52,6 +54,10 @@ footer .copy{
 
 /* Logo & Navigation */
 
+#software {
+  margin-left: -110px;
+}
+
 #logo {
   font-family: 'Audiowide', cursive;
 }
@@ -62,7 +68,7 @@ footer .copy{
    z-index: 2;
    position: fixed;;
    margin-top: -30px;
-   width: 1300px;
+   width: 1400px;
 }
 
 .header .logo h1{
