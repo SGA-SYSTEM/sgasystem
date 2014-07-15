@@ -55,7 +55,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/system/'
+LOGIN_REDIRECT_URL = '/home-sga/'
 
 # Application definition
 

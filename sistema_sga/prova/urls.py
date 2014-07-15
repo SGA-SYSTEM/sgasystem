@@ -10,4 +10,6 @@ urlpatterns = patterns('sistema_sga.prova.views',
     url(r'^(?P<prova_id>\d+)/enviar/$', 'enviar_prova', name='enviar_prova'),
     url(r'^(?P<prova_id>\d+)/questao/(?P<questao_id>\d+)/$', 'questao'),
     url(r'^send-response/$', 'send_response'),
+    #sistema_sga
+    url(r'^home-sga/$', 'home_sga'),
 )

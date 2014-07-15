@@ -13,7 +13,7 @@ def usuario_prova(request):
     return render(request, 'prova/usuarios_prova.html', context)
 
 def iniciar_prova(request, prova_id):
-    usuario_prova = UsuarioProva.objects.get(pk=prova_id).order_by('-id')
+    usuario_prova = UsuarioProva.objects.get(pk=prova_id)
     if request.user.id == usuario_prova.user.id:
         if not usuario_prova.has_expired():
             if not usuario_prova.tempo_inicial:
@@ -79,6 +79,9 @@ def send_response(request):
         usuario_prova_resposta = UsuarioProvaResposta(usuario_prova=UsuarioProva(id=usuario_prova_id), questao=Questao(id=questao_id), resposta_alternativa=Resposta(id=resposta_id))
         usuario_prova_resposta.save()
 
-        print usuario_prova_resposta
-
         return HttpResponseRedirect('Saved!')
+
+def home_sga(request):
+    usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
+    context = {'usuario_prova_list':usuario_prova_list}
+    return render(request, 'sga_system/home_sga.html', context)

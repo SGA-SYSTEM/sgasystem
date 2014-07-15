@@ -29,7 +29,7 @@ class QuestaoAdmin(admin.ModelAdmin):
 
 class UsuarioProvaAdmin(admin.ModelAdmin):
     fields = ['user', 'prova', 'data_expiracao']
-    list_display = ['id', 'user', 'prova', 'data_expiracao', 'get_status', 'has_finished', 'has_expired']
+    list_display = ['id', 'user', 'prova', 'data_expiracao', 'get_status', 'has_finished', 'has_expired', 'tempo_inicial', 'tempo_final']
     date_hierarchy = 'data_expiracao'
     search_fields = ['user__username', 'user__first_name', 'user__last_name', 'prova__name']
     list_filter = ['data_expiracao']
