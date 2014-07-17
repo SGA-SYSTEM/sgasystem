@@ -15,6 +15,7 @@
                                     <th>Progresso</th>
                                     <th>Status</th>
                                     <th>Ação</th>
+                                    <th>Resultado</th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -33,6 +34,9 @@
                                     {% ifequal prova.get_status "Nova" %}
                                     <td><span class="label label-primary">{{prova.get_status}}</span></td>
                                     {% endifequal %}
+                                    {% ifequal prova.get_status "Expirou" %}
+                                    <td><span class="label label-danger">{{prova.get_status}}</span></td>
+                                    {% endifequal %}
                                     <td>
                                       {% if not prova.has_expired %}
                                         {% if not prova.tempo_inicial %}
@@ -44,6 +48,13 @@
                                           {% endif %}
                                         {% endif %}
                                       {% endif %}
+                                    </td>
+                                    <td>
+                                    {% ifequal prova.get_status "Finalizada!" %}
+                                        {% if prova.get_score %}
+                                            {{prova.get_score}}
+                                        {% endif %}
+                                    {% endifequal %}
                                     </td>
                                 </tr>
                                 {% endfor %}

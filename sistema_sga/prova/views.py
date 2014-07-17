@@ -59,7 +59,7 @@ def questao(request, prova_id, questao_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
     if request.user.id == usuario_prova.user.id:
         questao = Questao.objects.get(pk=questao_id)
-        respostas = Resposta.objects.filter(questao__id=questao_id)
+        respostas = Resposta.objects.filter(questao__id=questao_id).order_by('id')
         try:
             usuario_resposta = UsuarioProvaResposta.objects.get(usuario_prova__id=prova_id, questao__id=questao_id)
         except:

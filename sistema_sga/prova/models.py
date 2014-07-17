@@ -114,12 +114,24 @@ class UsuarioProva(models.Model):
         get_expired.boolean = True
         get_expired.short_description = 'Tempo esgotado?'
 
+    def get_questions(self):
+        return self.prova.questoes.count()
+        
+    def get_respostas_corretas(self):
+        return Resposta.objects.filter(correta=True)
+        
     def get_progress(self):
         total_questoes = self.prova.questoes.count()
         questoes_respondidas = UsuarioProvaResposta.objects.filter(usuario_prova_id=self.id).count()
         current_progress = float(questoes_respondidas) / float(total_questoes) * 100
         current_progress = int(round(current_progress))
         return str(current_progress) + '%'
+
+    def get_score(self):
+        questoes = self.prova.questoes.count()
+        respostas = self.usuarioprovaresposta_set.filter(resposta_alternativa__correta=True).count()
+        score_exam = (float(respostas) / float(questoes)) * 100
+        return str(score_exam) + "%"
 
     def get_status(self):
         if self.has_finished():
