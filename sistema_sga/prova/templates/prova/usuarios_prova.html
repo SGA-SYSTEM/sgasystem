@@ -48,6 +48,9 @@
                                           {% endif %}
                                         {% endif %}
                                       {% endif %}
+                                      {% ifequal prova.get_status "Finalizada!" %}
+                                        Não há ações disponíveis.
+                                      {% endifequal %}
                                     </td>
                                     <td>
                                     {% ifequal prova.get_status "Finalizada!" %}

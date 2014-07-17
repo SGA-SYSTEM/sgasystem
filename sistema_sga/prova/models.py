@@ -131,6 +131,7 @@ class UsuarioProva(models.Model):
         questoes = self.prova.questoes.count()
         respostas = self.usuarioprovaresposta_set.filter(resposta_alternativa__correta=True).count()
         score_exam = (float(respostas) / float(questoes)) * 100
+        score_exam = int(round(score_exam))
         return str(score_exam) + "%"
 
     def get_status(self):
