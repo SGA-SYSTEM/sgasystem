@@ -122,14 +122,14 @@ class UsuarioProva(models.Model):
         questoes_respondidas = UsuarioProvaResposta.objects.filter(usuario_prova_id=self.id).count()
         current_progress = float(questoes_respondidas) / float(total_questoes) * 100
         current_progress = int(round(current_progress))
-        return str(current_progress) + '%'
+        return '{progress}%'.format(progress=current_progress)
 
     def get_score(self):
         questoes = self.prova.questoes.count()
         respostas = self.usuarioprovaresposta_set.filter(resposta_alternativa__correta=True).count()
         score_exam = (float(respostas) / float(questoes)) * 100
         score_exam = int(round(score_exam))
-        return str(score_exam) + "%"
+        return '{score}%'.format(score=score_exam)
 
     def get_status(self):
         if self.has_finished():
