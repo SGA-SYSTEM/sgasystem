@@ -9,12 +9,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 @login_required
-def usuario_prova(request):
-    usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
-    context = {'usuario_prova_list':usuario_prova_list}
-    return render(request, 'prova/usuarios_prova.html', context)
-
-@login_required
 def iniciar_prova(request, prova_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
     if request.user.id == usuario_prova.user.id:

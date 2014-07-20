@@ -15,11 +15,13 @@ from dj_database_url import parse as db_url
 from unipath import Path
 BASE_DIR = Path(__file__).parent
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'slowtosay@gmail.com'
-EMAIL_HOST_PASSWORD = '007089'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+from .email_info import *
+
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_PORT = EMAIL_PORT
+EMAIL_USE_TLS = EMAIL_USE_TLS
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -69,6 +71,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #shell_plus
+    'django_extensions',
     #debug-toolbar
     'debug_toolbar',
     #crispy
