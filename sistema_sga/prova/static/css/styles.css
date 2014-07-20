@@ -14,6 +14,17 @@ body {
   margin-top: 30px;
 }
 
+#container, #sliders {
+  min-width: 310px; 
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+#container {
+  margin-top: 30px;
+  height: 350px; 
+}
+
 /* Footer */
 
 footer{

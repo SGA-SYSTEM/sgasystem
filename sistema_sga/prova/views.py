@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 
 # Create your views here.
 
@@ -81,10 +82,18 @@ def send_response(request):
         usuario_prova_resposta = UsuarioProvaResposta(usuario_prova=UsuarioProva(id=usuario_prova_id), questao=Questao(id=questao_id), resposta_alternativa=Resposta(id=resposta_id))
         usuario_prova_resposta.save()
 
-        return HttpResponseRedirect('Saved!')
+        return HttpResponseRedirect('/home-sga/')
 
 @login_required
 def home_sga(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
     context = {'usuario_prova_list':usuario_prova_list}
     return render(request, 'sga_system/home_sga.html', context)
+
+@login_required
+def desempenho(request):
+    usuario_items = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
+    lista = []
+    for x in usuario_items:
+        lista.append(x.get_score_for_pie())
+    return render(request, 'prova/chart_graph.html', {'usuario_items':usuario_items,'lista':lista,})

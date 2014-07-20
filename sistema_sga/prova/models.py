@@ -119,10 +119,16 @@ class UsuarioProva(models.Model):
         
     def get_progress(self):
         total_questoes = self.prova.questoes.count()
-        questoes_respondidas = UsuarioProvaResposta.objects.filter(usuario_prova_id=self.id).count()
+        questoes_respondidas = UsuarioProvaResposta.objects.filter(usuario_prova__id=self.id).count()
         current_progress = float(questoes_respondidas) / float(total_questoes) * 100
         current_progress = int(round(current_progress))
         return '{progress}%'.format(progress=current_progress)
+
+    def get_score_for_pie(self):
+        questoes = self.prova.questoes.count()
+        respostas = self.usuarioprovaresposta_set.filter(resposta_alternativa__correta=True).count()
+        score_exam = (float(respostas) / float(questoes)) * 100
+        return int(round(score_exam))
 
     def get_score(self):
         questoes = self.prova.questoes.count()
@@ -130,6 +136,13 @@ class UsuarioProva(models.Model):
         score_exam = (float(respostas) / float(questoes)) * 100
         score_exam = int(round(score_exam))
         return '{score}%'.format(score=score_exam)
+
+    def get_title_exam(self):
+        usuarios_lista = UsuarioProva.objects.filter(user__id=self.user.id)
+        lista = []
+        for user in usuarios_lista:
+            lista.append(user.prova.titulo)
+        return list(lista)
 
     def get_status(self):
         if self.has_finished():

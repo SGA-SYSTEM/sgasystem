@@ -55,7 +55,7 @@
                                     <td>
                                     {% ifequal prova.get_status "Finalizada!" %}
                                         {% if prova.get_score %}
-                                            {{prova.get_score}}
+                                            <span class="label label-info">{{prova.get_score}}</span>
                                         {% endif %}
                                     {% endifequal %}
                                     </td>
