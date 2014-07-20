@@ -77,7 +77,7 @@
                                             <input type="hidden" name="user-exam-id" value="{{usuario_prova.id}}">
                                             <input type="hidden" name="question-id" value="{{questao.id}}">
                                             {% for resposta in respostas %}
-                                                <label class="radio"><input type="radio" name="rb-answer" value="{{resposta.id}}{% if usuario_prova.resposta_alternativa.id == resposta.id %} checked {% endif %} "> {{resposta.alternativa}} - {{resposta.resposta}}</label>
+                                                <label class="radio"><input type="radio" name="rb-answer" value="{{resposta.id}}"{% if usuario_resposta.resposta_alternativa.id == resposta.id %} checked {% endif %}> {{resposta.alternativa}} - {{resposta.resposta}}</label>
                                             {% endfor %}
                                             <div class="form-actions">
                                                 <a href="/prova/{{usuario_prova.id}}/" class="btn btn-small btn-default" >Responder próxima</a>

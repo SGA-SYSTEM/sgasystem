@@ -27,7 +27,7 @@ def iniciar_prova(request, prova_id):
     else:
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
     context = {'usuario_prova':usuario_prova,}
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/home-sga/')
 
 def enviar_prova(request, prova_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
@@ -64,8 +64,9 @@ def questao(request, prova_id, questao_id):
             usuario_resposta = UsuarioProvaResposta.objects.get(usuario_prova__id=prova_id, questao__id=questao_id)
         except:
             usuario_resposta = None
-    context = {'usuario_prova':usuario_prova, 'questao':questao, 'respostas':respostas,}
-    print context
+    context = {'usuario_prova':usuario_prova, 'questao':questao, 
+               'respostas':respostas, 'usuario_resposta':usuario_resposta,
+            }
     return render(request, 'prova/questao.html', context)
 
 def send_response(request):

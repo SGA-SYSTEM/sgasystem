@@ -117,9 +117,6 @@ class UsuarioProva(models.Model):
     def get_questions(self):
         return self.prova.questoes.count()
         
-    def get_respostas_corretas(self):
-        return Resposta.objects.filter(correta=True)
-        
     def get_progress(self):
         total_questoes = self.prova.questoes.count()
         questoes_respondidas = UsuarioProvaResposta.objects.filter(usuario_prova_id=self.id).count()
