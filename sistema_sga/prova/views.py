@@ -4,14 +4,17 @@ from sistema_sga.prova.models import Prova, UsuarioProva, Questao, Resposta, Usu
 from django.utils import timezone
 from django.contrib import messages
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def usuario_prova(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
     context = {'usuario_prova_list':usuario_prova_list}
     return render(request, 'prova/usuarios_prova.html', context)
 
+@login_required
 def iniciar_prova(request, prova_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
     if request.user.id == usuario_prova.user.id:
@@ -29,6 +32,7 @@ def iniciar_prova(request, prova_id):
     context = {'usuario_prova':usuario_prova,}
     return HttpResponseRedirect('/home-sga/')
 
+@login_required
 def enviar_prova(request, prova_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
     if request.user.id == usuario_prova.user.id:
@@ -46,6 +50,7 @@ def enviar_prova(request, prova_id):
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
     return HttpResponseRedirect('/home-sga/')
 
+@login_required
 def prova(request, prova_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
     if request.user.id == usuario_prova.user.id:
@@ -55,6 +60,7 @@ def prova(request, prova_id):
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
         return HttpResponseRedirect('/')
 
+@login_required
 def questao(request, prova_id, questao_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
     if request.user.id == usuario_prova.user.id:
@@ -69,6 +75,7 @@ def questao(request, prova_id, questao_id):
             }
     return render(request, 'prova/questao.html', context)
 
+@login_required
 def send_response(request):
     if request.method == 'POST':
         usuario_prova_id = request.POST['user-exam-id']
@@ -82,6 +89,7 @@ def send_response(request):
 
         return HttpResponseRedirect('Saved!')
 
+@login_required
 def home_sga(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
     context = {'usuario_prova_list':usuario_prova_list}
