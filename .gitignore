@@ -14,3 +14,4 @@
 .DS_Store
 /.env
 .idea/
+/sistema_sga/email_info.py
