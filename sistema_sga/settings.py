@@ -79,8 +79,6 @@ INSTALLED_APPS = (
     'crispy_forms',
     #my-migrations
     'south',
-    'django_nvd3',
-    'djangobower',
     #apps
     'sistema_sga.core',
     'sistema_sga.prova',
