@@ -1,4 +1,0 @@
-from sistema_sga.prova.models import *
-usuario_prova_list = UsuarioProva.objects.get(pk=45)
-usuario_prova_list.get_progress()
-# OUT: 1
