@@ -168,7 +168,7 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 SOCIALACCOUNT_PROVIDERS = \
     {'facebook':
        {'SCOPE': ['email', 'publish_stream'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'AUTH_PARAMS': {'auth_type': 'https'},
         'METHOD': 'oauth2',
         'VERIFIED_EMAIL': False}}
 
