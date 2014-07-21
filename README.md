@@ -1,7 +1,5 @@
 # Final work for the undergratuation
 
-> **Tip:** Using **Google Chrome**, you will have the best experience possible...
-
 The table below presents data collected of exam:
 
 | Código  | Prova  | Data de expiração | Progresso | Status | Ação |Resultado|
@@ -30,7 +28,7 @@ This is [on GitHub](https://github.com/SGA-SYSTEM/sgasystem) SGA System.
  > - about **Django-Allauth** [here][2],
 > - about **Higthcharts** extension [here][3],
 
- 
+> **Tip:** Using **Google Chrome**, you will have the best experience possible...
  
  ```javascript
 //Alex Falcucci
