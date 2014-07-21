@@ -1,25 +1,43 @@
-License
--------
+# Final work for the undergratuation
 
-The MIT License (MIT)
+> **Tip:** Using **Google Chrome**, you will have the best experience possible...
 
-Copyright (c) 2014 Sga System Team.
+The table below presents data collected of exam:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+| Código  | Prova  | Data de expiração | Progresso | Status | Ação |Resultado|
+| :------------: |:---------------:|:-----:|:-----:|:-----: |:-----:|:-----:
+| 5   | Python     | 31/07/2014 às 06:00 |100%| Finalizada! |Enviar Prova|100%|
+| 6   | Ruby       | 31/07/2014 às 06:00 |80% |Em andamento |Continuar|80%|
+| 7   | Javascript | 31/07/2014 às 06:00 |65%| Expirou.     |Continuar|50%|
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+You're a teacher or student? What do you do? This system can be used for you.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+#### Features & Technology:
 
+ * practical and useful
+ * flexibility 
+ * django
+
+This is [on GitHub](https://github.com/SGA-SYSTEM/sgasystem) SGA System.
+
+### Project dependencies:
+
+ * [django-allauth](https://readthedocs.org/projects/django-allauth/) for the awesome simple login
+ * [highlight.js](http://softwaremaniacs.org/soft/highlight/en/) for the graphs and charts
+
+ * others...
+ 
+ > - about **Django-Allauth** [here][2],
+> - about **Higthcharts** extension [here][3],
+
+ 
+ 
+ ```javascript
+//Alex Falcucci
+$(function(){
+  alert('Enjoy!');
+});
+```
+
+[2]: https://readthedocs.org/projects/django-allauth/
+[3]: http://softwaremaniacs.org/soft/highlight/en/
