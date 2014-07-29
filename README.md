@@ -16,7 +16,7 @@ You're a teacher or student? What do you do? This system can be used for you.
  * flexibility 
  * django
 
-This is [on GitHub](https://github.com/SGA-SYSTEM/sgasystem) SGA System.
+This is [on GitHub](https://github.com/SGA-SYSTEM/sgasystem) SGA System and [demo](http://sistemasga.herokuapp.com/) on.
 
 ### Project dependencies:
 
