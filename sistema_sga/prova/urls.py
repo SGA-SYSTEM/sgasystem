@@ -11,4 +11,6 @@ urlpatterns = patterns('sistema_sga.prova.views',
     url(r'^(?P<prova_id>\d+)/questao/(?P<questao_id>\d+)/$', 'questao'),
     url(r'^send-response/$', 'send_response'),
     url(r'^desempenho/$', 'desempenho'),
+    #session user
+    url(r'^criar_prova/$', 'create_exam', name='criar_prova'),
 )

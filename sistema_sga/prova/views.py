@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
+from sistema_sga.prova.forms import ProvaForm, QuestaoForm
 
 # Create your views here.
 
@@ -97,3 +98,8 @@ def desempenho(request):
     for x in usuario_items:
         lista.append(x.get_score_for_pie())
     return render(request, 'prova/chart_graph.html', {'usuario_items':usuario_items,'lista':lista,})
+
+#create exam for user
+def create_exam(request):
+
+    return render(request, 'user_exam/create_exam_for_user.html', {'form':ProvaForm(), 'form_question':QuestaoForm})
