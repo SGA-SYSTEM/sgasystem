@@ -39,7 +39,7 @@ class Questao(models.Model):
 	sobre = models.ForeignKey('QuestaoSobre')
 	tipo = models.CharField(max_length=2, choices=TIPO)
 	dificuldade = models.ForeignKey('QuestaoDificuldade')	
-	image = models.ImageField(_('Imagem'), upload_to='question/img')
+	#image = models.ImageField(_('Imagem'), upload_to='question/img')
 	ativo = models.BooleanField(default=True)
 
 	def __unicode__(self):
