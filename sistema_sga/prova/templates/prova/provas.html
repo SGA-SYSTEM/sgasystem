@@ -1,0 +1,93 @@
+{% extends 'base_sga.html' %}
+
+{% load staticfiles %}
+{% block content %}
+<div class="header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-5">
+                  <!-- Logo -->
+                  <div class="logo">
+                     <h1><a href="/" style="margin-left: -110px;">SGA System</a></h1>
+                  </div>
+               </div>
+               <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="input-group form">
+                           <input type="text" class="form-control" placeholder="Search...">
+                           <span class="input-group-btn">
+                             <button class="btn btn-primary" type="button">Search</button>
+                           </span>
+                      </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-md-2">
+                  <div class="navbar navbar-inverse" role="banner">
+                      <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                        <ul class="nav navbar-nav">
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}} <b class="caret"></b></a>
+                            <ul class="dropdown-menu animated fadeInUp">
+                              <li><a href="">Profile</a></li>
+                              <li><a href="/accounts/logout/">Logout</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </div>
+<div class="page-content">
+        <div class="row">
+          <div class="col-md-2" id="menu">
+            <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li class="current"><a href="{% url 'home_sga' %}"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Usuários</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-stats"></i> Desempenho</a></li>
+                    <li class="submenu">
+                         <a href="#">
+                            <i class="glyphicon glyphicon-list"></i> Ações
+                            <span class="caret pull-right"></span>
+                         </a>
+                         <!-- Sub menu -->
+                         <ul>
+                            <li><a href="#">Criar Prova</a></li>
+                            <li><a href="#">Listar Provas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+             </div>
+          </div>
+
+          <div class="col-md-9" style="margin-top: 30px;">
+              <div class="panel panel-success">
+                <!-- Default panel contents -->
+                <div class="panel-heading"><h1>{{usuario_prova.prova}}</h1></div>
+                <div class="panel-body">
+                  <p>Vivamus suscipit dui id tristique venenatis. Integer vitae dui egestas, ultrices augue et, luctus arcu. Sed pharetra lectus eget velit consequat, in dictum felis fringilla. Suspendisse vitae rutrum urna, quis malesuada tellus. Praesent consectetur gravida feugiat. In mi orci, malesuada sit amet lectus quis, tempor sollicitudin nibh. Nam ut nibh sit amet lorem facilisis adipiscing. </p>
+                </div>
+
+                <!-- List group -->
+                  {% if usuario_prova.prova.questoes %}
+                  <ol>
+                    {% for questao in usuario_prova.prova.questoes.all %}
+                    <li><a href="/prova/{{usuario_prova.id}}/questao/{{questao.id}}">{{questao.questao}}</a></li>
+                    {% endfor %}
+                  </ol>
+                  {% else %}
+                  <p>Não há questão cadastrada...</p>
+                  {% endif %}
+                  <ul class="pager">
+                    <li class="previous"><a href="{% url 'home_sga' %}">&larr; Voltar a listagem de Provas</a></li>
+                  </ul>
+              </div>
+            </div>
+      </div>
+</div>
+{% endblock content %}

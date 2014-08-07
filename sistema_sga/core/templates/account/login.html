@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+{% include 'header.html' %}
+<section id="hero" class="section" style="padding-top: 150px;">
+			<div class="container">
+				<h1>{% trans "Log in" %}</h1>
+				{% if socialaccount.providers  %}
+				<p>{% blocktrans with site.name as site_name %}Você ainda não tem uma conta?<a href="{{ signup_url }}"><b> Cadastre-se</b></a> no
+					 {{site_name}} e comece a utilizado:{% endblocktrans %}</p>
+
+					<div class="socialaccount_ballot" id="social_account">
+
+					  <ul class="socialaccount_providers">
+					    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+					  </ul>
+
+					  <div class="login-or">{% trans 'or' %}</div>
+
+					</div>
+
+				{% include "socialaccount/snippets/login_extra.html" %}
+				{% else %}
+				<p>{% blocktrans %}Você ainda não tem uma conta? 
+				<a href="{{ signup_url }}"><b>Cadastre-se</b></a> primeiro.{% endblocktrans %}</p>
+				{% endif %}
+
+				<form class="login" method="POST" action="{% url 'account_login' %}">
+				  {% csrf_token %}
+				  {{ form|crispy }}
+				  {% if redirect_field_value %}
+				  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+				  {% endif %}
+				  <a href="{% url 'account_reset_password' %}">{% trans "Esqueceu a senha?" %} |</a>
+				  <button class="login_but" type="submit" style="cursor: pointer;">{% trans "Iniciar Sessão" %}</button>
+				</form>
+				</div>
+			</div>
+</section>
+{% include 'body.html' %}
+{% endblock %}

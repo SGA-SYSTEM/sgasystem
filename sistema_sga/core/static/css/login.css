@@ -1,0 +1,152 @@
+
+::-webkit-input-placeholder { color: #ccc }
+#loginWrap {
+    width: 300px;
+    height: 272px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px 10px 10px 10px;
+    background-clip: padding-box;
+    box-shadow: 0px 3px 5px 1px #222;
+    border:1px solid #ccc;
+}
+#loginHeader {
+    background: #ebe3ce;
+    height: 50px;
+    border-radius: 10px 10px 0 0;
+    background-clip: padding-box;
+    border-top: 1px solid white;
+    border-bottom: 1px solid #aaa;
+    padding: 12px 0 0 103px;
+}
+#loginHeader h2 {
+    color: #ab9782;
+    font-size: 1.1em;
+    font-weight: 200;
+}
+#loginBody {
+    height: 220px;
+    background: #f5f3f0;
+    border-radius: 0 0 10px 10px;
+    border-top: 1px solid #fff;
+}
+form input[type="text"],
+form input[type="password"],
+form input[type='email'] {
+    height: 45px;
+    width: 260px;
+    outline: 0;
+    -moz-outline-style: none;
+}
+form input[type="text"] {
+    border-radius: 10px 10px 0 0;
+    border: 1px solid #ffffff;
+    margin: 0px 0 0 20px;
+    font-size: 1em;
+    padding: 0 0 0 10px;
+}
+form input[type="password"] {
+    border-radius: 0 0 10px 10px;
+    border: 1px solid #ffffff;
+    margin: 0 0 0 20px;
+    font-size: 1em;
+    padding: 0 0 0 10px;
+}
+
+form input[type="email"] {
+    border-radius: 0 0 10px 10px;
+    border: 1px solid #ffffff;
+    margin: 0 0 0 20px;
+    font-size: 1em;
+    padding: 0 0 0 10px;
+}
+
+#loginBody button {
+    width: 260px;
+    height: 45px;
+    margin: 30px 0 0 20px;
+    border-radius: 5px;
+    border: none;
+    background-image: -webkit-linear-gradient(top, #d98471, #cc6854);
+    color: white;
+    font-size: .9em;
+    box-shadow: 0px 1px 10px 2px #ccc;
+    cursor: pointer;
+}
+#loginBody button:active { background-image: -webkit-linear-gradient(top, #cc6854, #d98471) }
+
+#id_login::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_username::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_password::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_password1::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_password2::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#id_email::-webkit-input-placeholder{
+     color:#ffffff; 
+     text-transform: uppercase; 
+     font-style: bold; 
+}
+
+#social_account {
+    margin-top: -40px;
+}
+
+#button_logout {
+    cursor: pointer;
+    border: bold;
+    border-color: white;
+    /* border: brown; */
+    border: solid;
+    border-color: white;
+    border-radius: 10px;
+    width: 100px;
+    background-color: yellowgreen;
+}
+
+#Twitter {
+    cursor: pointer;
+    border: bold;
+    /* border: brown; */
+    border: solid;
+    border-color: #309AEA;
+    border-radius: 5px;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #309AEA;
+}
+
+#Facebook {
+    cursor: pointer;
+    border: bold;
+    /* border: brown; */
+    border: solid;
+    border-color: #3B5998;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #3B5998;
+}

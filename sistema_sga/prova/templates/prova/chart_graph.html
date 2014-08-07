@@ -1,0 +1,136 @@
+{% extends 'base_sga.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+<div class="header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-5">
+                  <!-- Logo -->
+                  <div class="logo">
+                     <h1><a href="/" id="software">SGA System</a></h1>
+                  </div>
+               </div>
+               <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="input-group form">
+                           <input type="text" class="form-control" placeholder="Search...">
+                           <span class="input-group-btn">
+                             <button class="btn btn-primary" type="button">Search</button>
+                           </span>
+                      </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-md-2">
+                  <div class="navbar navbar-inverse" role="banner">
+                      <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                        <ul class="nav navbar-nav">
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}} <b class="caret"></b></a>
+                            <ul class="dropdown-menu animated fadeInUp">
+                              <li><a href="">Profile</a></li>
+                              <li><a href="/accounts/logout/">Logout</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </div>
+
+ <div class="page-content">
+        <div class="row">
+          <div class="col-md-2" id="menu">
+            <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li class="current"><a href="{% url 'home_sga' %}"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Usuários</a></li>
+                    <li><a href="/prova/desempenho/"><i class="glyphicon glyphicon-stats"></i> Desempenho</a></li>
+                    <li class="submenu">
+                         <a href="#">
+                            <i class="glyphicon glyphicon-list"></i> Ações
+                            <span class="caret pull-right"></span>
+                         </a>
+                         <!-- Sub menu -->
+                         <ul>
+                            <li><a href="#">Criar Prova</a></li>
+                            <li><a href="#">Listar Provas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+             </div>
+          </div>
+
+          <div class="col-md-10">
+            <div class="content-box-large" style="margin-top: 30px;">
+               <div id="container"></div>
+                  <div id="sliders">
+                    <table>
+                      <tr><td>Ângulo Complementar</td><td><input id="R0" type="range" min="0" max="45" value="15"/> <span id="R0-value" class="value"></span></td></tr>
+                        <tr><td>Ângulo Complementar</td><td><input id="R1" type="range" min="0" max="45" value="15"/> <span id="R1-value" class="value"></span></td></tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+{% endblock content %}
+
+{% block js %}
+$(function () {
+    // Set up the chart
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            type: 'column',
+            margin: 10,
+            options3d: {
+                enabled: true,
+                alpha: 6,
+                beta: 2,
+                depth: 50,
+                viewDistance: 25
+            }
+        },
+        title: {
+            text: 'Gráfico de desempenho por avaliações efetuadas'
+        },
+        subtitle: {
+            text: 'Test options by dragging the sliders below'
+        },
+        plotOptions: {
+            column: {
+                depth: 25
+            }
+        },
+        series: [{
+            data: {{lista}}
+        }]
+    });
+    
+
+    // Activate the sliders
+    $('#R0').on('change', function(){
+        chart.options.chart.options3d.alpha = this.value;
+        showValues();
+        chart.redraw(false);
+    });
+    $('#R1').on('change', function(){
+        chart.options.chart.options3d.beta = this.value;
+        showValues();
+        chart.redraw(false);
+    });
+
+    function showValues() {
+        $('#R0-value').html(chart.options.chart.options3d.alpha);
+        $('#R1-value').html(chart.options.chart.options3d.beta);
+    }
+    showValues();
+});
+{% endblock js %}

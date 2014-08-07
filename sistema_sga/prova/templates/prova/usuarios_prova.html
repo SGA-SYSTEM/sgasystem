@@ -1,0 +1,69 @@
+    
+        <div class="row">
+                <div class="col-md-9">
+                    <div class="content-box-large">
+                        <div class="panel-heading">
+                            <div class="panel-title">Avaliações</div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Prova</th>
+                                    <th>Data de expiração</th>
+                                    <th>Progresso</th>
+                                    <th>Status</th>
+                                    <th>Ação</th>
+                                    <th>Resultado</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              {% for prova in usuario_prova_list %}
+                                <tr>
+                                    <td>{{prova.id}}</td>
+                                    <td>{{prova.prova}}</td>
+                                    <td {% if prova.has_expired and not prova.tempo_final %} style="color: red;" {% endif %}>{{ prova.data_expiracao|date:"d/m/Y à\s H:i" }}</td>
+                                    <td>{{prova.get_progress}}</td>
+                                    {% ifequal prova.get_status "Em Andamento" %}
+                                    <td><span class="label label-info">{{prova.get_status}}</span></td>
+                                    {% endifequal %}
+                                    {% ifequal prova.get_status "Finalizada!" %}
+                                    <td><span class="label label-success">{{prova.get_status}}</span></td>
+                                    {% endifequal %}
+                                    {% ifequal prova.get_status "Nova" %}
+                                    <td><span class="label label-primary">{{prova.get_status}}</span></td>
+                                    {% endifequal %}
+                                    {% ifequal prova.get_status "Expirou" %}
+                                    <td><span class="label label-danger">{{prova.get_status}}</span></td>
+                                    {% endifequal %}
+                                    <td>
+                                      {% if not prova.has_expired %}
+                                        {% if not prova.tempo_inicial %}
+                                          <a href="/prova/{{ prova.id }}/start/" class="btn btn-small btn-success">Iniciar</a>
+                                        {% elif prova.tempo_inicial and not prova.tempo_final %}
+                                          <a href="/prova/{{ prova.id }}/" class="btn btn-small btn-warning">Continuar</a>
+                                          {% if prova.get_progress == '100%' %}
+                                            <a href="/prova/{{ prova.id }}/enviar/" class="btn btn-small btn-primary">Enviar</a>
+                                          {% endif %}
+                                        {% endif %}
+                                      {% endif %}
+                                      {% ifequal prova.get_status "Finalizada!" %}
+                                        Não há ações disponíveis.
+                                      {% endifequal %}
+                                    </td>
+                                    <td>
+                                    {% ifequal prova.get_status "Finalizada!" %}
+                                        {% if prova.get_score %}
+                                            <span class="label label-info">{{prova.get_score}}</span>
+                                        {% endif %}
+                                    {% endifequal %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
