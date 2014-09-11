@@ -14,7 +14,7 @@ class ProvaForm(forms.ModelForm):
         self.fields['sobre'].choices = choices
 
     class Meta:
-        model = ProvaSobre
+        model = Prova
         fields = ['titulo', 'sobre']
 
 class QuestaoForm(forms.ModelForm):
