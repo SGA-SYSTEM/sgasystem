@@ -25,7 +25,7 @@ def iniciar_prova(request, prova_id):
             messages.add_message(request, messages.ERROR, 'Prova expirada.')
     else:
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
-    context = {'usuario_prova':usuario_prova,}
+    context = { 'usuario_prova':usuario_prova, }
     return HttpResponseRedirect('/home-sga/')
 
 @login_required
@@ -50,7 +50,7 @@ def enviar_prova(request, prova_id):
 def prova(request, prova_id):
     usuario_prova = UsuarioProva.objects.get(pk=prova_id)
     if request.user.id == usuario_prova.user.id:
-        context = {'usuario_prova':usuario_prova}
+        context = { 'usuario_prova':usuario_prova }
         return render(request, 'prova/provas.html', context)
     else:
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
@@ -97,9 +97,13 @@ def desempenho(request):
     lista = []
     for x in usuario_items:
         lista.append(x.get_score_for_pie())
-    return render(request, 'prova/chart_graph.html', {'usuario_items':usuario_items,'lista':lista,})
+    return render(request, 'prova/chart_graph.html', {
+                            'usuario_items':usuario_items,'lista':lista,
+                            })
 
 #create exam for user
 def create_exam(request):
     #do something... come on!
-    return render(request, 'user_exam/create_exam_for_user.html', {'form':ProvaForm(), 'form_question':QuestaoForm})
+    return render(request, 'user_exam/create_exam_for_user.html', {
+                            'form':ProvaForm(), 'form_question':QuestaoForm
+                            })
