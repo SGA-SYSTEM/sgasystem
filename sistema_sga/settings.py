@@ -78,7 +78,7 @@ INSTALLED_APPS = (
     #crispy
     'crispy_forms',
     #my-migrations
-    'south',
+    #'south',
     #apps
     'sistema_sga.core',
     'sistema_sga.prova',
