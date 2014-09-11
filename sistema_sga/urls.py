@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^home-sga/$', 'sistema_sga.prova.views.home_sga', name='home_sga'),
     url(r'^$', 'sistema_sga.core.views.home', name='home'),
     url(r'^prova/', include('sistema_sga.prova.urls')),
+    url(r'^profile/', include('sistema_sga.profiles.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_URL)
