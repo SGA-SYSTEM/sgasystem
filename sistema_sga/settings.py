@@ -59,6 +59,8 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/home-sga/'
 
+AUTH_USER_MODEL = 'core.Profile'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -78,11 +80,10 @@ INSTALLED_APPS = (
     #crispy
     'crispy_forms',
     #my-migrations
-    #'south',
+    'south',
     #apps
     'sistema_sga.core',
     'sistema_sga.prova',
-    'sistema_sga.profiles',
     #'allauth.socialaccount.providers.xing',
     'allauth',
     'allauth.account',
