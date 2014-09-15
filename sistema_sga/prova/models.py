@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 import datetime
 from django.utils import timezone
 import datetime
+from sistema_sga.core.models import Profile
 
 # import user
 from django.contrib.auth.models import User
@@ -88,7 +89,7 @@ class QuestaoDificuldade(models.Model):
         return self.dificuldade
             
 class UsuarioProva(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey('core.Profile', blank=True, null=True)
     prova = models.ForeignKey(Prova)
     data_expiracao = models.DateTimeField()
     tempo_inicial = models.DateTimeField(blank=True, null=True)
