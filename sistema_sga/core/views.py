@@ -22,52 +22,7 @@ from django.core.mail import EmailMultiAlternatives
 def home(request):
     print request.user.id
     return render(request, 'core/home.html')
-"""
-@receiver(user_signed_up)
-def set_attribute(sender, **kwargs):
-    user = kwargs.pop('user')
-    try:
-        extra_data = user.socialaccount_set.filter(provider='facebook')[0].extra_data
-    except Exception:
-        extra_data = None
-    if extra_data is not None:
-        social_link = extra_data['link'] 
-        name = extra_data['name'] 
-        first_name = extra_data['first_name'] 
-        last_name = extra_data['last_name'] 
-        email = extra_data['email'] 
 
-        user.facebook_link = social_link
-        user.name = name
-        user.first_name = first_name
-        user.last_name = last_name
-        user.save()
-        
-        #try to send welcome email
-        subject = 'Bem vindo ao TôBuscando!'
-        from_email = settings.EMAIL_HOST_USER
-        to_list = [email, settings.EMAIL_HOST_USER]
-        to = email
-        text_content = 'Something...'
-        html_content = render_to_string(
-            'welcome.html', {'equipe':'tobuscando'}
-            )
-        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])       
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-    else:
-        subject = 'Bem vindo!'
-        from_email = settings.EMAIL_HOST_USER
-        to_list = [user.email, settings.EMAIL_HOST_USER]
-        to = user.email
-        text_content = 'Something...'
-        html_content = render_to_string(
-            'welcome.html', {'equipe':'sga'}
-            )
-        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])       
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-"""
 
 class ProfileView(View):
     template_name = 'profile/profile.html'
