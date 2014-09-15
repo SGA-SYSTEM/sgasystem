@@ -8,7 +8,7 @@ class ProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = (
-					'first_name', 'last_name','username','email', 'social_link_fc'
+					'college','first_name', 'last_name','username','email', 'social_link_fc'
 				)	
 
 class SignupForm(forms.Form):

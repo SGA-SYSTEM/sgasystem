@@ -17,11 +17,13 @@ BASE_DIR = Path(__file__).parent
 
 from .email_info import *
 
-EMAIL_HOST = EMAIL_HOST
-EMAIL_HOST_USER = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
-EMAIL_PORT = EMAIL_PORT
-EMAIL_USE_TLS = EMAIL_USE_TLS
+EMAIL_HOST='smtp.mandrillapp.com'
+EMAIL_HOST_USER='sga.com <webmaster@sga.com>'
+EMAIL_HOST_PASSWORD='Bu4-Owel5LDbUquSoqEWdg'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -152,7 +154,7 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = "Subject is: "
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
 ACCOUNT_LOGOUT_ON_GET = False
 ACCOUNT_LOGOUT_REDIRECT_URL = LOGIN_URL
-ACCOUNT_SIGNUP_FORM_CLASS = None # 'sistema_sga.core.forms.SignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'sistema_sga.core.forms.SignupForm'
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
