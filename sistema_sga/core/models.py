@@ -12,6 +12,8 @@ from allauth.socialaccount.models import SocialApp, SocialAccount, SocialLogin
 class Profile(AbstractUser):
     social_link_fc = models.CharField(_(u'Facebook'), max_length=200,
                                      blank=True, null=True)
+    # college = models.CharField(_(u'Universidade ou Instituição de Ensino'), max_length=200,
+                                     # blank=True, null=True)
 
     def __unicode__(self):
         return u'{username} - ({email})'.format(username=self.username,

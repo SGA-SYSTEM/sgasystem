@@ -12,7 +12,10 @@ class ProfileForm(forms.ModelForm):
 				)	
 
 class SignupForm(forms.Form):
-    college = forms.CharField(max_length=100, label='Universidade ou Instituição de Ensino')
+    college = forms.CharField(widget=forms.TextInput(
+    						  attrs={'class':'form-control','placeholder':'Universidade'}), 
+    					      max_length=100, label='Universidade ou Instituição de Ensino'
+    						)
 
     def signup(self, request, user):
         user.college = self.cleaned_data['college']
