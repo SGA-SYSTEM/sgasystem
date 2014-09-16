@@ -182,8 +182,8 @@ MEDIA_URL = '/media/'
 from .email_info import *
 
 EMAIL_HOST='smtp.mandrillapp.com'
-EMAIL_HOST_USER='sga.com <webmaster@sga.com>'
-EMAIL_HOST_PASSWORD='Bu4-Owel5LDbUquSoqEWdg'
+EMAIL_HOST_USER='sga.com <alex.falcucci@gmail.com>'
+EMAIL_HOST_PASSWORD='eaERTcFdVL4YZ7MqZiCTdg'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 
