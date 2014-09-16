@@ -1,0 +1,30 @@
+{% extends 'base_sga.html' %}
+{% load staticfiles %}
+
+{% load i18n %}
+{% load cloudinary %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/messages.css' %}">
+<script src="{% static 'js/messages.js' %}"></script>
+<script src="{% static 'js/messages.typehead.js' %}"></script>
+{% endblock head %}
+
+{% block content %}
+	<div class="content-box-large" style="margin-top: 31px;">
+    <a href="{% url 'new_message' %}" class="btn btn-primary pull-right">New message</a>
+    <h2 style="margin-top: -9px;">Notificações</h2>
+  	
+  	<div class="row" style="">
+    <div class="col-md-3">
+    {% include 'messages/includes/partial_conversations.html' with conversations=conversations active=active %}
+    </div>
+    <div class="col-md-6">
+      {% block container %}
+
+      {% endblock container %}
+    </div>
+  	</div>
+  	</div>
+{% endblock content %}

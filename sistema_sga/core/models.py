@@ -4,6 +4,8 @@ from django.utils.translation import ugettext as _
 from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser, User
 
+from cloudinary.models import CloudinaryField
+
 from django.conf import settings
 
 import os.path
@@ -19,9 +21,20 @@ class Profile(AbstractUser):
     college = models.CharField(_(u'Instituição de Ensino'), max_length=200,
                                      blank=True, null=True)
 
+    picture = CloudinaryField(_(u'foto'), blank=True, null=True)
+
     def __unicode__(self):
         return u'{username} - ({email})'.format(username=self.username,
                                               email=self.email)
+
+    def get_screen_name(self):
+        try:
+            if self.user.get_full_name():
+                return self.user.get_full_name()
+            else:
+                return self.user.username
+        except:
+            return self.user.username
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

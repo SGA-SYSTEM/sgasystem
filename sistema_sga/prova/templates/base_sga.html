@@ -20,8 +20,11 @@
 
     <link href="{% static 'css/stats.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    {% block head %}
+    {% endblock head %}
   </head>
 <body>
+{% block body %}
 <div class="header">
          <div class="container">
             <div class="row">
@@ -63,6 +66,7 @@
     </div>
 <div class="page-content">
         <div class="row">
+        {% block menu %}
           <div class="col-md-2" id="menu">
             <div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
@@ -84,8 +88,18 @@
                 </ul>
              </div>
           </div>
-{% block content %}
-{% endblock content %}
+          {% endblock menu %}
+          <div class="col-md-9" style="margin-top: 30px;">
+            <div class="row">
+              {% block content %}
+              {% endblock content %}
+            </div>
+          </div>
+        </div>
+</div>
+
+{% endblock body %}
+
 </body>
 <script>
 {% block js %}

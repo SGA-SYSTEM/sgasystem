@@ -15,15 +15,7 @@ from dj_database_url import parse as db_url
 from unipath import Path
 BASE_DIR = Path(__file__).parent
 
-from .email_info import *
 
-EMAIL_HOST='smtp.mandrillapp.com'
-EMAIL_HOST_USER='sga.com <webmaster@sga.com>'
-EMAIL_HOST_PASSWORD='Bu4-Owel5LDbUquSoqEWdg'
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -75,25 +67,28 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #shell_plus
+    # shell_plus
     'django_extensions',
     #debug-toolbar
     'debug_toolbar',
-    #crispy
+    # crispy
     'crispy_forms',
-    #my-migrations
-    'south',
-    #apps
+    # manipulator images
+    'cloudinary',
+    # my-migrations
+    #'south',
+    # apps
     'sistema_sga.core',
     'sistema_sga.prova',
-    #'allauth.socialaccount.providers.xing',
+    'sistema_sga.messages',
+    # 'allauth.socialaccount.providers.xing',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    #'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.facebook',
-    #'allauth.socialaccount.providers.hubic',
-    #'allauth.socialaccount.providers.instagram',
+    # 'allauth.socialaccount.providers.hubic',
+    # 'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.twitter',
 )
 
@@ -183,6 +178,22 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = BASE_DIR.child('media')
 MEDIA_URL = '/media/'
+
+from .email_info import *
+
+EMAIL_HOST='smtp.mandrillapp.com'
+EMAIL_HOST_USER='sga.com <webmaster@sga.com>'
+EMAIL_HOST_PASSWORD='Bu4-Owel5LDbUquSoqEWdg'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+CLOUDINARY = {
+    'cloud_name': 'alexfalcucci',  # config('CLOUDINARY_NAME'),
+    'api_key': '566357691686394',   # config('CLOUDINARY_API_KEY'),
+    'api_secret': '_WHb57oMCxw1_lzwDgf5tBKYFhY'
+}
 
 # Cache
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True

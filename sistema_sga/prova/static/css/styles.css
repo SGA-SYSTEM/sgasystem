@@ -33,10 +33,11 @@ footer{
    color:#fff;
    font-size:14px;
    line-height:25px;
-   padding:10px 0px 10px 0px;
+   padding:10px 0px 30px 0px;
+   margin-bottom: -120px;
    bottom: 0px;
-   width: 1400px;
-   position: fixed;
+   width: 1293px;
+   position: absolute;
 }
 
 footer a{

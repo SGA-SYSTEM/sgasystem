@@ -1,0 +1,15 @@
+{% load i18n %}
+{% load staticfiles %}
+{% load cloudinary %}
+<li>
+{% cloudinary message.from_user.picture width=30 height=30 crop="fill" %}
+    <h5>
+      <small class="pull-right">
+        {{ message.date|date:'N d G:i' }}
+      </small>
+      <a href="#">
+        {{ message.from_user.username }}
+      </a>
+    </h5>
+    <p style="margin-left: 38px;">{{ message.message }}</p>
+</li>
