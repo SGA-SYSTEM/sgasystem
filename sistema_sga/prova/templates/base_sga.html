@@ -20,11 +20,13 @@
 
     <link href="{% static 'css/stats.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/messages.css' %}">
+    <script src="{% static 'js/messages.js' %}"></script>
+    <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
     {% block head %}
     {% endblock head %}
   </head>
 <body>
-{% block body %}
 <div class="header">
          <div class="container">
             <div class="row">
@@ -97,8 +99,6 @@
           </div>
         </div>
 </div>
-
-{% endblock body %}
 
 </body>
 <script>

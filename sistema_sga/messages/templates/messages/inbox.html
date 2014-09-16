@@ -3,9 +3,6 @@
 {% load staticfiles %}
 {% load cloudinary %}
 
-{% block title %}{% trans 'Inbox' %}{% endblock %}
-{% block page_header %}{% trans 'Inbox' %}{% endblock %}
-
 {% block container %}
   {% if messages %}
   <ul class="conversation">
@@ -24,7 +21,7 @@
     </li>
   </ul>
   {% else %}
-     {% include 'messages/includes/form_send.html' %}
+     <span>Não existem mensagens.</span>
   {% endif %}
 {% endblock container %}
 

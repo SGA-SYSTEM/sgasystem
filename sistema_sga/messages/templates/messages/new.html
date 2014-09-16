@@ -1,8 +1,10 @@
+{% extends 'base_messages.html' %}
 {% load i18n %}
 
 {% load staticfiles %}
 {% load cloudinary %}
 
+{% block container %}
 <form class="form-horizontal" role="form" method="post">
     {% csrf_token %}
     <div class="form-group">
@@ -23,3 +25,5 @@
       </div>
     </div>
   </form>
+  <script src="{% static 'js/messages.typehead.js' %}"></script>
+{% endblock container %}

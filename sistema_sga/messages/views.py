@@ -60,6 +60,21 @@ def new(request):
             'conversations': conversations
             })
 
+def send(request):
+    if request.method == 'POST':
+        from_user = request.user
+        to_user_username = request.POST.get('to')
+        to_user = Profile.objects.get(username=to_user_username)
+        message = request.POST.get('message')
+        if len(message.strip()) == 0:
+            return HttpResponse()
+        if from_user != to_user:
+            msg = Message.send_message(from_user, to_user, message)
+            return render(request, 'messages/includes/partial_message.html', {'message': msg})
+        return HttpResponse()
+    else:
+        return HttpResponseBadRequest()
+
 def users(request):
     users = Profile.objects.filter(is_active=True)
     dump = []
