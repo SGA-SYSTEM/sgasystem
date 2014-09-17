@@ -76,7 +76,7 @@ INSTALLED_APPS = (
     # manipulator images
     'cloudinary',
     # my-migrations
-    #'south',
+    'south',
     # apps
     'sistema_sga.core',
     'sistema_sga.prova',
