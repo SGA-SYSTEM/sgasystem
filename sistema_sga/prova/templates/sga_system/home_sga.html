@@ -1,47 +1,36 @@
 {% extends 'base_sga.html' %}
 {% block content %}
-   
-{% if usuario_prova_list %} 
-            <div class="col-md-12 panel-success">
-                <div class="content-box-header panel-heading">
-                    <div class="panel-title ">Olá <b>{{user}}</b>! Bem vindo! Verifique se existem provas pendentes!</div>
-                </div>
-                <div class="content-box-large box-with-header">
-                Para que se possa efetuar uma prova no sistema S.G.A, é preciso que você (aluno), seja vinculado por um professor em sua respectiva prova desejada. Em breve você poderá solicitar provas!
-                <br /><br />
-            </div>
-            </div>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    {% ifequal message.tags 'success' %}
+    <i class="fa fa-check"></i>
+    {% else %}
+    <i class="fa fa-{{ message.tags }}"></i>
+    {% endifequal %}
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    {{ message }}
+</div>
 
+{% endfor %}
+{% endif %}
+
+{% if usuario_prova_list %} 
+    
     {% include 'prova/usuarios_prova.html' %}
 
-
-    {% else %}
-            <div class="col-md-12 panel-warning">
-                <div class="content-box-header panel-heading">
-                    <div class="panel-title ">Olá <b>{{user}}</b>! Bem vindo! Desculpe, mas até o momento não existem provas vinculadas à você.</div>
-                </div>
-                <div class="content-box-large box-with-header">
-                    Para que se possa efetuar uma prova no sistema S.G.A, é preciso que você (aluno), seja vinculado por um professor em sua respectiva prova desejada. Em breve você poderá solicitar provas!
-                    <br /><br />
-                </div>
-            </div>
+{% else %}       
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            Notificação
         </div>
-    </div>
+        <div class="panel-body">
+            <h4>Desculpe, mas no momento você não possui nenhuma avaliação. Clique <a href="#"> para solicitar a sua!</a></h4>  
+        </div>
+        <div class="panel-footer">
+            Panel Footer
+        </div>
+    </div>    
 
-    <div class="col-md-9">
-                      <div class="row">
-                       <div class="col-md-12">
-                        <div class="content-box-large">
-                            Vivamus suscipit dui id tristique venenatis. Integer vitae dui egestas, ultrices augue et, luctus arcu. Sed pharetra lectus eget velit consequat, in dictum felis fringilla. Suspendisse vitae rutrum urna, quis malesuada tellus. Praesent consectetur gravida feugiat. In mi orci, malesuada sit amet lectus quis, tempor sollicitudin nibh. Nam ut nibh sit amet lorem facilisis adipiscing. Mauris condimentum ornare enim ut aliquet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus molestie massa at accumsan luctus. Aenean ultricies elementum posuere. Praesent ut felis id metus auctor egestas at id augue.
-                            <br /><br />
-                            Sed gravida augue risus, in lacinia augue euismod at. Vestibulum pharetra sem nibh. Mauris a enim vel sapien dignissim commodo. Ut tristique fringilla diam, vel pulvinar ligula laoreet euismod. Curabitur sit amet pretium tortor. Nullam tincidunt ultrices metus, a cursus nulla mattis in. Ut risus lorem, fringilla vitae risus quis, ullamcorper elementum nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut lobortis risus at convallis dictum. Cras luctus, leo ac vestibulum ultrices, justo mi iaculis libero, non gravida arcu erat ut augue. Ut facilisis mollis quam, ut vestibulum magna placerat eu. Integer vulputate odio a lectus tincidunt placerat viverra vel est.
-                            <br /><br />
-                            Ut non tincidunt felis. Aliquam urna lacus, dictum vitae dignissim id, molestie vel urna. Quisque et auctor eros, a vulputate nibh. Praesent et dictum risus, vitae congue arcu. In convallis urna non convallis suscipit. Etiam auctor erat nec felis laoreet fringilla. In quis tortor sit amet arcu tempus elementum. In urna tellus, accumsan eget feugiat quis, commodo sit amet dolor. Sed pharetra leo id dignissim tincidunt. Phasellus ac consectetur massa, eu feugiat enim. Phasellus a porta ipsum. Nullam sit amet erat ornare, interdum orci non, ullamcorper magna. Aenean dictum, mi vel tempus mattis, neque sem tincidunt turpis, vitae sollicitudin felis nulla in purus. Nunc vitae erat vitae nibh pellentesque adipiscing. In dignissim dolor vitae metus eleifend, at tincidunt massa luctus. Suspendisse id ligula non leo tincidunt tempor.
-                        </div>
-                       </div>
-                      </div>
-              </div>
-            </div>
-          </div>
-        {% endif %}
+{% endif %}
 {% endblock content %}

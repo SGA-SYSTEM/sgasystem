@@ -117,6 +117,9 @@ class UsuarioProva(models.Model):
 
     def get_questions(self):
         return self.prova.questoes.count()
+
+    def get_exams(self):
+        return self.prova.id.count()
         
     def get_progress(self):
         total_questoes = self.prova.questoes.count()

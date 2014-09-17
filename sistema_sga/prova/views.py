@@ -7,6 +7,7 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from sistema_sga.prova.forms import ProvaForm, QuestaoForm
+from sistema_sga.core.models import Profile
 
 # Create your views here.
 
@@ -88,7 +89,11 @@ def send_response(request):
 @login_required
 def home_sga(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
-    context = {'usuario_prova_list':usuario_prova_list}
+    context = {
+    'usuario_prova_list':usuario_prova_list,
+    'count_user':Profile.objects.all().count(),
+
+    }
     return render(request, 'sga_system/home_sga.html', context)
 
 @login_required

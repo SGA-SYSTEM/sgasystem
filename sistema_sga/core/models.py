@@ -2,7 +2,8 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.db.models.signals import post_save
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import AbstractUser, User, Group
+from django.contrib.auth.admin import GroupAdmin
 
 from cloudinary.models import CloudinaryField
 
