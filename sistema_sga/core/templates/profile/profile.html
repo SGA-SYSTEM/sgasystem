@@ -1,10 +1,11 @@
 {% extends 'base_sga.html' %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% load cloudinary %}
 {% block content %}
 
 
-<div class="col-md-9" style="margin-top: 30px;">
+<div style="margin-top: 30px;">
 	{% if messages %}
 	{% for message in messages %}
 	<div class="alert alert-{{ message.tags }}">
@@ -23,11 +24,11 @@
         {% if form.errors %}
         <div class="alert alert-danger">{{ form.errors }}</div>
         {% endif %}
-
+        {% cloudinary user.picture width=300 height=300 %}
         {{ form|crispy }}
         <div class="col-sm-offset-2">
-            <a href="#" class="btn btn-link">Cancelar</a>
-            <button type="submit" class="button_outline text-center btn-info btn-new_ad hidden-xs">Salvar</button>
+            <a href="#" class="btn btn-default">Cancelar</a>
+            <button type="submit" class="btn btn-info">Salvar</button>
         </div>
     </form>
 </div>
