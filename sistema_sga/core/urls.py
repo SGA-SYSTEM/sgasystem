@@ -8,6 +8,6 @@ from .views import ProfileView
 admin.autodiscover()
 
 urlpatterns = patterns('sistema_sga.profiles.views',
-  url(r'^data/$', login_required
+  url(r'^settings/$', login_required
         (ProfileView.as_view()), name='profile'),
 )
