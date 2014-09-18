@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseBadRequest
 
 from sistema_sga.messages.models import Message
 from sistema_sga.core.models import Profile
-
+import json
 from sistema_sga.decorators import ajax_required
 
 def inbox(request):
