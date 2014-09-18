@@ -69,6 +69,7 @@ def send(request):
         to_user_username = request.POST.get('to')
         to_user = Profile.objects.get(username=to_user_username)
         message = request.POST.get('message')
+        print message
         if len(message.strip()) == 0:
             return HttpResponse()
         if from_user != to_user:
