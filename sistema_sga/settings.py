@@ -74,7 +74,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     # crispy
     'crispy_forms',
-    'bootstrap3',
+    #'bootstrap3',
     # manipulator images
     'cloudinary',
     # my-migrations
