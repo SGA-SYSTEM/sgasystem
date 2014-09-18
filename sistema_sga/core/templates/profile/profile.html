@@ -1,37 +1,55 @@
 {% extends 'base_sga.html' %}
 {% load staticfiles %}
-{% load crispy_forms_tags %}
+{% load bootstrap3 %}
 {% load cloudinary %}
 {% block content %}
 
-
-<div style="margin-top: 30px;">
-	{% if messages %}
-	{% for message in messages %}
-	<div class="alert alert-{{ message.tags }}">
-    {% ifequal message.tags 'success' %}
-
-    
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    {{ message }}
-	</div>
-	{% endifequal %}
-	{% endfor %}
-	{% endif %}
-	<form id="id_form_profile" name="form" action="." method="POST" class="form-horizontal">
-        {% csrf_token %}
-
-        {% if form.errors %}
-        <div class="alert alert-danger">{{ form.errors }}</div>
-        {% endif %}
-        
-        {% cloudinary user.picture width=300 height=300 %}
-
-        {{ form|crispy }}
-        <div class="col-sm-offset-2">
-            <a href="#" class="btn btn-default">Cancelar</a>
-            <button type="submit" class="btn btn-info">Salvar</button>
+<div class="panel panel-default" style="margin-top: 30px;">
+    <div class="panel-heading">
+        Tabela de avaliações efetuadas, pendentes e em processo.
+    </div>
+    <div style="margin-top: 30px;">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+        {% ifequal message.tags 'success' %}
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        {{ message }}
         </div>
-    </form>
+        {% endifequal %}
+        {% endfor %}
+        {% endif %}
+        <form enctype="multipart/form-data" id="id_form_pr  ofile" name="form" action="." method="POST" class="form-horizontal">
+            {% csrf_token %}    
+
+            {% if form.errors %}
+            <div class="alert alert-danger">{{ form.errors }}</div>
+            {% endif %}
+            {% for field in form %}
+            {% if field.name == 'picture' %}
+            {% if field.value %}
+                {% if user.picture %}
+                {% cloudinary user.picture width=300 height=300 %}
+                {% else %}
+                <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="300" height="300">
+                {% endif %}
+            {% else %}
+            <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="300" height="300">
+            {% endif %}
+            {% endif %}
+            {% bootstrap_field field layout='horizontal' %}
+            {% endfor %}
+            <div class="col-sm-offset-2">
+                <a href="javascript:history.back()" class="btn btn-default">Cancelar</a>
+                <button type="submit" class="btn btn-info">Salvar</button>
+            </div>
+        </form>
+    </div>
 </div>
+
 {% endblock content %}
+
+
+{% block js %}
+    $('img'.addClass('testee'));
+{% endblock js %}
