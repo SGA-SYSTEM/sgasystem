@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseBadRequest
 
 from sistema_sga.messages.models import Message
@@ -49,10 +49,10 @@ def new(request):
                 to_user_username = to_user_username[to_user_username.rfind('(')+1:len(to_user_username)-1]
                 to_user = Profile.objects.get(username=to_user_username)
             except Exception, e:
-                return redirect('/messages/new/')
+                return redirect('/messages/in/new/')
         message = request.POST.get('message')
         if len(message.strip()) == 0:
-            return redirect('/messages/new/')
+            return redirect('/messages/in/new/')
         if from_user != to_user:
             Message.send_message(from_user, to_user, message)
         return redirect(u'/messages/{0}/'.format(to_user_username))
