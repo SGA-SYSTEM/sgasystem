@@ -25,6 +25,21 @@ class Message(models.Model):
         return self.message
 
     @staticmethod
+    def send_message(from_user, to_user, message):
+        message = message[:1000]
+        current_user_message = Message(from_user=from_user, 
+            message=message, 
+            user=from_user, 
+            conversation=to_user,
+            is_read=True)
+        current_user_message.save()
+        Message(from_user=from_user, 
+            conversation=from_user,
+            message=message, 
+            user=to_user).save()
+        return current_user_message
+
+    @staticmethod
     def get_conversations(user):
         conversations = Message.objects.filter(user=user).values('conversation').annotate(last=Max('date')).order_by('-last')
         users = []

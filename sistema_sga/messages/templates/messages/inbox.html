@@ -12,7 +12,7 @@
     <li class="send-message">
       {% cloudinary user.profile.picture %}
       <div style="margin-top: .3em">
-        <form role="form" method="post" action="." id="send">
+        <form role="form" method="post" action="{% url 'send_message' %}" id="send">
           {% csrf_token %}
           <input type="hidden" name="to" value="{{ active }}">
           <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off" style="width: 500px; margin-left: -50px; margin-top: -16px;">
