@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseBadRequest
 from sistema_sga.messages.models import Message
 from sistema_sga.core.models import Profile
 
+from sistema_sga.decorators import ajax_required
+
 def inbox(request):
     conversations = Message.get_conversations(user=request.user)
     active_conversation = None
@@ -60,6 +62,7 @@ def new(request):
             'conversations': conversations
             })
 
+@ajax_required
 def send(request):
     if request.method == 'POST':
         from_user = request.user
@@ -75,6 +78,7 @@ def send(request):
     else:
         return HttpResponseBadRequest()
 
+@ajax_required
 def users(request):
     users = Profile.objects.filter(is_active=True)
     dump = []

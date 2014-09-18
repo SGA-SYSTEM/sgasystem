@@ -6,7 +6,7 @@ $(function () {
       cache: false,
       type: 'post',
       success: function (data) {
-        //$(".send-message").before(data);
+        $(".send-message").before(data);
         $("input[name='message']").val('');
         $("input[name='message']").focus();
       }
