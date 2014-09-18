@@ -1,6 +1,7 @@
 {% extends 'base_sga.html' %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% load cloudinary %}
 {% block content %}
 
 
@@ -22,7 +23,7 @@
 
         {% if form.errors %}
         <div class="alert alert-danger">{{ form.errors }}</div>
-        {% endif %}
+        {% endif %} 
 
         {{ form|crispy }}
         <div class="col-sm-offset-2">
