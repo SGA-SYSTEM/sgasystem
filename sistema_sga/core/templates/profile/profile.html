@@ -4,21 +4,21 @@
 {% load cloudinary %}
 {% block content %}
 
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}" style="margin-top: 30px;">
+{% ifequal message.tags 'success' %}
+<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+{{ message }}
+</div>
+{% endifequal %}
+{% endfor %}
+{% endif %}
+<h1 class="page-header">Configurações</h1>
 <div class="panel panel-default" style="margin-top: 30px;">
     <div class="panel-heading">
-        Tabela de avaliações efetuadas, pendentes e em processo.
+        Editar perfil
     </div>
-    <div style="margin-top: 30px;">
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-        {% ifequal message.tags 'success' %}
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        {{ message }}
-        </div>
-        {% endifequal %}
-        {% endfor %}
-        {% endif %}
         <form enctype="multipart/form-data" id="id_form_pr  ofile" name="form" action="." method="POST" class="form-horizontal">
             {% csrf_token %}    
 
@@ -29,12 +29,12 @@
             {% if field.name == 'picture' %}
             {% if field.value %}
                 {% if user.picture %}
-                {% cloudinary user.picture width=300 height=300 %}
+                {% cloudinary user.picture width=150 height=150 %}
                 {% else %}
-                <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="300" height="300">
+                <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="150" height="150">
                 {% endif %}
             {% else %}
-            <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="300" height="300">
+            <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="150" height="150">
             {% endif %}
             {% endif %}
             {% bootstrap_field field layout='horizontal' %}
@@ -44,12 +44,6 @@
                 <button type="submit" class="btn btn-info">Salvar</button>
             </div>
         </form>
-    </div>
 </div>
 
 {% endblock content %}
-
-
-{% block js %}
-    $('img'.addClass('testee'));
-{% endblock js %}

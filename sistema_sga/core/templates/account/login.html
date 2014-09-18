@@ -28,6 +28,11 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 	
 </head>
+<style type="text/css" media="screen">
+	#div_id_remember{
+		display: none;
+	}
+</style>
 <body class="login">	
 	<!-- PAGE -->
 	<section id="page">
@@ -85,8 +90,8 @@
 								</div>
 								<!-- /SOCIAL LOGIN -->
 								<div class="login-helpers">
-									<a href="{% url 'account_reset_password' %}" onclick="swapScreen('forgot');return false;">Forgot Password?</a> <br>
-									Don't have an account with us? <a href="{{ signup_url }}" onclick="swapScreen('register');return false;">Register
+									<a href="{% url 'account_reset_password' %}">Forgot Password?</a> <br>
+									Don't have an account with us? <a href="{{ signup_url }}">Register
 										now!</a>
 								</div>
 							</div>
