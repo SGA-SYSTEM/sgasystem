@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
     # shell_plus
     'django_extensions',
     #debug-toolbar
@@ -139,7 +140,7 @@ USE_TZ = True
 
 ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email" 
-ACCOUNT_CONFIRM_EMAIL_ON_GET = False
+ACCOUNT_CONFIRM_EMAIL_ON_GET = "optional"
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = LOGIN_REDIRECT_URL
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 10
@@ -147,7 +148,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = None
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "Subject is: "
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
-ACCOUNT_LOGOUT_ON_GET = False
+ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_LOGOUT_REDIRECT_URL = LOGIN_URL
 ACCOUNT_SIGNUP_FORM_CLASS = 'sistema_sga.core.forms.SignupForm'
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
@@ -179,10 +180,9 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = BASE_DIR.child('media')
 MEDIA_URL = '/media/'
 
-from .email_info import *
 
 EMAIL_HOST='smtp.mandrillapp.com'
-EMAIL_HOST_USER='sga.com <alex.falcucci@gmail.com>'
+EMAIL_HOST_USER='alex.falcucci@gmail.com'
 EMAIL_HOST_PASSWORD='eaERTcFdVL4YZ7MqZiCTdg'
 EMAIL_PORT=587
 EMAIL_USE_TLS=True

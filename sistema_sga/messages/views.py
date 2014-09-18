@@ -1,6 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseBadRequest
 
-# Create your views here.
 from sistema_sga.messages.models import Message
 from sistema_sga.core.models import Profile
 

@@ -1,49 +1,223 @@
-{% extends 'base.html' %}
-
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 {% load i18n %}
 {% load account %}
+{% load socialaccount %}
 {% load url from future %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
-
 {% block content %}
-{% include 'header.html' %}
-<section id="hero" class="section" style="padding-top: 150px;">
-			<div class="container">
-				<h1>{% trans "Log in" %}</h1>
-				{% if socialaccount.providers  %}
-				<p>{% blocktrans with site.name as site_name %}Você ainda não tem uma conta?<a href="{{ signup_url }}"><b> Cadastre-se</b></a> no
-					 {{site_name}} e comece a utilizado:{% endblocktrans %}</p>
-
-					<div class="socialaccount_ballot" id="social_account">
-
-					  <ul class="socialaccount_providers">
-					    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-					  </ul>
-
-					  <div class="login-or">{% trans 'or' %}</div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- STYLESHEETS --><!--[if lt IE 9]><script src="js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login/cloud-admin.css' %}" >
+	
+	<link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+	<!-- DATE RANGE PICKER -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login/daterangepicker-bs3.css' %}" />
+	<!-- UNIFORM -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login/uniform.default.min.css' %}" />
+	<!-- ANIMATE -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}" />
+	<!-- FONTS -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+	
+</head>
+<body class="login">	
+	<!-- PAGE -->
+	<section id="page">
+			<!-- HEADER -->
+			<header>
+				<!-- NAV-BAR -->
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div id="logo">
+								<a href="/"><img src="{% static 'img/logo-alt.png' %}" height="120" alt="logo name" /></a>
+							</div>
+						</div>
 					</div>
-
-				{% include "socialaccount/snippets/login_extra.html" %}
-				{% else %}
-				<p>{% blocktrans %}Você ainda não tem uma conta? 
-				<a href="{{ signup_url }}"><b>Cadastre-se</b></a> primeiro.{% endblocktrans %}</p>
-				{% endif %}
-
-				<form class="login" method="POST" action="{% url 'account_login' %}">
-				  {% csrf_token %}
-				  {{ form|crispy }}
-				  {% if redirect_field_value %}
-				  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-				  {% endif %}
-				  <a href="{% url 'account_reset_password' %}">{% trans "Esqueceu a senha?" %} |</a>
-				  <button class="login_but" type="submit" style="cursor: pointer;">{% trans "Iniciar Sessão" %}</button>
-				</form>
 				</div>
-			</div>
-</section>
-{% include 'body.html' %}
-{% endblock %}
+				<!--/NAV-BAR -->
+			</header>
+			<!--/HEADER -->
+			<!-- LOGIN -->
+			<section id="login" class="visible">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div class="login-box-plain">
+								<h2> {% trans "Log in" %} </h2>
+								<div class="divide-40"></div>
+								<form action="{% url 'account_login' %}" method="POST" role="form">
+								{% csrf_token %}
+								  <div class="form-group">
+									{{ form|crispy }}
+								  </div>
+								  <div class="form-actions">
+									<button type="submit" class="btn btn-danger">Submit</button>
+								  </div>
+								</form>
+								<!-- SOCIAL LOGIN -->
+								<div class="divide-20"></div>
+								<div class="center">
+									<strong>Or login using your social account</strong>
+								</div>
+								<div class="divide-20"></div>
+								<div class="social-login center">
+									{% for provider in socialaccount.providers %}
+									{% ifequal provider.name "Facebook" %}
+									<a href="{% provider_login_url provider.id openid=brand.openid_url process=process %}" class="btn btn-primary btn-lg">
+										<i class="fa fa-facebook"></i>
+									</a>
+									{% endifequal %}
+									{% ifequal provider.name "Twitter" %}
+									<a class="btn btn-info btn-lg">
+										<i class="fa fa-twitter"></i>
+									</a>
+									{% endifequal %}
+									{% endfor %}
+								</div>
+								<!-- /SOCIAL LOGIN -->
+								<div class="login-helpers">
+									<a href="{% url 'account_reset_password' %}" onclick="swapScreen('forgot');return false;">Forgot Password?</a> <br>
+									Don't have an account with us? <a href="{{ signup_url }}" onclick="swapScreen('register');return false;">Register
+										now!</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--/LOGIN -->
+			<!-- REGISTER -->
+			<section id="register">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div class="login-box-plain">
+								<h2 class="bigintro">Register</h2>
+								<div class="divide-40"></div>
+								<form role="form">
+								  <div class="form-group">
+									<label for="exampleInputName">Full Name</label>
+									<i class="fa fa-font"></i>
+									<input type="text" class="form-control" id="exampleInputName" >
+								  </div>
+								  <div class="form-group">
+									<label for="exampleInputUsername">Username</label>
+									<i class="fa fa-user"></i>
+									<input type="text" class="form-control" id="exampleInputUsername" >
+								  </div>
+								  <div class="form-group">
+									<label for="exampleInputEmail1">Email address</label>
+									<i class="fa fa-envelope"></i>
+									<input type="email" class="form-control" id="exampleInputEmail1" >
+								  </div>
+								  <div class="form-group"> 
+									<label for="exampleInputPassword1">Password</label>
+									<i class="fa fa-lock"></i>
+									<input type="password" class="form-control" id="exampleInputPassword1" >
+								  </div>
+								  <div class="form-group"> 
+									<label for="exampleInputPassword2">Repeat Password</label>
+									<i class="fa fa-check-square-o"></i>
+									<input type="password" class="form-control" id="exampleInputPassword2" >
+								  </div>
+								  <div class="form-actions">
+									<label class="checkbox"> <input type="checkbox" class="uniform" value=""> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+									<button type="submit" class="btn btn-success">Sign Up</button>
+								  </div>
+								</form>
+								<!-- SOCIAL REGISTER -->
+								<div class="divide-20"></div>
+								<div class="center">
+									<strong>Or register using your social account</strong>
+								</div>
+								<div class="divide-20"></div>
+								<div class="social-login center">
+									<a class="btn btn-primary btn-lg">
+										<i class="fa fa-facebook"></i>
+									</a>
+									<a class="btn btn-info btn-lg">
+										<i class="fa fa-twitter"></i>
+									</a>
+									<a class="btn btn-danger btn-lg">
+										<i class="fa fa-google-plus"></i>
+									</a>
+								</div>
+								<!-- /SOCIAL REGISTER -->
+								<div class="login-helpers">
+									<a href="#" onclick="swapScreen('login');return false;"> Back to Login</a> <br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--/REGISTER -->
+			<!-- FORGOT PASSWORD -->
+			<section id="forgot">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<div class="login-box-plain">
+								<h2 class="bigintro">Reset Password</h2>
+								<div class="divide-40"></div>
+								<form role="form">
+								  <div class="form-group">
+									<label for="exampleInputEmail1">Enter your Email address</label>
+									<i class="fa fa-envelope"></i>
+									<input type="email" class="form-control" id="exampleInputEmail1" >
+								  </div>
+								  <div class="form-actions">
+									<button type="submit" class="btn btn-info">Send Me Reset Instructions</button>
+								  </div>
+								</form>
+								<div class="login-helpers">
+									<a href="#" onclick="swapScreen('login');return false;">Back to Login</a> <br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- FORGOT PASSWORD -->
+	</section>
+	<!--/PAGE -->
+	<!-- JAVASCRIPTS -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- JQUERY -->
+	<script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+	<script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script>
+	<!-- JQUERY UI-->
+	<script src="{% static 'js/login/jquery-ui-1.10.3.custom.min.js' %}"></script>
+	<!-- BOOTSTRAP -->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	
+	
+	<!-- UNIFORM -->
+	<script type="text/javascript" src="{% static 'js/login/jquery.uniform.min.js' %}"></script>
+	<!-- CUSTOM SCRIPT -->
+	<script src="{% static 'js/script.js' %}"></script>
+	<script>
+		jQuery(document).ready(function() {		
+			App.setPage("login");  //Set current page
+			App.init(); //Initialise plugins and elements
+		});
+	</script>
+	<script type="text/javascript">
+		function swapScreen(id) {
+			jQuery('.visible').removeClass('visible animated fadeInUp');
+			jQuery('#'+id).addClass('visible animated fadeInUp');
+		}
+	</script>
+	<!-- /JAVASCRIPTS -->
+</body>
+</html>
+{% endblock content %}
