@@ -14,7 +14,7 @@ $(function () {
   };
 
   $.ajax({
-    url: '/messages/in/users/',
+    url: '/messages/users/',
     cache: false,
     success: function (data) {
       $('#to').typeahead({
