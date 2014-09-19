@@ -42,7 +42,7 @@ class ProfileView(View):
             profile = form.save()
 
             messages.success(request, self.success_message)
-            return HttpResponseRedirect('/profile/data/')
+            return HttpResponseRedirect('/profile/settings/')
 
         return render(request, self.template_name, locals())
 
