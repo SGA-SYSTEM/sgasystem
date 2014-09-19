@@ -30,12 +30,12 @@ class Profile(AbstractUser):
 
     def get_screen_name(self):
         try:
-            if self.user.get_full_name():
-                return self.user.get_full_name()
+            if self.get_full_name():
+                return self.get_full_name()
             else:
-                return self.user.username
+                return self.username
         except:
-            return self.user.username
+            return self.username
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

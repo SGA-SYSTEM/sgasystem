@@ -2,7 +2,11 @@
 {% load staticfiles %}
 {% load cloudinary %}
 <li>
+{% if message.from_user.picture %}
 {% cloudinary message.from_user.picture width=30 height=30 crop="fill" %}
+{% else %}
+<img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="30" height="30">
+{% endif %}
     <h5>
       <small class="pull-right">
         {{ message.date|date:'N d G:i' }}
