@@ -29,8 +29,10 @@
     <link rel="stylesheet" href="{% static 'css/messages.css' %}">
     <script src="{% static 'js/messages.js' %}"></script>
     <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
-    {% block head %}
-    {% endblock head %}
+    <script src="{% static 'js/messages.typehead.js' %}"></script>
+  <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
+    {% block head_extra %}
+    {% endblock head_extra %}
   </head>
 <body>
 {% block base %}

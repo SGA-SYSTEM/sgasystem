@@ -6,5 +6,5 @@ urlpatterns = patterns('sistema_sga.messages.views',
     url(r'^(?P<username>[^/]+)/$', 'messages', name='messages'),
     url(r'^in/new/$', 'new', name='new_message'),
     url(r'^in/send/$', 'send', name='send_message'),
-    url(r'^users/$', 'users', name='users_message'),
+    url(r'^in/users/$', 'users', name='users_message'),
 )

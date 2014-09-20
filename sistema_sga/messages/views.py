@@ -84,8 +84,8 @@ def users(request):
     dump = []
     template = u'{0} ({1})'
     for user in users:
-        if user.profile.get_screen_name() != user.username:
-            dump.append(template.format(user.profile.get_screen_name(), user.username))
+        if user.get_screen_name() != user.username:
+            dump.append(template.format(user.get_screen_name(), user.username))
         else:
             dump.append(user.username)
     data = json.dumps(dump)
