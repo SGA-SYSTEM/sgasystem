@@ -27,7 +27,7 @@ def iniciar_prova(request, prova_id):
     else:
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
     context = { 'usuario_prova':usuario_prova, }
-    return HttpResponseRedirect('/home-sga/')
+    return HttpResponseRedirect('/prova/')
 
 @login_required
 def enviar_prova(request, prova_id):
@@ -38,14 +38,14 @@ def enviar_prova(request, prova_id):
                 usuario_prova.tempo_final = timezone.now()
                 usuario_prova.save()
                 messages.add_message(request, messages.SUCCESS, 'Prova enviada!')
-                return HttpResponseRedirect('/home-sga/')
+                return HttpResponseRedirect('/prova/')
             else:
                 messages.add_message(request, messages.ERROR, 'Prova em andamento.')
         else:
             messages.add_message(request, messages.ERROR, 'É preciso responder todas as questões.')
     else:
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
-    return HttpResponseRedirect('/home-sga/')
+    return HttpResponseRedirect('/prova/')
 
 @login_required
 def prova(request, prova_id):
@@ -55,7 +55,7 @@ def prova(request, prova_id):
         return render(request, 'prova/provas.html', context)
     else:
         messages.add_message(request, messages.ERROR, 'Usuário sem permissão.')
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/accounts/login/')
 
 @login_required
 def questao(request, prova_id, questao_id):
@@ -84,7 +84,7 @@ def send_response(request):
         usuario_prova_resposta = UsuarioProvaResposta(usuario_prova=UsuarioProva(id=usuario_prova_id), questao=Questao(id=questao_id), resposta_alternativa=Resposta(id=resposta_id))
         usuario_prova_resposta.save()
 
-        return HttpResponseRedirect('/home-sga/')
+        return HttpResponseRedirect('/prova/')
 
 @login_required
 def home_sga(request):
@@ -112,3 +112,11 @@ def create_exam(request):
     return render(request, 'user_exam/create_exam_for_user.html', {
                             'form':ProvaForm(), 'form_question':QuestaoForm
                             })
+
+def list_exam(request):
+    usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
+    context = {
+    'usuario_prova_list':usuario_prova_list,
+    'count_user':Profile.objects.all().count(),
+    }
+    return render(request, 'sga_system/list_exams.html', context)

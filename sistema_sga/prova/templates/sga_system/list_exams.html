@@ -1,0 +1,36 @@
+{% extends 'base_sga.html' %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+    {% ifequal message.tags 'success' %}
+    <i class="fa fa-check"></i>
+    {% else %}
+    <i class="fa fa-{{ message.tags }}"></i>
+    {% endifequal %}
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    {{ message }}
+</div>
+
+{% endfor %}
+{% endif %}
+
+{% if usuario_prova_list %} 
+    
+    {% include 'prova/usuarios_prova.html' %}
+
+{% else %}       
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            Notificação
+        </div>
+        <div class="panel-body">
+            <h4>Desculpe <b>{{user.username}}</b>, mas no momento você não possui nenhuma avaliação. Clique <a href="{% url 'new_message' %}"> aqui</a> e solicite uma.</h4>  
+        </div>
+        <div class="panel-footer">
+            
+        </div>
+    </div>    
+
+{% endif %}
+{% endblock content %}

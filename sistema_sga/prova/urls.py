@@ -5,6 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('sistema_sga.prova.views',
+    url(r'^$', 'list_exam', name='list_exam'),
     url(r'^(?P<prova_id>\d+)/$', 'prova', name='prova'),
     url(r'^(?P<prova_id>\d+)/start/$', 'iniciar_prova', name='iniciar_prova'),
     url(r'^(?P<prova_id>\d+)/enviar/$', 'enviar_prova', name='enviar_prova'),
