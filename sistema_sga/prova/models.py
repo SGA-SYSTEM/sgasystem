@@ -149,7 +149,7 @@ class UsuarioProva(models.Model):
         return list(lista)
 
     def get_exams_pending(self):
-        query_user = UsuarioProva.objects.filter(user__id=self.user.id)
+        query_user = UsuarioProva.objects.filter(user__id=self.id)
         exams_pending = [i.get_progress() for i in query_user if i.get_progress() != '100%']
         return len(exams_pending)
 
