@@ -134,6 +134,9 @@ class UsuarioProva(models.Model):
         score_exam = (float(respostas) / float(questoes)) * 100
         return int(round(score_exam))
 
+    def get_errors_for_pie(self):
+        return (100 - self.get_score_for_pie())
+
     def get_score(self):
         questoes = self.prova.questoes.count()
         respostas = self.usuarioprovaresposta_set.filter(resposta_alternativa__correta=True).count()

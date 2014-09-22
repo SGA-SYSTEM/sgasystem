@@ -1,5 +1,5 @@
 # coding: utf-8
-from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponseRedirect, redirect, render_to_response
 from sistema_sga.prova.models import Prova, UsuarioProva, Questao, Resposta, UsuarioProvaResposta
 from django.utils import timezone
 from django.contrib import messages
@@ -104,16 +104,14 @@ def home_sga(request):
     }
     return render(request, 'sga_system/home_sga.html', context)
 
+import json
 @login_required
-def desempenho(request):
-    usuario_items = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
-    lista = []
-    for x in usuario_items:
-        lista.append(x.get_score_for_pie())
-    return render(request, 'prova/chart_graph.html', {
-                            'usuario_items':usuario_items,'lista':lista,
-                            'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:10]
-                            })
+def performance(request):
+    dump_query = UsuarioProva.objects.filter(user__id=request.user.id)
+    return render(request, 'chartit/chart.html', {
+        'dump_query': dump_query,
+        'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:6]
+        })
 
 #create exam for user
 def create_exam(request):
