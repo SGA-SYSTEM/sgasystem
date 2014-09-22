@@ -91,13 +91,14 @@ def send_response(request):
 def home_sga(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
     try:
-        query = UsuarioProva.objects.filter(id=request.user.id)[0:1]
+        query = UsuarioProva.objects.get(id=request.user.id)
+        exams_pending = query.get_exams_pending()
     except Exception, e:
-        pass
+        exams_pending = 0
     context = {
     'usuario_prova_list': usuario_prova_list,
     'count_user': Profile.objects.all().count(),
-    'exams_pending': [i.get_exams_pending() for i in query],
+    'exams_pending': exams_pending,
     'exams': Prova.objects.all().count(),
     'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:6]
     }
