@@ -5,15 +5,14 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from sistema_sga.prova.models import UsuarioProva
+from sistema_sga.core.models import Profile
 from django.conf import settings
-
 from django.views.generic import View
 from django.core.urlresolvers import reverse as r
 from .forms import ProfileForm
 from django.utils.translation import ugettext as _
-
+from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialApp, SocialAccount, SocialLogin
-
 from django.dispatch import receiver
 from allauth.account.signals import user_signed_up
 from django.template.loader import render_to_string, get_template
@@ -96,3 +95,8 @@ def set_attribute(sender, **kwargs):
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])       
         msg.attach_alternative(html_content, "text/html")
         msg.send()
+
+@login_required
+def rede(request):
+    users = Profile.objects.filter(is_active=True).order_by('username')
+    return render(request, 'core/rede.html', {'users': users,})

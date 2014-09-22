@@ -1,0 +1,42 @@
+{% extends 'base_sga.html' %}
+{% load i18n %}
+{% load cloudinary %}
+{% load staticfiles %}
+
+{% block head_extra %}
+<link href="{% static 'css/network.css' %}" rel="stylesheet">
+{% endblock head_extra %}
+
+{% block content %}
+
+<div class="users">
+    <div class="row">
+      {% for user in users %}
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+            {% if user.picture %}
+            {% cloudinary user.picture width="50" height="40" %}
+			{% else %}
+			<img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="50" height="40">
+			{% endif %}          
+              <a href="#">{{ user.get_screen_name }}</a>
+            </div>
+            <div class="panel-body">
+              {% if user.college %}
+                <p><strong>{% trans 'Universidade' %}:</strong> {{ user.college }}</p>
+              {% endif %}
+              <p><strong>{% trans 'Username' %}: </strong> {{ user.username }}</p>
+              <p><strong>{% trans 'Email' %}:</strong> {{ user.email }}</p>
+              {% if user.social_link_fc %}
+                <a href="{{ user.social_link_fc }}" target="__blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+{% endblock content %}
