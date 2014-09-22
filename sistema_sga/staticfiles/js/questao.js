@@ -6,9 +6,8 @@ $(function () {
             data: $('#frm-answers').serialize(),
             type: 'post',
             cache: false,
-            beforeSend: function () {
-	          var html = "<p class='alert alert-warning' style='text-align: center;'>Resposta enviada com sucesso!</p>"
-              $('#alert').html(html);
+            success: function () {
+	          $("#result").slideDown(1000).show(0).delay(2000).slideUp(1000).hide(0);
               $("input").prop('disabled', true);
 	        }
         });
