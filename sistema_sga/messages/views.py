@@ -83,15 +83,5 @@ def users(request):
     template = u'{0} ({1})'
     dump = [template.format(user.get_screen_name(), user.username)\
             if user.get_screen_name() != user.username else user.username for user in users] 
-    
     data = json.dumps(dump)
     return HttpResponse(data, content_type='application/json')
-
-# refactored with list comprehensions
-'''
-for user in users:
-    if user.get_screen_name() != user.username:
-        dump.append(template.format(user.get_screen_name(), user.username))
-    else:
-        dump.append(user.username)
-'''
