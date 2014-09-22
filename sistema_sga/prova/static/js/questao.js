@@ -7,7 +7,7 @@ $(function () {
             type: 'post',
             cache: false,
             success: function () {
-	          $("#result").slideDown(1000).show(0).delay(2000).slideUp(1000).hide(0);
+	          $("#result").slideDown(300).show(0).delay(2000).slideUp(2000).hide(0);
               $("input").prop('disabled', true);
 	        }
         });
