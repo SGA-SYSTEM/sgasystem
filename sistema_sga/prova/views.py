@@ -93,8 +93,8 @@ def home_sga(request):
     try:
         query = UsuarioProva.objects.get(id=request.user.id)
         exams_pending = query.get_exams_pending()
-    except Exception:
-        exams_pending = 0
+    except Exception, e:
+        exams_pending = None
     context = {
     'usuario_prova_list': usuario_prova_list,
     'count_user': Profile.objects.all().count(),
