@@ -110,13 +110,15 @@ def performance(request):
     dump_query = UsuarioProva.objects.filter(user__id=request.user.id)
     try:
         query_median = UsuarioProva.objects.get(id=request.user.id)
+        median_hit = query_median.get_median_score()
+        median_errors = query_median.get_median_errors()
     except Exception, e:
-        query_median = None
+        median_hit, median_errors = None, None
     return render(request, 'chartit/chart.html', {
         'dump_query': dump_query,
         'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:6],
-        'median_hit': query_median.get_median_score(),
-        'median_errors': query_median.get_median_errors()
+        'median_hit': median_hit,
+        'median_errors': median_errors,
         })
 
 #create exam for user
