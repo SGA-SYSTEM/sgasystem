@@ -113,7 +113,7 @@ def performance(request):
         median_hit = query_median.get_median_score()
         median_errors = query_median.get_median_errors()
     except Exception, e:
-        median_hit, median_errors = None, None
+        median_hit, median_errors = '0%', '0%'
     return render(request, 'chartit/chart.html', {
         'dump_query': dump_query,
         'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:6],
