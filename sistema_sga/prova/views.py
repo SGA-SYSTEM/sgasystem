@@ -98,7 +98,7 @@ def home_sga(request):
     context = {
     'usuario_prova_list': usuario_prova_list,
     'count_user': Profile.objects.all().count(),
-    'exams_pending': query,
+    'exams_pending': exams_pending,
     'exams': Prova.objects.all().count(),
     'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:6]
     }
