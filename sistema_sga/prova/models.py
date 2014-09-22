@@ -148,6 +148,11 @@ class UsuarioProva(models.Model):
             lista.append(user.prova.titulo)
         return list(lista)
 
+    def get_exams_pending(self):
+        query_user = UsuarioProva.objects.filter(user__id=self.user.id)
+        exams_pending = [i.get_progress() for i in query_user if i.get_progress() != '100%']
+        return len(exams_pending)
+
     def get_status(self):
         if self.has_finished():
             return 'Finalizada!'

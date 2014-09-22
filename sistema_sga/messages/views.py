@@ -80,7 +80,7 @@ def send(request):
 
 @ajax_required
 def users(request):
-    users = Profile.objects.filter(is_active=True)
+    users = Profile.objects.filter(is_active=True, is_superuser=True)
     dump = []
     template = u'{0} ({1})'
     for user in users:

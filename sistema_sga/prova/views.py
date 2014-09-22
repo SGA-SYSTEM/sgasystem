@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from sistema_sga.prova.forms import ProvaForm, QuestaoForm
 from sistema_sga.core.models import Profile
+from sistema_sga.decorators import ajax_required
 
 # Create your views here.
 
@@ -89,10 +90,17 @@ def send_response(request):
 @login_required
 def home_sga(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
+    try:
+        query = UsuarioProva.objects.get(id=request.user.id)
+        exams_pending = query.get_exams_pending()
+    except :
+        exams_pending = 0
     context = {
-    'usuario_prova_list':usuario_prova_list,
-    'count_user':Profile.objects.all().count(),
-
+    'usuario_prova_list': usuario_prova_list,
+    'count_user': Profile.objects.all().count(),
+    'exams_pending': exams_pending,
+    'exams': Prova.objects.all().count(),
+    'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:6]
     }
     return render(request, 'sga_system/home_sga.html', context)
 
@@ -104,6 +112,7 @@ def desempenho(request):
         lista.append(x.get_score_for_pie())
     return render(request, 'prova/chart_graph.html', {
                             'usuario_items':usuario_items,'lista':lista,
+                            'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:10]
                             })
 
 #create exam for user
@@ -113,10 +122,12 @@ def create_exam(request):
                             'form':ProvaForm(), 'form_question':QuestaoForm
                             })
 
+# url 'list_exams'
 def list_exam(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
     context = {
     'usuario_prova_list':usuario_prova_list,
     'count_user':Profile.objects.all().count(),
+    'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:10]
     }
     return render(request, 'sga_system/list_exams.html', context)

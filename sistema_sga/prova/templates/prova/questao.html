@@ -1,42 +1,24 @@
 {% extends 'base_sga.html' %}
 {% load staticfiles %}
 {% block content %}
-
-                            <div class="col-md-6" style="margin-top: 30px;">
-                                <div class="content-box-large">
-                                    <h4>{{questao.questao}}</h4>
-                                    <p>Escolha a resposta correta:</p>
-                                    {% if respostas %}
-                                        <form id="frm-answers">
-                                            {% csrf_token %}
-                                            <input type="hidden" name="user-exam-id" value="{{usuario_prova.id}}">
-                                            <input type="hidden" name="question-id" value="{{questao.id}}">
-                                            {% for resposta in respostas %}
-                                                <label class="radio"><input type="radio" name="rb-answer" value="{{resposta.id}}"{% if usuario_resposta.resposta_alternativa.id == resposta.id %} checked {% endif %}> {{resposta.alternativa}} - {{resposta.resposta}}</label>
-                                            {% endfor %}
-                                            <div class="form-actions">
-                                                <a href="/prova/{{usuario_prova.id}}/" class="btn btn-small btn-default" >Responder próxima</a>
-                                            </div>
-                                        </form>
-                                    {% endif %}
-                                </div>
-                                <div id="alert">
-                                </div>
-                            </div>
-                            <div class="col-md-3" style="margin-top: 30px;">
-                                <div class="row">
-                                    <div class="col-md-12 panel-warning">
-                                        <div class="content-box-header panel-heading">
-                                            <div class="panel-title "><b>Atenção com as respostas!</b></div>
-                                        </div>
-                                        <div class="content-box-large box-with-header">
-                                        Para se tornar realístico e evitar razuras tornando a avaliação parecida com a  presencial, as respostas são armazenadas com apenas um clique. Então, pense bem antes de marcar a resposta correta!
-                                        <br /><br />
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
+    <div class="content-box-large" style="margin-top: 10px;">
+    <h3>{{questao.questao}}</h3>
+    <p>Escolha a resposta correta:</p>
+    {% if respostas %}
+    <form id="frm-answers">
+        {% csrf_token %}
+        <input type="hidden" name="user-exam-id" value="{{usuario_prova.id}}">
+        <input type="hidden" name="question-id" value="{{questao.id}}">
+        {% for resposta in respostas %}
+        <label class="radio"><input type="radio" name="rb-answer" value="{{resposta.id}}"{% if usuario_resposta.resposta_alternativa.id == resposta.id %} checked {% endif %}> {{resposta.alternativa}} - {{resposta.resposta}}</label>
+        {% endfor %}
+        <div class="form-actions">
+        <a href="/prova/{{usuario_prova.id}}/" class="btn btn-small btn-default" >Responder próxima</a>
+    
+    </form>
     </div>
-</div>
+    {% endif %}
+    <span id="result" class="col-md-12" style="display: none; margin-top: 30px;">
+        <p class='alert alert-success' style='text-align: center;'><b>Resposta enviada com sucesso!</b></p>
+    </span>
 {% endblock content %}
