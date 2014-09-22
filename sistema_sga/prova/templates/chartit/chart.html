@@ -10,6 +10,30 @@
          <div id="testando" style="min-width: 800px; max-width: 800px; height: 400px; margin: 10px auto;"></div>
     </div>
 </div>
+<h4 class="page-header text-center">Média</h4>
+<table class="table table-bordered table-hover table-condensed table-striped">
+  <thead>
+    <tr>
+      <th class="text_align_center">Prova</th>
+      <th class="text_align_center">Acertos</th>
+      <th class="text_align_center">Erros</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in dump_query %}
+    <tr>
+      <td class="text_align_center">{{ data.prova.titulo }}</td>
+      <td class="text_align_center">{{ data.get_score }}</td>
+      <td class="text_align_center">{{ data.get_errors_for_pie }}%</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tr class="info">
+      <td class="text_align_center">Médias de erros e acertos</td>
+      <td class="text_align_center">{{ median_hit }}</td>
+      <td class="text_align_center">{{ median_errors }}</td>
+    </tr>
+</table>
  {% endblock content %}
 
  {% block js %}
