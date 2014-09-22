@@ -85,3 +85,9 @@ def users(request):
             if user.get_screen_name() != user.username else user.username for user in users] 
     data = json.dumps(dump)
     return HttpResponse(data, content_type='application/json')
+
+# for user in users: refactored with list comprehensions
+#     if user.get_screen_name() != user.username:
+#         dump.append(template.format(user.get_screen_name(), user.username))
+#     else:
+#         dump.append(user.username)
