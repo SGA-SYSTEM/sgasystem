@@ -90,8 +90,12 @@ def send_response(request):
 @login_required
 def home_sga(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
-    query = UsuarioProva.objects.get(id=request.user.id)
-    exams_pending = query.get_exams_pending()
+    try:
+        query = UsuarioProva.objects.get(id=request.user.id)
+        exams_pending = query.get_exams_pending()
+    except Exception, e:
+        query = UsuarioProva()
+        exams_pending = query
     context = {
     'usuario_prova_list': usuario_prova_list,
     'count_user': Profile.objects.all().count(),
