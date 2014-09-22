@@ -93,12 +93,12 @@ def home_sga(request):
     try:
         query = UsuarioProva.objects.get(id=request.user.id)
         exams_pending = query.get_exams_pending()
-    except :
-        exams_pending = False
+    except Exception:
+        exams_pending = 0
     context = {
     'usuario_prova_list': usuario_prova_list,
     'count_user': Profile.objects.all().count(),
-    'exams_pending': exams_pending,
+    'exams_pending': query,
     'exams': Prova.objects.all().count(),
     'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:6]
     }
