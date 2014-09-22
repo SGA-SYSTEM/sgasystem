@@ -297,24 +297,7 @@
             <section class="container">
                 <div class="divide20"></div>
                 <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="centered big call-to-action">
-                        Try out our 30-day trial package
-                        </h3>
-                    </div>
-                </div>
-                <div class="divide20"></div>
-                <div class="row">
-                    <form class="form-inline centered" role="form">
-                        <div class="form-group">
-                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                            <input type="email" class="form-control input-lg" id="exampleInputEmail2" placeholder="Enter your email address">
-                        </div>
-                    </form>
-                </div>
-                <br/>
-                <div class="row">
-                    <button type="submit" class="btn btn-warning btn-lg">Get started for free</button>
+                    <a href="{% url 'account_signup' %}"><button type="submit" class="btn btn-warning btn-lg">Cadastre-se</button></a>
                 </div>
                 <div class="divide20"></div>
             </section>
