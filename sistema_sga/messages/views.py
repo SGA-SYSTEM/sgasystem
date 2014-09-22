@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseBadRequest
-
 from sistema_sga.messages.models import Message
 from sistema_sga.core.models import Profile
 import json
@@ -81,12 +80,18 @@ def send(request):
 @ajax_required
 def users(request):
     users = Profile.objects.filter(is_active=True, is_superuser=True)
-    dump = []
     template = u'{0} ({1})'
-    for user in users:
-        if user.get_screen_name() != user.username:
-            dump.append(template.format(user.get_screen_name(), user.username))
-        else:
-            dump.append(user.username)
+    dump = [template.format(user.get_screen_name(), user.username)\
+            if user.get_screen_name() != user.username else user.username for user in users] 
+    
     data = json.dumps(dump)
     return HttpResponse(data, content_type='application/json')
+
+# refactored with list comprehensions
+'''
+for user in users:
+    if user.get_screen_name() != user.username:
+        dump.append(template.format(user.get_screen_name(), user.username))
+    else:
+        dump.append(user.username)
+'''
