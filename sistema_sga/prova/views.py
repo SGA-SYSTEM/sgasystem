@@ -9,6 +9,7 @@ from django.core import serializers
 from sistema_sga.prova.forms import ProvaForm, QuestaoForm
 from sistema_sga.core.models import Profile
 from sistema_sga.decorators import ajax_required
+import json
 
 # Create your views here.
 
@@ -104,7 +105,6 @@ def home_sga(request):
     }
     return render(request, 'sga_system/home_sga.html', context)
 
-import json
 @login_required
 def performance(request):
     dump_query = UsuarioProva.objects.filter(user__id=request.user.id)

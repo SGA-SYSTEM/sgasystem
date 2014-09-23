@@ -29,8 +29,8 @@
   </tbody>
   <tr class="info">
       <td class="text_align_center">Médias</td>
-      <td class="text_align_center">{{ median_hit }}</td>
-      <td class="text_align_center">{{ median_errors }}</td>
+      <td class="text_align_center"><span {% if median_list < 60 %} class="label label-danger" {% else %} class="label label-success" {% endif %}>{{ median_hit }}</span></td>
+      <td class="text_align_center"><span {% if median_errors > 60 %} class="label label-danger" {% else %} class="label label-success" {% endif %}>{{ median_errors }}</td>
     </tr>
 </table>
  {% endblock content %}
