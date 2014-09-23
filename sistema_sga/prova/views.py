@@ -89,7 +89,7 @@ def send_response(request):
         return HttpResponseRedirect('/prova/')
 
 @login_required
-def home_sga(request):
+def dashboard(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
     try:
         exams_pending = len([x for x in usuario_prova_list if x.get_status() != 'Finalizada!'])
@@ -102,7 +102,7 @@ def home_sga(request):
     'exams': Prova.objects.all().count(),
     'menu_progress': UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')[0:6]
     }
-    return render(request, 'sga_system/home_sga.html', context)
+    return render(request, 'sga_system/dashboard.html', context)
 
 @login_required
 def performance(request):

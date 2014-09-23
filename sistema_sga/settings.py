@@ -51,7 +51,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/home-sga/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 AUTH_USER_MODEL = 'core.Profile'
 

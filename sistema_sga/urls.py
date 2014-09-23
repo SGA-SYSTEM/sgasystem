@@ -12,7 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^accounts/', include('allauth.urls')),
     url(r'^pages/(?P<url>.*/)$', flatpage, name='flatpage'),
-    url(r'^home-sga/$', 'sistema_sga.prova.views.home_sga', name='home_sga'),
+    url(r'^dashboard/$', 'sistema_sga.prova.views.dashboard', name='dashboard'),
     url(r'^$', 'sistema_sga.core.views.home', name='home'),
     url(r'^in/(?P<username>[^/]+)/$', 'sistema_sga.core.views.profile', name='my_profile'),
     url(r'^prova/', include('sistema_sga.prova.urls')),
