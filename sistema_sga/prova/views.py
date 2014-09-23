@@ -92,7 +92,7 @@ def send_response(request):
 def home_sga(request):
     usuario_prova_list = UsuarioProva.objects.filter(user__id=request.user.id).order_by('id')
     try:
-        exams_pending = len([x for x in UsuarioProva.objects.filter(user__id=request.user.id) if x.get_status() != 'Finalizada!'])
+        exams_pending = len([x for x in usuario_prova_list if x.get_status() != 'Finalizada!'])
     except Exception, e:
         exams_pending = None
     context = {
