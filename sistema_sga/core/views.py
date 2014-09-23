@@ -100,3 +100,7 @@ def set_attribute(sender, **kwargs):
 def rede(request):
     users = Profile.objects.filter(is_active=True).order_by('username')
     return render(request, 'core/rede.html', {'users': users,})
+
+def profile(request, username):
+    grid_user = get_object_or_404(Profile, username=username)
+    return render(request, 'core/profile.html', {'grid_user':grid_user})

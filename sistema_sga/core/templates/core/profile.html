@@ -1,0 +1,46 @@
+{% extends 'base_sga.html' %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block head_extra %}
+<link href="{% static 'css/profile.css' %}" rel="stylesheet">
+{% endblock head_extra %}
+
+{% block content %}
+<h1 class="page-header">{{ grid_user.get_screen_name }}
+{% if grid_user.get_full_name %}<small>({{ grid_user.username }})</small>{% endif %}</h1>
+
+<div class="profile text-center">
+    <div class="row">
+      <div class="col-md-4 user-profile">
+      	{% if grid_user.picture %}
+        <img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_303,w_303/{{ grid_user.picture }}.jpg" class="picture">
+        {% else %}
+        <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="300" height="300">
+        {% endif %}
+        <ul>
+          {% if grid_user.college %}
+          <li><i class="fa fa-bookmark"></i> {{ grid_user.college }}</li>
+          {% endif %}
+          {% if grid_user.email %}
+          <li><span class="glyphicon glyphicon-envelope"></span> {{ grid_user.email }}</li>
+          {% endif %}
+          {% if grid_user.social_link_fc %}
+          <li><a href="{{ grid_user.social_link_fc }}" target="__blank"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Sobre {{user.get_screen_name}}
+                        </div>
+                        <div class="panel-body">
+                            Write something... :]
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

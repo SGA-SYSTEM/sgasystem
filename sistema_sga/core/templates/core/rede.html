@@ -20,7 +20,7 @@
 			{% else %}
 			<img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="50" height="50">
 			{% endif %}          
-              <a href="#">{{ user.get_screen_name }}</a>
+              <a href="{% url 'my_profile' user.username %}">{{ user.get_screen_name }}</a>
             </div>
             <div class="panel-body">
               {% if user.college %}
