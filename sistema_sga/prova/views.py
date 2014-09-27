@@ -120,6 +120,26 @@ def performance(request):
         'median_errors': median_errors,
         })
 
+def overview(request):
+    users = UsuarioProva.objects.filter(user__is_active=True)
+    provas = Prova.objects.all()
+    usernames = list(set([u.user.username for u in users]))
+    titulos = list(set([u.titulo for u in provas]))
+    #notas = list(set([u.get_score_for_pie() for u in users]))
+    notas = []
+    for user in usernames:
+    #    provas = [p.titulo for p in Prova.objects.all()]
+        for prova in titulos:
+            n_u = UsuarioProva.objects.filter(user__username=user, prova__titulo=prova)
+            for i in n_u:
+                notas.append(i.get_score_for_pie())
+    return render(request, 'chartit/overview.html', {
+        'usernames': usernames,
+        'titulos': provas,
+        'notas': list(set(notas)),
+        'a': 'admin',
+        })
+
 #create exam for user
 def create_exam(request):
     #do something... come on!

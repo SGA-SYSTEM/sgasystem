@@ -1,0 +1,140 @@
+{% extends 'base_sga.html' %}
+
+{% block content %}
+<div class="col-lg-12">
+    <div class="panel panel-default" style="margin-top: 10px;">
+        <div class="panel-heading">
+            Gráfico pessoal
+        </div>
+         <div id="teste" style="min-width: 800px; max-width: 1100px; height: 400px; margin: 10px auto;"></div>
+    </div>
+</div>
+<h4 class="page-header text-center">Média de acertos e erros relacionado ao gráfico.</h4>
+<table class="table table-bordered table-hover table-condensed table-striped">
+  <thead>
+    <tr>
+      <th class="text_align_center">Prova</th>
+      <th class="text_align_center">Acertos</th>
+      <th class="text_align_center">Erros</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in dump_query %}
+    <tr>
+      <td class="text_align_center">{{ data.prova.titulo }}</td>
+      <td class="text_align_center">{{ data.get_score }}</td>
+      <td class="text_align_center">{{ data.get_errors_for_pie }}%</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tr class="info">
+      <td class="text_align_center">Médias</td>
+      <td class="text_align_center"><span class="label label-success">{{ median_hit }}</span></td>
+      <td class="text_align_center"><span class="label label-danger">{{ median_errors }}</td>
+    </tr>
+</table>
+ {% endblock content %}
+
+ {% block js %}
+ $(function () {
+    $('#teste').highcharts({
+        legend: {
+            title: {
+                    text: 'Usuários',
+                    style: {
+                        fontStyle: 'italic'
+                    }
+                },
+            backgroundColor: '#FCFFC5',
+            borderColor: '#C98657',
+            shadow: true,
+            borderWidth: 1
+        },
+        title: {
+            text: 'Análise geral de usuários'
+        },
+        subtitle: {
+            text: 'É uma análise <b>vigorosa</b> dos usuários que mais utilizam o sistema. Clique <a href="http://sistemasga.herokuapp.com/prova/performance/" style="color: red;">aqui</a> e <br/>veja sua análise individual.'
+        },
+        xAxis: {
+            categories: [
+            {% for titulo in titulos %}
+                'Prova: {{titulo}}',
+            {% endfor %}
+            ]
+        },
+        yAxis: {
+            max: 100,
+            title: {
+                text: 'Índices de resultados',
+                useHTML: Highcharts.hasBidiBug
+        },
+        opposite: false
+    },
+        labels: {
+            items: [{
+                html: 'Média Geral',
+                style: {
+                    left: '70px',
+                    top: '-70px',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                }
+            }]
+        },
+        series:[
+        {% for user in usernames %}
+        {
+            type: 'column',
+            name: '{{ user }}',
+            data: [
+            {% ifequal user a %}
+               10,80,40,60,50
+            {% endifequal %}
+            ]
+        },
+        {% endfor %}
+        {
+            type: 'spline',
+            name: 'Média',
+            data: [3, 2.67, 3, 6.33, 3.33],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        }, {
+            type: 'pie',
+            name: 'Média',
+            data: [{
+                name: '{{usernames.0}}',
+                y: 13,
+                color: Highcharts.getOptions().colors[0] // Jane's color
+            }, {
+                name: '{{usernames.1}}',
+                y: 23,
+                color: Highcharts.getOptions().colors[1] // John's color
+            },{
+                name: '{{usernames.2}}',
+                y: 23,
+                color: Highcharts.getOptions().colors[2] // John's color
+            },{
+                name: '{{usernames.3}}',
+                y: 23,
+                color: Highcharts.getOptions().colors[3] // John's color
+            }, {
+                name: '{{usernames.4}}',
+                y: 19,
+                color: Highcharts.getOptions().colors[4] // Joe's color
+            }],
+            center: [80, -30],
+            size: 90,
+            showInLegend: false,
+            dataLabels: {
+                enabled: false,
+            }
+        }]
+    });
+});
+
+
+ {% endblock js %}

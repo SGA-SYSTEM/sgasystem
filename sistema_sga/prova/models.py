@@ -32,7 +32,7 @@ class ProvaSobre(models.Model):
 
     def __unicode__(self):
         return self.assunto
-            
+
 class Questao(models.Model):
     TIPO = (
             (u'ME', u'Multipla Escolha'),
@@ -43,7 +43,7 @@ class Questao(models.Model):
     questao = models.CharField(_('Questao'), max_length=300)
     sobre = models.ForeignKey('QuestaoSobre')
     tipo = models.CharField(max_length=2, choices=TIPO)
-    dificuldade = models.ForeignKey('QuestaoDificuldade')   
+    dificuldade = models.ForeignKey('QuestaoDificuldade')
     image = models.ImageField(_('Imagem'), upload_to='question/img')
     ativo = models.BooleanField(default=True)
 
@@ -87,7 +87,7 @@ class QuestaoDificuldade(models.Model):
 
     def __unicode__(self):
         return self.dificuldade
-            
+
 class UsuarioProva(models.Model):
     user = models.ForeignKey('core.Profile', blank=True, null=True)
     prova = models.ForeignKey(Prova)
@@ -120,7 +120,7 @@ class UsuarioProva(models.Model):
 
     def get_exams(self):
         return self.prova.id.count()
-        
+
     def get_progress(self):
         total_questoes = self.prova.questoes.count()
         questoes_respondidas = UsuarioProvaResposta.objects.filter(usuario_prova__id=self.id).count()
