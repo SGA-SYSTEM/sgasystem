@@ -4,35 +4,11 @@
 <div class="col-lg-12">
     <div class="panel panel-default" style="margin-top: 10px;">
         <div class="panel-heading">
-            Gráfico pessoal
+            Gráfico colectivo
         </div>
          <div id="teste" style="min-width: 800px; max-width: 1100px; height: 400px; margin: 10px auto;"></div>
     </div>
 </div>
-<h4 class="page-header text-center">Média de acertos e erros relacionado ao gráfico.</h4>
-<table class="table table-bordered table-hover table-condensed table-striped">
-  <thead>
-    <tr>
-      <th class="text_align_center">Prova</th>
-      <th class="text_align_center">Acertos</th>
-      <th class="text_align_center">Erros</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for data in dump_query %}
-    <tr>
-      <td class="text_align_center">{{ data.prova.titulo }}</td>
-      <td class="text_align_center">{{ data.get_score }}</td>
-      <td class="text_align_center">{{ data.get_errors_for_pie }}%</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-  <tr class="info">
-      <td class="text_align_center">Médias</td>
-      <td class="text_align_center"><span class="label label-success">{{ median_hit }}</span></td>
-      <td class="text_align_center"><span class="label label-danger">{{ median_errors }}</td>
-    </tr>
-</table>
  {% endblock content %}
 
  {% block js %}
@@ -55,6 +31,9 @@
         },
         subtitle: {
             text: 'É uma análise <b>vigorosa</b> dos usuários que mais utilizam o sistema. Clique <a href="http://sistemasga.herokuapp.com/prova/performance/" style="color: red;">aqui</a> e <br/>veja sua análise individual.'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y}%</b>'
         },
         xAxis: {
             categories: [
