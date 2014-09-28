@@ -26,14 +26,17 @@ def _articles(request, articles):
         'popular_tags': popular_tags
     })
 
+@login_required
 def articles(request):
     all_articles = Article.get_published()
     return _articles(request, all_articles)
 
+@login_required
 def article(request, slug):
     article = get_object_or_404(Article, slug=slug, status=Article.PUBLISHED)
     return render(request, 'articles/article.html', {'article': article})
 
+@login_required
 def write(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
@@ -53,6 +56,7 @@ def write(request):
         form = ArticleForm()
     return render(request, 'articles/write.html', {'form': form})
 
+@login_required
 def tag(request, tag_name):
     tags = Tag.objects.filter(tag=tag_name)
     articles = []
@@ -61,6 +65,7 @@ def tag(request, tag_name):
             articles.append(tag.article)
     return _articles(request, articles)
 
+@login_required
 @ajax_required
 def comment(request):
     try:
@@ -81,10 +86,12 @@ def comment(request):
     except Exception, e:
         return HttpResponseBadRequest()
 
+@login_required
 def drafts(request):
     drafts = Article.objects.filter(create_user=request.user, status=Article.DRAFT)
     return render(request, 'articles/drafts.html', {'drafts': drafts})
 
+@login_required
 @ajax_required
 def preview(request):
     try:
@@ -99,6 +106,7 @@ def preview(request):
     except Exception, e:
         return HttpResponseBadRequest()
 
+@login_required
 def edit(request, id):
     tags = ''
     if id:
