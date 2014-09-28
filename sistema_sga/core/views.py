@@ -18,6 +18,8 @@ from allauth.account.signals import user_signed_up
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMultiAlternatives
 
+from sistema_sga.prova.models import Prova, UsuarioProva
+
 def home(request):
     print request.user.id
     return render(request, 'core/home.html')
@@ -53,16 +55,16 @@ def set_attribute(sender, **kwargs):
     except Exception:
         extra_data = None
     if extra_data is not None:
-        social_link = extra_data['link'] 
-        name = extra_data['name'] 
-        first_name = extra_data['first_name'] 
-        last_name = extra_data['last_name'] 
-        email = extra_data['email'] 
-        language = extra_data['locale'] 
+        social_link = extra_data['link']
+        name = extra_data['name']
+        first_name = extra_data['first_name']
+        last_name = extra_data['last_name']
+        email = extra_data['email']
+        language = extra_data['locale']
         if language == 'pt_BR':
-            user.language = u'Português' 
-            user.country = 'Brasil' 
-        else: 
+            user.language = u'Português'
+            user.country = 'Brasil'
+        else:
             user.language = language
 
         user.social_link_fc = social_link
@@ -70,7 +72,7 @@ def set_attribute(sender, **kwargs):
         user.first_name = first_name
         user.last_name = last_name
         user.save()
-        
+
         #try to send welcome email
         subject = 'Sistema S.G.A'
         from_email = settings.EMAIL_HOST_USER
@@ -80,7 +82,7 @@ def set_attribute(sender, **kwargs):
         html_content = render_to_string(
             'account/email/email_confirmation_message.html', {'equipe':'sga'}
             )
-        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])       
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
     else:
@@ -92,9 +94,12 @@ def set_attribute(sender, **kwargs):
         html_content = render_to_string(
             'account/email/email_confirmation_message.html', {'equipe':'sga'}
             )
-        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])       
+        msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
+        prova = Prova.objects.get(titulo='Teste')
+        usuario_prova = UsuarioProva.objects.create(user=user, prova=prova, data_expiracao='2015-05-02')
+        usuario_prova.save()
 
 @login_required
 def rede(request):
