@@ -84,27 +84,15 @@
         }, {
             type: 'pie',
             name: 'Média',
-            data: [{
-                name: '{{usernames.0}}',
+            data: [
+            {%for user in usernames%}
+            {
+                name: '{{user}}',
                 y: 13,
-                color: Highcharts.getOptions().colors[0] // Jane's color
-            }, {
-                name: '{{usernames.1}}',
-                y: 23,
-                color: Highcharts.getOptions().colors[1] // John's color
-            },{
-                name: '{{usernames.2}}',
-                y: 23,
-                color: Highcharts.getOptions().colors[2] // John's color
-            },{
-                name: '{{usernames.3}}',
-                y: 23,
-                color: Highcharts.getOptions().colors[3] // John's color
-            }, {
-                name: '{{usernames.4}}',
-                y: 19,
-                color: Highcharts.getOptions().colors[4] // Joe's color
-            }],
+                color: Highcharts.getOptions().colors[{{forloop.counter0}}] // Jane's color
+            },
+            {% endfor %}
+            ],
             center: [80, -30],
             size: 90,
             showInLegend: false,
