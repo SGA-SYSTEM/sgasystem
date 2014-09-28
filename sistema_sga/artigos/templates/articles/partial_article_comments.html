@@ -10,8 +10,8 @@
     {% csrf_token %}
     <input type="hidden" name="article" value="{{ article.pk }}">
     <div class="user-portrait clearfix">
-      {% if user.profile.picture  %}
-      <img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_30,w_30/{{ user.profile.picture }}.jpg">
+      {% if user.picture  %}
+      <img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_30,w_30/{{ user.picture }}.jpg">
       {% else %}
       <img src="{% static 'img/picture.jpg' %}" alt="Usuário" class="comment-portrait">
       {% endif %}
