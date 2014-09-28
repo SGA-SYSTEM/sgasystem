@@ -97,9 +97,13 @@ def set_attribute(sender, **kwargs):
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
-        prova = Prova.objects.get(titulo='Teste')
-        usuario_prova = UsuarioProva.objects.create(user=user, prova=prova, data_expiracao='2015-05-02')
-        usuario_prova.save()
+        try:
+            prova = Prova.objects.get(titulo='Teste')
+            if prova:
+                usuario_prova = UsuarioProva.objects.create(user=user, prova=prova, data_expiracao='2015-05-02')
+                usuario_prova.save()
+        except Exception, e:
+            prova = None
 
 @login_required
 def rede(request):
