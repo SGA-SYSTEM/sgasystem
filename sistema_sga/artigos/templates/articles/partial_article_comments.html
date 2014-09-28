@@ -1,0 +1,30 @@
+{% load i18n %}
+{% load bootstrap3 %}
+{% load cloudinary %}
+{% load staticfiles %}
+<hr>
+<span class="pull-right text-muted" id="comment-helper" style="display: none"><small>{% trans 'Pressione Ctrl + Enter para postar' %}</small></span>
+<h4><span class="comment-count">{{ article.get_comments.count }}</span> {% trans 'Comentários' %}</h4>
+<div class="post-comment clearfix">
+  <form role="form" id="comment-form">
+    {% csrf_token %}
+    <input type="hidden" name="article" value="{{ article.pk }}">
+    <div class="user-portrait clearfix">
+      {% if user.profile.picture  %}
+      <img src="{% cloudinary user.profile.picture %}">
+      {% else %}
+      <img src="{% static 'img/picture.jpg' %}" alt="Usuário" class="comment-portrait">
+      {% endif %}
+    </div>
+    <div class="comment-input clearfix">
+      <textarea class="form-control" rows="1" placeholder="{% trans 'Write a comment...' %}" name="comment" id="comment"></textarea>
+    </div>
+  </form>
+</div>
+<div class="well well-sm" id="comment-list">
+  {% for comment in article.get_comments %}
+    {% include 'articles/partial_article_comment.html' with comment=comment %}
+  {% empty %}
+    <div style="padding: .6em 0">{% trans 'Seja o primeiro a comentar!' %}</div>
+  {% endfor %}
+</div>

@@ -1,0 +1,14 @@
+{% load humanize %}
+{% load bootstrap3 %}
+{% load cloudinary %}
+
+<div class="comment">
+  <a href="{% url 'my_profile' comment.user.username %}"><img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_30,w_30/{{ comment.user.picture }}.jpg" class="comment-portrait"></a>
+  <div class="comment-text">
+    <h5>
+      <a href="{% url 'my_profile' comment.user.username %}">{{ comment.user.get_screen_name }}</a> 
+      <small>{{ comment.date|naturaltime }}</small>
+    </h5>
+    <p>{{ comment.comment }}</p>
+  </div>
+</div>

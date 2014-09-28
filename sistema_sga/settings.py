@@ -68,13 +68,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
+    'django.contrib.humanize',
     # shell_plus
     'django_extensions',
     #debug-toolbar
     'debug_toolbar',
     # crispy
     'crispy_forms',
-    'bootstrap3',
+    #'bootstrap3',
     # manipulator images
     'cloudinary',
     # my-migrations
@@ -83,6 +84,7 @@ INSTALLED_APPS = (
     'sistema_sga.core',
     'sistema_sga.prova',
     'sistema_sga.messages',
+    'sistema_sga.artigos',
     # 'allauth.socialaccount.providers.xing',
     'allauth',
     'allauth.account',

@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^prova/', include('sistema_sga.prova.urls')),
     url(r'^profile/', include('sistema_sga.core.urls')),
     url(r'^messages/', include('sistema_sga.messages.urls')),
+    url(r'^artigos/', include('sistema_sga.artigos.urls')),
     url(r'^rede/', 'sistema_sga.core.views.rede', name='network'),
     url(r'^admin/', include(admin.site.urls)),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_URL)

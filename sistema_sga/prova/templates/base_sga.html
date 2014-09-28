@@ -22,13 +22,15 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
-
+    
+    <link href="{% static 'css/articles.css' %}" rel="stylesheet">
     <link href="{% static 'css/stats.css' %}" rel="stylesheet">
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <link href="{% static 'css/plugins/dataTables.bootstrap.css' %}" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/messages.css' %}">
     <script src="{% static 'js/messages.js' %}"></script>
+    <script src="{% static 'js/articles.js' %}"></script>
     <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
     <script src="{% static 'js/messages.typehead.js' %}"></script>
   <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
@@ -156,6 +158,9 @@
                         </li>
                         <li>
                             <a href="{% url 'performance' %}"><i class="fa fa-bar-chart-o fa-fw"></i> Desempenho</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'articles' %}"><i class="fa fa-bar-chart-o fa-fw"></i> Artigo</a>
                         </li>
                        
                         

@@ -1,0 +1,11 @@
+{% extends 'base_sga.html' %}
+{% load i18n %}
+
+{% block content %}
+  <ol class="breadcrumb" style="margin-top: 10px;">
+    <li><a href="{% url 'articles' %}">{% trans 'Articles' %}</a></li>
+    <li class="active">{% trans 'Article' %}</li>
+  </ol>
+	{% include 'articles/partial_article.html' with article=article %}
+	{% include 'articles/partial_article_comments.html' with article=article %}
+{% endblock content %}
