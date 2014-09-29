@@ -119,8 +119,8 @@ def profile(request, username):
     for titulo in titulos:
         get_result = UsuarioProva.objects.filter(user__username=username, prova__titulo='Teste')[0:5]
         score = [i.get_score_for_pie() for i in get_result]
-    pending = len([p for p in query_user if p.get_status != 'Finalizada!'])
-    success = len([p for p in query_user if p.get_status == 'Finalizada!'])
+    pending = len([p for p in query_user if p.get_status() != 'Finalizada!'])
+    success = len([p for p in query_user if p.get_status() == 'Finalizada!'])
     return render(request, 'core/profile.html', {
         'grid_user': grid_user, 
         'username': username,
