@@ -155,7 +155,7 @@ class UsuarioProva(models.Model):
         dump = [i.get_score_for_pie() for i in query_median]
         median_hit = (sum(dump) / len(dump))
         return median_hit
-        
+
     def get_median_errors(self):
         query_median = UsuarioProva.objects.filter(user__id=self.id)
         dump = [i.get_errors_for_pie() for i in query_median]
@@ -183,7 +183,7 @@ class UsuarioProva(models.Model):
             return 'Em Andamento'
         else:
             return 'Nova'
-    get_status.short_description = 'Status'                 
+    get_status.short_description = 'Status'
 
 class UsuarioProvaResposta(models.Model):
     usuario_prova = models.ForeignKey(UsuarioProva)
