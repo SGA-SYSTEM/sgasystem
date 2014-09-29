@@ -116,16 +116,19 @@ def profile(request, username):
     query_user = UsuarioProva.objects.filter(user__id=grid_user.id)
     provas = Prova.objects.all()[0:5]
     titulos = list(set([u.titulo for u in provas]))
+    dump = []
     for titulo in titulos:
-        get_result = UsuarioProva.objects.filter(user__username=username, prova__titulo='Teste')[0:5]
-        score = [i.get_score_for_pie() for i in get_result]
+        get_result = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulo)[0:5]
+        for i in get_result:
+            if i.get_status() != 'Em Andamento':
+                dump.append(i.get_score_for_pie())
     pending = len([p for p in query_user if p.get_status() != 'Finalizada!'])
     success = len([p for p in query_user if p.get_status() == 'Finalizada!'])
     return render(request, 'core/profile.html', {
         'grid_user': grid_user, 
         'username': username,
         'titulos': titulos,
-        'score': score,
+        'score': list(set(dump)),
         'pending': pending,
         'success': success,
         })
