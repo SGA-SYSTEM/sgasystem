@@ -150,6 +150,12 @@ class UsuarioProva(models.Model):
         median_hit = (sum(dump) / len(dump))
         return '{median}%'.format(median=median_hit)
 
+    def get_median_score_for_pie(self):
+        query_median = UsuarioProva.objects.filter(user__id=self.id)
+        dump = [i.get_score_for_pie() for i in query_median]
+        median_hit = (sum(dump) / len(dump))
+        return median_hit
+        
     def get_median_errors(self):
         query_median = UsuarioProva.objects.filter(user__id=self.id)
         dump = [i.get_errors_for_pie() for i in query_median]

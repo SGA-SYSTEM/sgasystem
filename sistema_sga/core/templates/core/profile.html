@@ -29,18 +29,65 @@
           <li><a href="{{ grid_user.social_link_fc }}" target="__blank"><i class="fa fa-facebook-square fa-2x"></i></a></li>
           {% endif %}
         </ul>
+        <h3>Provas concluídas: <p class="label label-success">{{ success }}</p></h3>
+        <h3>Provas pendentes: <p class="label label-danger">{{ pending }}</p></h3>
       </div>
       <div class="col-md-8">
-        <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Sobre {{user.get_screen_name}}
-                        </div>
-                        <div class="panel-body">
-                            Write something... :]
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+                
+            </div>
+             <div id="chart_profile" width="100%"></div>
+          </div>
       </div>
     </div>
   </div>
 {% endblock content %}
+
+{% block js %}
+$(function () {
+    $('#chart_profile').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Gráfico de evolução'
+        },
+        subtitle: {
+            text: 'Baseado nas provas realizadas'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.y}%</b>'
+        },
+        xAxis: {
+            categories: [
+            {% for titulo in titulos %}
+            '{{titulo}}',
+            {% endfor %}
+            ]
+        },
+        yAxis: {
+            max: 100,
+            min: 0,
+            title: {
+                text: 'Notas (%)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: '{{username}}',
+            data: {{score}}
+        }, {
+            name: 'Média',
+            data: [60, 60, 60, 60, 60]
+        }]
+    });
+});
+{% endblock js %}

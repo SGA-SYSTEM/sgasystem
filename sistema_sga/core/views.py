@@ -19,6 +19,7 @@ from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMultiAlternatives
 
 from sistema_sga.prova.models import Prova, UsuarioProva
+from django.db.models import Avg, Count, F, Max, Min, Sum, Q
 
 def home(request):
     print request.user.id
@@ -112,4 +113,19 @@ def rede(request):
 
 def profile(request, username):
     grid_user = get_object_or_404(Profile, username=username)
-    return render(request, 'core/profile.html', {'grid_user':grid_user})
+    query_user = UsuarioProva.objects.filter(user=grid_user)
+    provas = Prova.objects.all()[0:5]
+    titulos = list(set([u.titulo for u in provas]))
+    for titulo in titulos:
+        get_median = UsuarioProva.objects.filter(user__username=username, prova__titulo='Teste')[0:5]
+        score = [i.get_score_for_pie() for i in get_median]
+    pending = len([p.prova.titulo for p in query_user if p.get_status != 'Finalizada'])
+    success = len([p.prova.titulo for p in query_user if p.get_status == 'Finalizada'])
+    return render(request, 'core/profile.html', {
+        'grid_user': grid_user, 
+        'username': username,
+        'titulos': titulos,
+        'score': score,
+        'pending': pending,
+        'success': success,
+        })
