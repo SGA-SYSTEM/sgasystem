@@ -184,11 +184,11 @@ MEDIA_ROOT = BASE_DIR.child('media')
 MEDIA_URL = '/media/'
 
 
-EMAIL_HOST='smtp.mandrillapp.com'
-EMAIL_HOST_USER='alex.falcucci@gmail.com'
-EMAIL_HOST_PASSWORD='eaERTcFdVL4YZ7MqZiCTdg'
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'managesga@gmail.com'
+EMAIL_HOST_PASSWORD = 'sistemasga'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 

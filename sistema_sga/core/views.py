@@ -148,7 +148,7 @@ def profile(request, username):
     #            dump.append(i.get_score_for_pie())
     pending = len([p for p in query_user if p.get_status() != 'Finalizada!'])
     success = len([p for p in query_user if p.get_status() == 'Finalizada!'])
-    return render(request, 'core/profile.html', {
+    context = {
         'grid_user': grid_user, 
         'username': username,
         'titulos': titulos,
@@ -159,4 +159,5 @@ def profile(request, username):
         'score5': dump5,
         'pending': pending,
         'success': success,
-        })
+    }
+    return render(request, 'core/profile.html', context)

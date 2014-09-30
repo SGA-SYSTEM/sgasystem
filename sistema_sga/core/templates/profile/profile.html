@@ -29,7 +29,7 @@
             {% if field.name == 'picture' %}
             {% if field.value %}
                 {% if user.picture %}
-                {% cloudinary user.picture width=150 height=150 %}
+                <img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_303,w_303/{{ user.picture }}.jpg" class="picture">
                 {% else %}
                 <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="150" height="150">
                 {% endif %}
