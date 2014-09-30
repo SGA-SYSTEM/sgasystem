@@ -6,7 +6,7 @@
       {{ article.create_date }}
     </span>
     <span class="user">
-      <a href="{% url 'my_profile' article.create_user.username %}"><img src="{{ article.create_user.profile.get_picture }}"></a>
+      <a href="{% url 'my_profile' article.create_user.username %}"><img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_30,w_30/{{ article.create_user.picture }}.jpg"></a>
       <a href="{% url 'my_profile' article.create_user.username %}">{{ article.create_user.profile.get_screen_name }}</a>
     </span>
     <span class="comments">

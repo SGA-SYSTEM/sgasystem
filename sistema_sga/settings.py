@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     'sistema_sga.prova',
     'sistema_sga.messages',
     'sistema_sga.artigos',
+    'sistema_sga.search',
     # 'allauth.socialaccount.providers.xing',
     'allauth',
     'allauth.account',
