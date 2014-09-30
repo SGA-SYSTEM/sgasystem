@@ -117,10 +117,10 @@
                                   </div>
                                   <div class="visible-xs">
                                        <select id="e1" class="form-control">
-                                            <option value="*">All</option>
-                                            <option value=".design">Designs</option>
-                                            <option value=".videos">Videos</option>
-                                            <option value=".banners">Banners</option>
+                                            <option value="*">Todos</option>
+                                            <option value=".design">Diagramas</option>
+                                            <option value=".videos">Casos de Uso</option>
+                                            <option value=".banners">Modelagem</option>
                                         </select>
                                   </div>
                             </div>
@@ -400,7 +400,7 @@
                         <span id="result" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
                             <p class='alert alert-success' style='text-align: center;'><b>Mensagem enviada com sucesso!</b></p>
                         </span>
-                        <span id="resultq" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
+                        <span id="result1" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
                             <p class='alert alert-info' style='text-align: center;'><b>Aguarde...</b></p>
                         </span>
                         </div>
@@ -470,13 +470,20 @@
                     data: $('#subscribeForm').serialize(),
                     type: 'post',
                     cache: false,
+                    beforeSend: function(){
+                        $("#result1").show(0)
+                        .delay(1000);
+                    },
+                    complete: function() { 
+                        $('#result1').hide('slow'); 
+                    },
                     success: function(data) {
                       if(data == 'ok') {
                         $("#result").slideDown(1000)
-                                    .show(0)
-                                    .delay(2000)
-                                    .slideUp(1000)
-                                    .hide(0);
+                        .show(0)
+                        .delay(4000)
+                        .slideUp(1000)
+                        .hide(0);
                         $('input#id_name').val('').focus();
                         $('input#id_email').val('');
                         $('input#id_business').val('');
