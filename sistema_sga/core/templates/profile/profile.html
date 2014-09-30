@@ -20,7 +20,7 @@
         Editar perfil
     </div>
         <form enctype="multipart/form-data" id="id_form_profile" name="form" action="." method="POST" class="form-horizontal">
-            {% csrf_token %}    
+            {% csrf_token %}
 
             {% if form.errors %}
             <div class="alert alert-danger">{{ form.errors }}</div>
