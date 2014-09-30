@@ -54,7 +54,7 @@ $(function () {
             text: 'Gráfico de evolução'
         },
         subtitle: {
-            text: 'Baseado nas provas realizadas'
+            text: 'Baseado nas provas realizadas de acordo com os melhores resultados'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.y}%</b>'
@@ -83,7 +83,7 @@ $(function () {
         },
         series: [{
             name: '{{username}}',
-            data: {{score}}
+            data: [{{score1}}, {{score2}}, {{score3}}, {{score4}}, {{score5}}]
         }, {
             name: 'Média',
             data: [60, 60, 60, 60, 60]

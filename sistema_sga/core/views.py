@@ -114,21 +114,49 @@ def rede(request):
 def profile(request, username):
     grid_user = get_object_or_404(Profile, username=username)
     query_user = UsuarioProva.objects.filter(user__id=grid_user.id)
-    provas = Prova.objects.all()[0:5]
+    provas = Prova.objects.all().order_by('id')[0:5]
     titulos = list(set([u.titulo for u in provas]))
-    dump = []
-    for titulo in titulos:
-        get_result = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulo)[0:5]
-        for i in get_result:
-            if i.get_status() != 'Em Andamento':
-                dump.append(i.get_score_for_pie())
+    try:
+        query_data_user1 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[0])
+        dump1 = max(list(set([i.get_score_for_pie() for i in query_data_user1])))
+    except:
+        dump1 = 0
+    try:
+        query_data_user2 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[1])
+        dump2 = max(list(set([i.get_score_for_pie() for i in query_data_user2])))
+    except:
+        dump2 = 0
+    try:
+        query_data_user3 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[2])
+        dump3 = max(list(set([i.get_score_for_pie() for i in query_data_user3])))
+    except:
+        dump3 = 0
+    try:
+        query_data_user4 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[3])
+        dump4 = max(list(set([i.get_score_for_pie() for i in query_data_user4])))
+    except:
+        dump4 = 0
+    try:
+        query_data_user5 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[4])
+        dump5 = max(list(set([i.get_score_for_pie() for i in query_data_user5])))
+    except:
+        dump5 = 0
+    #for titulo in titulos:
+    #    get_result = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulo)[0:5]
+    #    for i in get_result:
+    #        if i.get_status() != 'Em Andamento':
+    #            dump.append(i.get_score_for_pie())
     pending = len([p for p in query_user if p.get_status() != 'Finalizada!'])
     success = len([p for p in query_user if p.get_status() == 'Finalizada!'])
     return render(request, 'core/profile.html', {
         'grid_user': grid_user, 
         'username': username,
         'titulos': titulos,
-        'score': list(set(dump)),
+        'score1': dump1,
+        'score2': dump2,
+        'score3': dump3,
+        'score4': dump4,
+        'score5': dump5,
         'pending': pending,
         'success': success,
         })
