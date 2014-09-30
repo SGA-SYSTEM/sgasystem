@@ -21,6 +21,7 @@ from django.core.mail import EmailMultiAlternatives
 
 from sistema_sga.prova.models import Prova, UsuarioProva
 from django.db.models import Avg, Count, F, Max, Min, Sum, Q
+from django.template import Context
 
 def home(request):
     print request.user.id
@@ -173,7 +174,12 @@ def contact(request):
         to_list = [save_it.email, settings.EMAIL_HOST_USER]
         to = save_it.email
         text_content = 'Obrigado por entrar em contato. Em breve teremos muitas novidades!'
-        html_content = ""
+        c = Context({
+                'user': save_it.name,
+                })
+        html_content = render_to_string(
+            'emails/welcome.html', c
+        )
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
