@@ -1,6 +1,7 @@
 {% extends 'base_sga.html' %}
 
 {% block content %}
+    
 
     <div class="panel panel-default" style="margin-top: 10px;">
         <div class="panel-heading">
@@ -8,6 +9,17 @@
         </div>
          <div id="teste" width="100%"></div>
     </div>
+    <span id="result1" class="col-md-12" style="display: none; margin-top: 10px;">
+    <p class='alert alert-danger' style='text-align: center;'><b>Detectamos que algum(s) usuários relacionados ao gráfico, precisam realizar todas as provas para que o gráfico seja completamente desenhado. Envie uma <a href="{% url 'new_message' %}">mensagem</a> para avisa-lo.</b></p>
+</span>
+<script>
+    {% if median2 == 0 %}
+        $("#result1").slideDown(1000)
+                        .show(0)
+                        .delay(10000)
+                        .hide('slow');
+    {% endif %}
+</script>
 
  {% endblock content %}
 

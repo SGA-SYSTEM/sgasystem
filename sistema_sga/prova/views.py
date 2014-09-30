@@ -11,6 +11,7 @@ from sistema_sga.core.models import Profile
 from sistema_sga.decorators import ajax_required
 import json
 from django.db.models import Avg, Count, F, Max, Min, Sum, Q
+from django.utils.translation import ugettext as _
 
 # Create your views here.
 
@@ -173,6 +174,10 @@ def overview(request):
                     median5 = (sum(lista5) / len(lista5))
                 else:
                     lista5 = [0,0,0,0,0]
+
+    letras = median1, median2, median3, median4, median5
+    medians = list(letras)
+
     return render(request, 'chartit/overview.html', {
         'usernames': usernames,
         'titulos': titulos,
@@ -186,6 +191,7 @@ def overview(request):
         'median3': median3,
         'median4': median4,
         'median5': median5,
+        'medians': medians,
         })
 
 #create exam for user
