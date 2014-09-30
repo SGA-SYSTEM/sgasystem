@@ -126,13 +126,18 @@ def overview(request):
     provas = Prova.objects.all()[0:5]
     usernames = [u.username for u in users]
     titulos = [u.titulo for u in provas]
+    lista1, lista2, lista3, lista4, lista5 = [], [], [], [], []
+    median1, median2, median3, median4, median5 = 0,0,0,0,0
     if len(usernames) == 5 and len(titulos) == 5:
         lista1, lista2, lista3, lista4, lista5 = [], [], [], [], []
         for titulo in titulos:
             query_one = query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
-            prev = max([x.get_score_for_pie() for x in query_one])
-            lista1.append(prev)
-        median1 = (sum(lista1) / len(lista1))
+            if query_one:
+                prev = max([x.get_score_for_pie() for x in query_one])
+                lista1.append(prev)
+                median1 = (sum(lista1) / len(lista1))
+            else:
+                lista1 = [0,0,0,0,0]
         for titulo in titulos:
             query_two = UsuarioProva.objects.filter(user__username=usernames[1], prova__titulo=titulo)
             if query_two:
@@ -141,7 +146,6 @@ def overview(request):
                 median2 = (sum(lista2) / len(lista2))
             else:
                 lista2 = [0,0,0,0,0]
-                median2 = 0
         if usernames[2]:
             for titulo in titulos:
                     query_three = UsuarioProva.objects.filter(user__username=usernames[2], prova__titulo=titulo)
@@ -151,7 +155,6 @@ def overview(request):
                         median3 = (sum(lista3) / len(lista3))
                     else:
                         lista3 = [0,0,0,0,0]
-                        median3 = 0
         if usernames[3]:
             for titulo in titulos:
                     query_four = UsuarioProva.objects.filter(user__username=usernames[3], prova__titulo=titulo)
@@ -161,7 +164,6 @@ def overview(request):
                         median4 = (sum(lista4) / len(lista4))
                     else:
                         lista4 = [0,0,0,0,0]
-                        median4 = 0
         if usernames[4]:
             for titulo in titulos:
                 query_five = UsuarioProva.objects.filter(user__username=usernames[4], prova__titulo=titulo)
@@ -171,7 +173,6 @@ def overview(request):
                     median5 = (sum(lista5) / len(lista5))
                 else:
                     lista5 = [0,0,0,0,0]
-                    median5 = 0
     return render(request, 'chartit/overview.html', {
         'usernames': usernames,
         'titulos': titulos,
