@@ -10,6 +10,7 @@ from sistema_sga.prova.forms import ProvaForm, QuestaoForm
 from sistema_sga.core.models import Profile
 from sistema_sga.decorators import ajax_required
 import json
+from django.db.models import Avg, Count, F, Max, Min, Sum, Q
 
 # Create your views here.
 
@@ -121,23 +122,67 @@ def performance(request):
         })
 
 def overview(request):
-    users = UsuarioProva.objects.filter(user__is_active=True)
-    provas = Prova.objects.all()
-    usernames = list(set([u.user.username for u in users]))
-    titulos = list(set([u.titulo for u in provas]))
-    #notas = list(set([u.get_score_for_pie() for u in users]))
-    notas = []
-    for user in usernames:
-    #    provas = [p.titulo for p in Prova.objects.all()]
-        for prova in titulos:
-            n_u = UsuarioProva.objects.filter(user__username=user, prova__titulo=prova)
-            for i in n_u:
-                notas.append(i.get_score_for_pie())
+    users = Profile.objects.all()[0:5]
+    provas = Prova.objects.all()[0:5]
+    usernames = [u.username for u in users]
+    titulos = [u.titulo for u in provas]
+    if len(usernames) == 5 and len(titulos) == 5:
+        lista1, lista2, lista3, lista4, lista5 = [], [], [], [], []
+        if usernames[0]:
+            for titulo in titulos:
+                query_one = query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
+                prev = max([x.get_score_for_pie() for x in query_one])
+                lista1.append(prev)
+            median1 = (sum(lista1) / len(lista1))
+        if usernames[1]:
+            for titulo in titulos:
+                try:
+                    query_two = UsuarioProva.objects.filter(user__username=usernames[1], prova__titulo=titulo)
+                    prev = max([x.get_score_for_pie() for x in query_two])
+                    lista2.append(prev)
+                    median2 = (sum(lista2) / len(lista2))
+                except:
+                    median2 = 0
+        if usernames[2]:
+            for titulo in titulos:
+                try:
+                    query_three = UsuarioProva.objects.filter(user__username=usernames[2], prova__titulo=titulo)
+                    prev = max([x.get_score_for_pie() for x in query_three])
+                    lista3.append(prev)
+                    median3 = (sum(lista3) / len(lista3))
+                except:
+                    median3 = 0
+        if usernames[3]:
+            for titulo in titulos:
+                try:
+                    query_four = UsuarioProva.objects.filter(user__username=usernames[3], prova__titulo=titulo)
+                    prev = max([x.get_score_for_pie() for x in query_four])
+                    lista4.append(prev)
+                    median4 = (sum(lista4) / len(lista4))
+                except:
+                    median4 = 0
+        if usernames[4]:
+            for titulo in titulos:
+                try:
+                    query_five = UsuarioProva.objects.filter(user__username=usernames[4], prova__titulo=titulo)
+                    prev = max([x.get_score_for_pie() for x in query_five])
+                    lista5.append(prev)
+                    median5 = (sum(lista5) / len(lista5))
+                except:
+                    median5 = 0
     return render(request, 'chartit/overview.html', {
         'usernames': usernames,
-        'titulos': provas,
-        'notas': list(set(notas)),
-        'a': 'admin',
+        'titulos': titulos,
+        'list_one': lista1,
+        'list_two': lista2,
+        'list_three': lista3,
+        'list_four': lista4,
+        'list_five': lista5,
+        'median1': median1,
+        'median2': median2,
+        'median3': median3,
+        'median4': median4,
+        'median5': median5,
         })
 
 #create exam for user

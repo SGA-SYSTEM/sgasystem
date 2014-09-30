@@ -37,8 +37,8 @@
         },
         xAxis: {
             categories: [
-            {% for titulo in titulos %}
-                'Prova: {{titulo}}',
+            {% for user in usernames %}
+                '{{user}}',
             {% endfor %}
             ]
         },
@@ -61,21 +61,43 @@
             }]
         },
         series:[
-        {% for user in usernames %}
         {
             type: 'column',
-            name: '{{ user }}',
+            name: '{{ titulos.0 }}',
+            data: [{{ list_one.0 }},{{list_two.0}},{{list_three.0}},{{list_four.0}},{{list_five.0}}]
+        },
+        {
+            type: 'column',
+            name: '{{ titulos.1 }}',
             data: [
-            {% ifequal user a %}
-               10,80,40,60,50
-            {% endifequal %}
+               {{ list_one.1 }},{{list_two.1}},{{list_three.1}},{{list_four.1}},{{list_five.1}}
             ]
         },
-        {% endfor %}
+        {
+            type: 'column',
+            name: '{{ titulos.2 }}',
+            data: [
+               {{ list_one.2 }},{{list_two.2}},{{list_three.2}},{{list_four.2}},{{list_five.2}}
+            ]
+        },
+        {
+            type: 'column',
+            name: '{{ titulos.3 }}',
+            data: [
+               {{ list_one.3 }},{{list_two.3}},{{list_three.3}},{{list_four.3}},{{list_five.3}}
+            ]
+        },
+        {
+            type: 'column',
+            name: '{{ titulos.4 }}',
+            data: [
+               {{ list_one.4 }},{{list_two.4}},{{list_three.4}},{{list_four.4}},{{list_five.4}}
+            ]
+        },
         {
             type: 'spline',
             name: 'Média',
-            data: [3, 2.67, 3, 6.33, 3.33],
+            data: [{{median1}}, {{median2}}, {{median3}}, {{median4}}, {{median5}}],
             marker: {
                 lineWidth: 2,
                 lineColor: Highcharts.getOptions().colors[3],
@@ -85,11 +107,11 @@
             type: 'pie',
             name: 'Média',
             data: [
-            {%for user in usernames%}
+            {%for prova in titulos %}
             {
-                name: '{{user}}',
+                name: '{{ prova }}',
                 y: 13,
-                color: Highcharts.getOptions().colors[{{forloop.counter0}}] // Jane's color
+                color: Highcharts.getOptions().colors[{{forloop.counter0}}]
             },
             {% endfor %}
             ],
