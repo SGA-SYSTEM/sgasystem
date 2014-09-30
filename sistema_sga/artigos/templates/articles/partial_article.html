@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <article>
   <h2><a href="{% url 'article' article.slug %}">{{ article.title }}</a></h2>
   <div class="info">
@@ -6,7 +7,11 @@
       {{ article.create_date }}
     </span>
     <span class="user">
+      {% if article.create_user.picture %}
       <a href="{% url 'my_profile' article.create_user.username %}"><img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_30,w_30/{{ article.create_user.picture }}.jpg"></a>
+      {% else %}
+      <a href="{% url 'my_profile' article.create_user.username %}"><img src="{% static 'img/picture.jpg' %}"></a>
+      {% endif %}
       <a href="{% url 'my_profile' article.create_user.username %}">{{ article.create_user.profile.get_screen_name }}</a>
     </span>
     <span class="comments">
