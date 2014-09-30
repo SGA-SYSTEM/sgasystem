@@ -75,11 +75,11 @@ INSTALLED_APPS = (
     'debug_toolbar',
     # crispy
     'crispy_forms',
-    'bootstrap3',
+    #'bootstrap3',
     # manipulator images
     'cloudinary',
     # my-migrations
-    'south',
+    #'south',
     # apps
     'sistema_sga.core',
     'sistema_sga.prova',

@@ -46,3 +46,12 @@ def save_user_profile(sender, instance, **kwargs):
 
 post_save.connect(create_user_profile, sender=User)
 post_save.connect(save_user_profile, sender=User)
+
+class Contact(models.Model):
+    business = models.CharField(max_length=300, null=True, blank=True)
+    name = models.CharField(max_length=300, null=True, blank=True)
+    email = models.EmailField()
+    message = models.TextField(max_length=500, verbose_name='Mensagem')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self): return "Mensagem para " + str(self.email)

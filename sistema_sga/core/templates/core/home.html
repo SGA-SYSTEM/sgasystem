@@ -370,7 +370,7 @@
                 <section id="contact">
                     <section class="container">
                         <div class="divide40"></div>
-                                        <div class="row">
+                        <div class="row">
                             <div class="col-md-12">
                                     <h2 class="text-center">
                                     <span class="bigintro-light">Deixe sua opinião</span>
@@ -379,24 +379,30 @@
                         </div>
                         <div class="divide20"></div>
                         <div class="row">
+                        <form action="." method="POST" id="subscribeForm">
+                        {% csrf_token %}
                             <div class="col-md-6 col-md-offset-3 form-input">
-                                <input id="company" type="text" placeholder="Company" value="" name="company"/>
+                                {{form.business}}
                             </div>
                             <div class="col-md-6 col-md-offset-3 form-input">
-                                <input id="title" type="text" placeholder="Title" value="" name="title"/>
+                                {{form.name}}
                             </div>
                             <div class="col-md-6 col-md-offset-3 form-input">
-                                <input id="name" type="text" placeholder="Name" value="" name="name"/>
+                                {{form.email}}
                             </div>
                             <div class="col-md-6 col-md-offset-3 form-input">
-                                <input id="email" type="email" placeholder="Email" value="" name="email"/>
-                            </div>
-                            <div class="col-md-6 col-md-offset-3 form-input">
-                                <textarea id="message"  placeholder="Message" name="message"></textarea>
+                                {{form.message}}
                             </div>
                             <div class="col-md-6 col-md-offset-3 form-submit">
                                 <button id="submit" class="btn btn-warning btn-lg" type="submit">SEND</button>
                             </div>
+                        </form>
+                        <span id="result" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
+                            <p class='alert alert-success' style='text-align: center;'><b>Mensagem enviada com sucesso!</b></p>
+                        </span>
+                        <span id="resultq" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
+                            <p class='alert alert-info' style='text-align: center;'><b>Aguarde...</b></p>
+                        </span>
                         </div>
                         <div class="divide60"></div>
                     </section>
@@ -454,6 +460,35 @@
     <script type="text/javascript" src="{% static 'js/jquery.colorbox.min.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    <script type="text/javascript">
+    $(function () {
+    $("#subscribeForm").submit(function () {
+                $("#result1").show(0);
+                $.ajax({
+                    url: '/contact/',
+                    data: $('#subscribeForm').serialize(),
+                    type: 'post',
+                    cache: false,
+                    success: function(data) {
+                      if(data == 'ok') {
+                        $("#result").slideDown(1000)
+                                    .show(0)
+                                    .delay(2000)
+                                    .slideUp(1000)
+                                    .hide(0);
+                        $('input#id_name').val('').focus();
+                        $('input#id_email').val('');
+                        $('input#id_business').val('');
+                        $('textarea#id_message').val('');
+                      }
+                    }
+                });
+                return false;
+            });
+        });
+
+    </script>
 
 </body>
 </html>
