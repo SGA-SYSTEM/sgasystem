@@ -178,7 +178,7 @@ def overview(request):
     letras = median1, median2, median3, median4, median5
     medians = list(letras)
 
-    return render(request, 'chartit/overview.html', {
+    context = {
         'usernames': usernames,
         'titulos': titulos,
         'list_one': lista1,
@@ -192,7 +192,9 @@ def overview(request):
         'median4': median4,
         'median5': median5,
         'medians': medians,
-        })
+    }
+
+    return render(request, 'chartit/overview.html', context)
 
 #create exam for user
 def create_exam(request):
