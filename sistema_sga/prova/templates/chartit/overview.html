@@ -16,7 +16,7 @@
     {% if median1 == 0 or median2 == 0 or median3 == 0 or median4 == 0 or median5 == 0%}
         $("#result1").slideDown(1000)
                         .show(0)
-                        .delay(12000)
+                        .delay(15000)
                         .hide('slow');
     {% endif %}
 </script>
@@ -127,8 +127,8 @@
             },
             {% endfor %}
             ],
-            center: [80, -30],
-            size: 90,
+            center: [80, -50],
+            size: 50,
             showInLegend: false,
             dataLabels: {
                 enabled: false,
