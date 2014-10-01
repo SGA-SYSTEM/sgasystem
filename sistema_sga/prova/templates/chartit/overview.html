@@ -119,13 +119,31 @@
             type: 'pie',
             name: 'Média',
             data: [
-            {%for prova in titulos %}
             {
-                name: '{{ prova }}',
-                y: 13,
-                color: Highcharts.getOptions().colors[{{forloop.counter0}}]
+                name: '{{ titulos.0 }}',
+                y: {{median1}},
+                color: Highcharts.getOptions().colors[1]
             },
-            {% endfor %}
+            {
+                name: '{{ titulos.1 }}',
+                y: {{median2}},
+                color: Highcharts.getOptions().colors[2]
+            },
+            {
+                name: '{{ titulos.2 }}',
+                y: {{median3}},
+                color: Highcharts.getOptions().colors[3]
+            },
+            {
+                name: '{{ titulos.3 }}',
+                y: {{median4}},
+                color: Highcharts.getOptions().colors[4]
+            },
+            {
+                name: '{{ titulos.4 }}',
+                y: {{median5}},
+                color: Highcharts.getOptions().colors[5]
+            },
             ],
             center: [80, -50],
             size: 50,
