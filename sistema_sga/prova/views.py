@@ -130,16 +130,14 @@ def overview(request):
     lista1, lista2, lista3, lista4, lista5 = [], [], [], [], []
     median1, median2, median3, median4, median5 = 0,0,0,0,0
     if len(usernames) == 5 and len(titulos) == 5:
-        try:
-            for titulo in titulos:
-                query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
-                if query_one:
-                    prev = max([x.get_score_for_pie() for x in query_one])
-                    lista1.append(prev)
-                    median1 = (sum(lista1) / len(lista1))
-        except:
-            lista1 = [0,0,0,0,0]
-            median1 = 0
+        for titulo in titulos:
+            query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
+            if query_one:
+                prev = max([x.get_score_for_pie() for x in query_one])
+                lista1.append(prev)
+                median1 = (sum(lista1) / len(lista1))
+            else:
+                lista1 = [0,0,0,0,0]
         for titulo in titulos:
             query_two = UsuarioProva.objects.filter(user__username=usernames[1], prova__titulo=titulo)
             if query_two:
