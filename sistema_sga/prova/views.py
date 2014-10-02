@@ -123,7 +123,7 @@ def performance(request):
         })
 
 def overview(request):
-    users = Profile.objects.all()[0:5]
+    users = Profile.objects.all().order_by('username')[0:5]
     provas = Prova.objects.all()[0:5]
     usernames = [u.username for u in users]
     titulos = [u.titulo for u in provas]

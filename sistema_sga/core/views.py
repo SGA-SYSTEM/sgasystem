@@ -15,7 +15,7 @@ from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
 from allauth.socialaccount.models import SocialApp, SocialAccount, SocialLogin
 from django.dispatch import receiver
-from allauth.account.signals import user_signed_up
+from allauth.account.signals import user_signed_up, password_reset
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMultiAlternatives
 
@@ -101,12 +101,16 @@ def set_attribute(sender, **kwargs):
         msg.attach_alternative(html_content, "text/html")
         msg.send()
         try:
-            prova = Prova.objects.get(titulo='Teste')
+            prova = Prova.objects.get(titulo='Demo')
             if prova:
                 usuario_prova = UsuarioProva.objects.create(user=user, prova=prova, data_expiracao='2015-05-02')
                 usuario_prova.save()
         except Exception, e:
             prova = None
+
+@receiver(password_reset)
+def password_reset(sender, request, **kwargs):
+    print 'Redirect to url reset password! :)'
 
 @login_required
 def rede(request):
