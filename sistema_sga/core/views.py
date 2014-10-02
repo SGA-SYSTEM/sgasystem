@@ -117,6 +117,7 @@ def rede(request):
     users = Profile.objects.filter(is_active=True).order_by('username')
     return render(request, 'core/rede.html', {'users': users,})
 
+@login_required
 def profile(request, username):
     grid_user = get_object_or_404(Profile, username=username)
     query_user = UsuarioProva.objects.filter(user__id=grid_user.id)
