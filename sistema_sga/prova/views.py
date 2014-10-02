@@ -132,7 +132,10 @@ def overview(request):
     if len(usernames) == 5 and len(titulos) == 5:
         lista1, lista2, lista3, lista4, lista5 = [], [], [], [], []
         for titulo in titulos:
-            query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
+            try:
+                query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
+            except:
+                query_one = []
             if query_one:
                 prev = max([x.get_score_for_pie() for x in query_one])
                 lista1.append(prev)
