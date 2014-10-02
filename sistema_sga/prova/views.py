@@ -135,7 +135,7 @@ def overview(request):
             try:
                 query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
             except:
-                query_one = []
+                query_one = None
             if query_one:
                 prev = max([x.get_score_for_pie() for x in query_one])
                 lista1.append(prev)
