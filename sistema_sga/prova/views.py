@@ -130,7 +130,6 @@ def overview(request):
     lista1, lista2, lista3, lista4, lista5 = [], [], [], [], []
     median1, median2, median3, median4, median5 = 0,0,0,0,0
     if len(usernames) == 5 and len(titulos) == 5:
-        lista1, lista2, lista3, lista4, lista5 = [], [], [], [], []
         for titulo in titulos:
             try:
                 query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
