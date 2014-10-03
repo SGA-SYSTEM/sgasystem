@@ -144,8 +144,11 @@ def overview(request):
         for titulo in titulos:
             query_two = UsuarioProva.objects.filter(user__username=usernames[1], prova__titulo=titulo)
             if query_two:
-                prev = max([x.get_score_for_pie() for x in query_two])
-                lista2.append(prev)
+                try:
+                    prev = max([x.get_score_for_pie() for x in query_two])
+                    lista2.append(prev)
+                except:
+                    lista2 = [0,0,0,0,0]
                 median2 = (sum(lista2) / len(lista2))
             else:
                 lista2 = [0,0,0,0,0]
@@ -153,8 +156,11 @@ def overview(request):
             for titulo in titulos:
                     query_three = UsuarioProva.objects.filter(user__username=usernames[2], prova__titulo=titulo)
                     if query_three:
-                        prev = max([x.get_score_for_pie() for x in query_three])
-                        lista3.append(prev)
+                        try:
+                            prev = max([x.get_score_for_pie() for x in query_three])
+                            lista3.append(prev)
+                        except:
+                            lista3 = [0,0,0,0,0]
                         median3 = (sum(lista3) / len(lista3))
                     else:
                         lista3 = [0,0,0,0,0]
@@ -162,8 +168,11 @@ def overview(request):
             for titulo in titulos:
                     query_four = UsuarioProva.objects.filter(user__username=usernames[3], prova__titulo=titulo)
                     if query_four:
-                        prev = max([x.get_score_for_pie() for x in query_four])
-                        lista4.append(prev)
+                        try:
+                            prev = max([x.get_score_for_pie() for x in query_four])
+                            lista4.append(prev)
+                        except:
+                            lista4 = [0,0,0,0,0]
                         median4 = (sum(lista4) / len(lista4))
                     else:
                         lista4 = [0,0,0,0,0]
@@ -171,8 +180,11 @@ def overview(request):
             for titulo in titulos:
                 query_five = UsuarioProva.objects.filter(user__username=usernames[4], prova__titulo=titulo)
                 if query_five:
-                    prev = max([x.get_score_for_pie() for x in query_five])
-                    lista5.append(prev)
+                    try:
+                        prev = max([x.get_score_for_pie() for x in query_five])
+                        lista5.append(prev)
+                    except:
+                        lista5 = [0,0,0,0,0]
                     median5 = (sum(lista5) / len(lista5))
                 else:
                     lista5 = [0,0,0,0,0]
