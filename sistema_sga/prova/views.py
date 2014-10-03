@@ -133,8 +133,11 @@ def overview(request):
         for titulo in titulos:
             query_one = UsuarioProva.objects.filter(user__username=usernames[0], prova__titulo=titulo)
             if query_one:
-                prev = max([x.get_score_for_pie() for x in query_one])
-                lista1.append(prev)
+                try:
+                    prev = max([x.get_score_for_pie() for x in query_one])
+                    lista1.append(prev)
+                except:
+                    lista1 = [0,0,0,0,0]
                 median1 = (sum(lista1) / len(lista1))
             else:
                 lista1 = [0,0,0,0,0]
