@@ -151,7 +151,7 @@ def overview(request):
                     lista2.append(0)
                 median2 = (sum(lista2) / len(lista2))
             else:
-                lista2 = [0,0,0,0,0]
+                lista2.append(0)
         if usernames[2]:
             for titulo in titulos:
                     query_three = UsuarioProva.objects.filter(user__username=usernames[2], prova__titulo=titulo)
@@ -163,7 +163,7 @@ def overview(request):
                             lista3.append(0)
                         median3 = (sum(lista3) / len(lista3))
                     else:
-                        lista3 = [0,0,0,0,0]
+                        lista3.append(0)
         if usernames[3]:
             for titulo in titulos:
                     query_four = UsuarioProva.objects.filter(user__username=usernames[3], prova__titulo=titulo)
@@ -175,7 +175,7 @@ def overview(request):
                             lista4.append(0)
                         median4 = (sum(lista4) / len(lista4))
                     else:
-                        lista4 = [0,0,0,0,0]
+                        lista4.append(0)
         if usernames[4]:
             for titulo in titulos:
                 query_five = UsuarioProva.objects.filter(user__username=usernames[4], prova__titulo=titulo)
@@ -187,7 +187,7 @@ def overview(request):
                         lista5.append(0)
                     median5 = (sum(lista5) / len(lista5))
                 else:
-                    lista5 = [0,0,0,0,0]
+                    lista5.append(0)
 
     letras = median1, median2, median3, median4, median5
     medians = list(letras)
