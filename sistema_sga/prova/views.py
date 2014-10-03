@@ -140,7 +140,7 @@ def overview(request):
                     lista1.append(0)
                 median1 = (sum(lista1) / len(lista1))
             else:
-                lista1 = [0,0,0,0,0]
+                lista1 = [10,10,10,10,10]
         for titulo in titulos:
             query_two = UsuarioProva.objects.filter(user__username=usernames[1], prova__titulo=titulo)
             if query_two:
