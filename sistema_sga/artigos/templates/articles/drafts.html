@@ -2,36 +2,36 @@
 {% load i18n %}
 
 {% block content %}
-  <ol class="breadcrumb" style="margin-top: 10px;">
-    <li><a href="{% url 'articles' %}">{% trans 'Artigos' %}</a></li>
-    <li class="active">{% trans 'Rascunhos' %}</li>
-  </ol>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>{% trans 'Título' %}</th>
-        <th>{% trans 'Conteúdo' %}</th>
-        <th>{% trans 'Tags' %}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for article in drafts %}
-        <tr>
-          <td><a href="{% url 'edit_article' article.pk %}">{{ article.title }}</a></td>
-          <td>{{ article.get_summary_as_markdown|safe }}</td>
-          <td>
-            {% for tag in article.get_tags %}
-              <span class="label label-default">{{ tag }}</span>
-            {% endfor %}
-          </td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="4" style="text-align: center">
-            {% trans 'Nenhum rascunho para mostrar' %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<ol class="breadcrumb" style="margin-top: 10px;">
+  <li><a href="{% url 'articles' %}">{% trans 'Artigos' %}</a></li>
+  <li class="active">{% trans 'Rascunhos' %}</li>
+</ol>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>{% trans 'Título' %}</th>
+      <th>{% trans 'Conteúdo' %}</th>
+      <th>{% trans 'Tags' %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for article in drafts %}
+    <tr>
+      <td><a href="{% url 'edit_article' article.pk %}">{{ article.title }}</a></td>
+      <td>{{ article.get_summary_as_markdown|safe }}</td>
+      <td>
+        {% for tag in article.get_tags %}
+        <span class="label label-default">{{ tag }}</span>
+        {% endfor %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" style="text-align: center">
+        {% trans 'Nenhum rascunho para mostrar' %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock content %}

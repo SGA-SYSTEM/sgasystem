@@ -23,10 +23,10 @@
     {{ article.get_content_as_markdown|safe }}
   </div>
   {% if article.get_tags %}
-    <div class="tags">
-      {% for tag in article.get_tags %}
-        <a href="{% url 'tag' tag.tag %}"><span class="label label-default">{{ tag }}</span></a>
-      {% endfor %}
-    </div>
+  <div class="tags">
+    {% for tag in article.get_tags %}
+    <a href="{% url 'tag' tag.tag %}"><span class="label label-default">{{ tag }}</span></a>
+    {% endfor %}
+  </div>
   {% endif %}
 </article>

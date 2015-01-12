@@ -10,29 +10,29 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 <!-- REGISTER -->
 {% block content %}
-			<section id="register" class="visible">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3">
-							<div class="login-box-plain">
-								<h2 class="bigintro">{% trans "Sign Up" %}</h2>
-								<div class="divide-40"></div>
-								<form role="form" method="post" action="{% url 'socialaccount_signup' %}">
-								  <div class="form-group">
-								  {% csrf_token %}
-								  {{ form|crispy }}
-								  {% if redirect_field_value %}
-								  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-								  {% endif %}
-								  </div>
-								  <div class="form-actions">
-									<button type="submit" class="btn btn-success">{% trans "Sign Up" %}</button>
-								  </div>
-								</form>
-							</div>
+<section id="register" class="visible">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="login-box-plain">
+					<h2 class="bigintro">{% trans "Sign Up" %}</h2>
+					<div class="divide-40"></div>
+					<form role="form" method="post" action="{% url 'socialaccount_signup' %}">
+						<div class="form-group">
+							{% csrf_token %}
+							{{ form|crispy }}
+							{% if redirect_field_value %}
+							<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+							{% endif %}
 						</div>
-					</div>
+						<div class="form-actions">
+							<button type="submit" class="btn btn-success">{% trans "Sign Up" %}</button>
+						</div>
+					</form>
 				</div>
-			</section>
-			<!--/REGISTER -->
+			</div>
+		</div>
+	</div>
+</section>
+<!--/REGISTER -->
 {% endblock content %}

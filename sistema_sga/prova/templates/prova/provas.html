@@ -3,27 +3,27 @@
 {% load staticfiles %}
 {% block content %}
 
-          <div class="col-md-9" style="margin-top: 30px;">
-              <div class="panel panel-success">
-                <!-- Default panel contents -->
-                <div class="panel-heading"><h1>{{usuario_prova.prova}}</h1></div>
-                <div class="panel-body">
-                  <p>Vivamus suscipit dui id tristique venenatis. Integer vitae dui egestas, ultrices augue et, luctus arcu. Sed pharetra lectus eget velit consequat, in dictum felis fringilla. Suspendisse vitae rutrum urna, quis malesuada tellus. Praesent consectetur gravida feugiat. In mi orci, malesuada sit amet lectus quis, tempor sollicitudin nibh. Nam ut nibh sit amet lorem facilisis adipiscing. </p>
-                </div>
+<div class="col-md-9" style="margin-top: 30px;">
+  <div class="panel panel-success">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h1>{{usuario_prova.prova}}</h1></div>
+    <div class="panel-body">
+      <p>Vivamus suscipit dui id tristique venenatis. Integer vitae dui egestas, ultrices augue et, luctus arcu. Sed pharetra lectus eget velit consequat, in dictum felis fringilla. Suspendisse vitae rutrum urna, quis malesuada tellus. Praesent consectetur gravida feugiat. In mi orci, malesuada sit amet lectus quis, tempor sollicitudin nibh. Nam ut nibh sit amet lorem facilisis adipiscing. </p>
+    </div>
 
-                <!-- List group -->
-                  {% if usuario_prova.prova.questoes %}
-                  <ol>
-                    {% for questao in usuario_prova.prova.questoes.all %}
-                    <li><a href="/prova/{{usuario_prova.id}}/questao/{{questao.id}}">{{questao.questao}}</a></li>
-                    {% endfor %}
-                  </ol>
-                  {% else %}
-                  <p>Não há questão cadastrada...</p>
-                  {% endif %}
-                  <ul class="pager">
-                    <li class="previous"><a href="{% url 'list_exam' %}">&larr; Voltar a listagem de Provas</a></li>
-                  </ul>
-              </div>
-            </div>
+    <!-- List group -->
+    {% if usuario_prova.prova.questoes %}
+    <ol>
+      {% for questao in usuario_prova.prova.questoes.all %}
+      <li><a href="/prova/{{usuario_prova.id}}/questao/{{questao.id}}">{{questao.questao}}</a></li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <p>Não há questão cadastrada...</p>
+    {% endif %}
+    <ul class="pager">
+      <li class="previous"><a href="{% url 'list_exam' %}">&larr; Voltar a listagem de Provas</a></li>
+    </ul>
+  </div>
+</div>
 {% endblock content %}

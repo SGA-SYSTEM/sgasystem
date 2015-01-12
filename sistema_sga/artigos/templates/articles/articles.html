@@ -4,34 +4,34 @@
 
 
 {% block content %}
-  <div class="page-header">
-    <a href="{% url 'write' %}" class="btn btn-primary pull-right">
-      <i class="fa fa-pencil"></i> {% trans 'Escrever Artigo' %}
-    </a>
-    <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">
-	    <i class="fa fa-file"></i> {% trans 'Rascunhos' %}</a>
-    <h1>{% trans 'Artigos' %}</h1>
-  </div>
-  <div class="row">
-    <div class="col-md-10">
-      <section class="articles">
-        {% for article in articles %}
-          {% include 'articles/partial_article.html' with article=article %}
-        {% empty %}
-          <h4 class="no-data">{% trans 'Não existem artigos publicados ainda' %}. <a href="{% url 'write' %}">{% trans 'Seja o primeiro a publicar' %}!</a></h4>
-        {% endfor %}
-      </section>
-    </div>
-    <div class="col-md-2 popular-tags">
-      <h4>{% trans 'Tags Populares' %}</h4>
-      {% for tag, count in popular_tags %}
-        <a href="{% url 'tag' tag %}"><span class="label label-default">{{ count }} {{ tag }}</span></a>
+<div class="page-header">
+  <a href="{% url 'write' %}" class="btn btn-primary pull-right">
+    <i class="fa fa-pencil"></i> {% trans 'Escrever Artigo' %}
+  </a>
+  <a href="{% url 'drafts' %}" class="btn btn-default pull-right" style="margin-right: .8em">
+   <i class="fa fa-file"></i> {% trans 'Rascunhos' %}</a>
+   <h1>{% trans 'Artigos' %}</h1>
+ </div>
+ <div class="row">
+  <div class="col-md-10">
+    <section class="articles">
+      {% for article in articles %}
+      {% include 'articles/partial_article.html' with article=article %}
+      {% empty %}
+      <h4 class="no-data">{% trans 'Não existem artigos publicados ainda' %}. <a href="{% url 'write' %}">{% trans 'Seja o primeiro a publicar' %}!</a></h4>
       {% endfor %}
-    </div>
+    </section>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      {% include 'paginator.html' with paginator=articles %}
-    </div>
+  <div class="col-md-2 popular-tags">
+    <h4>{% trans 'Tags Populares' %}</h4>
+    {% for tag, count in popular_tags %}
+    <a href="{% url 'tag' tag %}"><span class="label label-default">{{ count }} {{ tag }}</span></a>
+    {% endfor %}
   </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    {% include 'paginator.html' with paginator=articles %}
+  </div>
+</div>
 {% endblock content %}

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-        <!-- STYLESHEETS --><!--[if lt IE 9]><script src="../js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+    <!-- STYLESHEETS --><!--[if lt IE 9]><script src="../js/flot/excanvas.min.js"></script><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/cloud-admin-frontend.css' %}" >
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <!-- ANIMATE -->
@@ -29,470 +29,470 @@
         <section id="header" data-type="background" data-speed="10">
             <!-- OVERLAY -->
             <!-- <div class="overlay"> -->
-                <div id="sidebar-collapse" class="sidebar-collapse btn visible-xs">
-                    <i class="fa fa-bars" data-icon2="fa fa-bars" data-icon1="fa fa-bars"></i>
-                </div>
-                <div class="divide60"></div>
-                <div id="mobile-menu" class="list-group collapse text-center">
-                  <a href="#doc" class="list-group-item">Documentação</a>
-                  <a href="#features" class="list-group-item">Ferramentas</a>
-                  <a href="#about" class="list-group-item">Sobre</a>
-                  <a href="#contact" class="list-group-item">Contato</a>
-                  <a href="{% url 'account_login' %}" class="list-group-item external">Iniciar Sessão</a>
-                </div>
+            <div id="sidebar-collapse" class="sidebar-collapse btn visible-xs">
+                <i class="fa fa-bars" data-icon2="fa fa-bars" data-icon1="fa fa-bars"></i>
+            </div>
+            <div class="divide60"></div>
+            <div id="mobile-menu" class="list-group collapse text-center">
+              <a href="#doc" class="list-group-item">Documentação</a>
+              <a href="#features" class="list-group-item">Ferramentas</a>
+              <a href="#about" class="list-group-item">Sobre</a>
+              <a href="#contact" class="list-group-item">Contato</a>
+              <a href="{% url 'account_login' %}" class="list-group-item external">Iniciar Sessão</a>
+          </div>
 
-                    <!-- HERO -->
-                    <div class="container-transparent text-center">
-                        <ul class="heronav left hidden-xs">
-                            <li><a href="#doc">Documentação</a></li>
+          <!-- HERO -->
+          <div class="container-transparent text-center">
+            <ul class="heronav left hidden-xs">
+                <li><a href="#doc">Documentação</a></li>
+                <li><a href="#features">Ferramentas</a></li>
+            </ul>
+            <ul class="heronav right hidden-xs">
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#contact">Contato</a></li>
+                <li><a href="{% url 'account_login' %}" class="external">Iniciar Sessão</a></li>
+            </ul>
+            <h1>
+                <img src="{% static 'img/book-logo.png' %}" height="100" alt="s.g.a" style='margin-top: -15px;'>
+            </h1>
+            <h1 class="page-title">Sistema de gerenciamento avaliativo</h1>
+            <h4 class="page-sub-title">S.G.A é um serviço de gerenciamento avaliativo de provas, 
+                <br>
+                e uma Plataforma completamente open source.
+            </h4>
+            <div class="showcase">
+                <a class="btn btn-warning btn-lg hidden-xs" href="https://github.com/SGA-SYSTEM/">contribuir &nbsp;&nbsp;<i class="fa fa-github"></i></a>
+                <a class="btn btn-warning btn-sm visible-xs" href="https://github.com/SGA-SYSTEM/">contribuir &nbsp;&nbsp;<i class="fa fa-github"></i></a>
+            </div>
+        </div>
+        <!--/HERO -->
+        <!-- </div> -->
+        <!--/OVERLAY -->
+    </section>
+    <!--/HEADER -->
+    <!-- NAV-BAR -->
+    <div id="nav-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 col-md-4">
+                    <div class="logo" >
+                        <a href="index.html"><img src="{% static 'img/book-logo.png' %}" height="100" alt="logo name"/></a>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-8">
+                    <nav id="fixed-top-navigation">
+                        <ul class="list-inline pull-right">
+                            <li><a href="#portfolio">Portfolio</a></li>
                             <li><a href="#features">Ferramentas</a></li>
-                        </ul>
-                        <ul class="heronav right hidden-xs">
                             <li><a href="#about">Sobre</a></li>
                             <li><a href="#contact">Contato</a></li>
-                            <li><a href="{% url 'account_login' %}" class="external">Iniciar Sessão</a></li>
+                            <li><a href="../login.html" class="external">Iniciar Sessão</a></li>
                         </ul>
-                        <h1>
-                            <img src="{% static 'img/book-logo.png' %}" height="100" alt="s.g.a" style='margin-top: -15px;'>
-                        </h1>
-                        <h1 class="page-title">Sistema de gerenciamento avaliativo</h1>
-                        <h4 class="page-sub-title">S.G.A é um serviço de gerenciamento avaliativo de provas, 
-                        <br>
-                            e uma Plataforma completamente open source.
-                        </h4>
-                        <div class="showcase">
-                            <a class="btn btn-warning btn-lg hidden-xs" href="https://github.com/SGA-SYSTEM/">contribuir &nbsp;&nbsp;<i class="fa fa-github"></i></a>
-                            <a class="btn btn-warning btn-sm visible-xs" href="https://github.com/SGA-SYSTEM/">contribuir &nbsp;&nbsp;<i class="fa fa-github"></i></a>
-                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/NAV-BAR -->
+
+    <!-- PORTFOLIO UNIT -->
+    <section id="doc" class="color-light text-center">          
+        <div class="divide40"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">
+                    <span class="bigintro">Documentação</span>
+                </h2>
+            </div>
+        </div>
+        <div class="divide60"></div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div id="filters" class="text-center btn-group">
+                  <div  class="hidden-xs">
+                      <a class="btn btn-lg btn-primary active" data-filter="*" href="#">Todos</a>
+                      <a class="btn btn-lg btn-warning" data-filter=".design" href="#">Diagramas</a>
+                      <a class="btn btn-lg btn-success" data-filter=".videos" href="#">Casos de uso</a>
+                      <a class="btn btn-lg btn-danger" data-filter=".banners" href="#">Modelagem</a>
+                  </div>
+                  <div class="visible-xs">
+                     <select id="e1" class="form-control">
+                        <option value="*">Todos</option>
+                        <option value=".design">Diagramas</option>
+                        <option value=".videos">Casos de Uso</option>
+                        <option value=".banners">Modelagem</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="divide40"></div>
+    <div class="container">
+        <div id="filter-items" class="row">
+            <div class="col xs-12 col-sm-4 design item">
+                <div class="filter-content">
+                    <img src="{% static 'img/1.png' %}" alt="" class="img-responsive" />
+                    <div class="image-content">
+                        <h4>Diagrama de Classes</h4>
+                        <p class="hidden-xs hidden-sm">
+                            O diagrama foi eleborado baseado nas principais apps do sistema.
+                        </p>
+                        <a href="{% static 'img/1.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
                     </div>
-                <!--/HERO -->
-            <!-- </div> -->
-            <!--/OVERLAY -->
-        </section>
-        <!--/HEADER -->
-        <!-- NAV-BAR -->
-        <div id="nav-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3 col-md-4">
-                        <div class="logo" >
-                            <a href="index.html"><img src="{% static 'img/book-logo.png' %}" height="100" alt="logo name"/></a>
-                        </div>
+                </div>
+            </div>
+            <div class="col xs-12 col-sm-4 videos item">
+                <div class="filter-content">
+                    <img src="{% static 'img/2.jpg' %}" alt="" class="img-responsive" />
+                    <div class="image-content">
+                        <h4>Diagrama de Atividade</h4>
+                        <p class="hidden-xs hidden-sm">
+                            Diagrama especificando funções do docentes existentes no sistema.
+                        </p>
+                        <a href="{% static 'img/2.jpg' %}" class="btn btn-sm btn-warning colorbox-button">2 More</a>
                     </div>
-                    <div class="col-sm-9 col-md-8">
-                        <nav id="fixed-top-navigation">
-                            <ul class="list-inline pull-right">
-                                <li><a href="#portfolio">Portfolio</a></li>
-                                <li><a href="#features">Ferramentas</a></li>
-                                <li><a href="#about">Sobre</a></li>
-                                <li><a href="#contact">Contato</a></li>
-                                <li><a href="../login.html" class="external">Iniciar Sessão</a></li>
-                            </ul>
-                        </nav>
+                </div>
+            </div>
+            <div class="col xs-12 col-sm-4 banners item">
+                <div class="filter-content">
+                    <img src="{% static 'img/3.png' %}" alt="" class="img-responsive" />
+                    <div class="image-content">
+                        <h4>Entidade e Relacionamento</h4>
+                        <p class="hidden-xs hidden-sm">
+                            Neste diagrama, descrevemos de maneira conceitual,entidades de dados usados no projeto.
+                        </p>
+                        <a href="{% static 'img/3.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col xs-12 col-sm-4 videos item">
+                <div class="filter-content">
+                    <img src="{% static 'img/4.png' %}" alt="" class="img-responsive" />
+                    <div class="image-content">
+                        <h4>Diagrama de Sequência</h4>
+                        <p class="hidden-xs hidden-sm">
+                            Diagrama demonstrativo da funcionalidade doframework.
+                        </p>
+                        <a href="{% static 'img/4.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col xs-12 col-sm-4 design item">
+                <div class="filter-content">
+                    <img src="{% static 'img/5.png' %}" alt="" class="img-responsive" />
+                    <div class="image-content">
+                        <h4>Diagrama de Atividade</h4>
+                        <p class="hidden-xs hidden-sm">
+                            Diagrama de atividade descrevendo as possibilidades de ações do mesmo.
+                        </p>
+                        <a href="{% static 'img/5.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="col xs-12 col-sm-4 videos item">
+                <div class="filter-content">
+                    <img src="{% static 'img/2.png' %}" alt="" class="img-responsive" />
+                    <div class="image-content">
+                        <h4>Caso de Uso</h4>
+                        <p class="hidden-xs hidden-sm">
+                            Caso de uso que descreve elaboração de provas.
+                        </p>
+                        <a href="{% static 'img/2.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!--/NAV-BAR -->
-
-        <!-- PORTFOLIO UNIT -->
-        <section id="doc" class="color-light text-center">          
-                <div class="divide40"></div>
-                    <div class="row">
-                        <div class="col-md-12">
-                                <h2 class="text-center">
-                                <span class="bigintro">Documentação</span>
-                                </h2>
-                        </div>
-                    </div>
-                    <div class="divide60"></div>
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <div id="filters" class="text-center btn-group">
-                                  <div  class="hidden-xs">
-                                      <a class="btn btn-lg btn-primary active" data-filter="*" href="#">Todos</a>
-                                      <a class="btn btn-lg btn-warning" data-filter=".design" href="#">Diagramas</a>
-                                      <a class="btn btn-lg btn-success" data-filter=".videos" href="#">Casos de uso</a>
-                                      <a class="btn btn-lg btn-danger" data-filter=".banners" href="#">Modelagem</a>
-                                  </div>
-                                  <div class="visible-xs">
-                                       <select id="e1" class="form-control">
-                                            <option value="*">Todos</option>
-                                            <option value=".design">Diagramas</option>
-                                            <option value=".videos">Casos de Uso</option>
-                                            <option value=".banners">Modelagem</option>
-                                        </select>
-                                  </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="divide40"></div>
-                    <div class="container">
-                        <div id="filter-items" class="row">
-                            <div class="col xs-12 col-sm-4 design item">
-                                <div class="filter-content">
-                                    <img src="{% static 'img/1.png' %}" alt="" class="img-responsive" />
-                                    <div class="image-content">
-                                        <h4>Diagrama de Classes</h4>
-                                        <p class="hidden-xs hidden-sm">
-                                            O diagrama foi eleborado baseado nas principais apps do sistema.
-                                        </p>
-                                        <a href="{% static 'img/1.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col xs-12 col-sm-4 videos item">
-                                <div class="filter-content">
-                                    <img src="{% static 'img/2.jpg' %}" alt="" class="img-responsive" />
-                                    <div class="image-content">
-                                        <h4>Diagrama de Atividade</h4>
-                                        <p class="hidden-xs hidden-sm">
-                                            Diagrama especificando funções do docentes existentes no sistema.
-                                        </p>
-                                        <a href="{% static 'img/2.jpg' %}" class="btn btn-sm btn-warning colorbox-button">2 More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col xs-12 col-sm-4 banners item">
-                                <div class="filter-content">
-                                    <img src="{% static 'img/3.png' %}" alt="" class="img-responsive" />
-                                    <div class="image-content">
-                                        <h4>Entidade e Relacionamento</h4>
-                                        <p class="hidden-xs hidden-sm">
-                                            Neste diagrama, descrevemos de maneira conceitual,entidades de dados usados no projeto.
-                                        </p>
-                                        <a href="{% static 'img/3.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col xs-12 col-sm-4 videos item">
-                                <div class="filter-content">
-                                    <img src="{% static 'img/4.png' %}" alt="" class="img-responsive" />
-                                    <div class="image-content">
-                                        <h4>Diagrama de Sequência</h4>
-                                        <p class="hidden-xs hidden-sm">
-                                            Diagrama demonstrativo da funcionalidade doframework.
-                                        </p>
-                                        <a href="{% static 'img/4.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col xs-12 col-sm-4 design item">
-                                <div class="filter-content">
-                                    <img src="{% static 'img/5.png' %}" alt="" class="img-responsive" />
-                                    <div class="image-content">
-                                        <h4>Diagrama de Atividade</h4>
-                                        <p class="hidden-xs hidden-sm">
-                                            Diagrama de atividade descrevendo as possibilidades de ações do mesmo.
-                                        </p>
-                                        <a href="{% static 'img/5.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
-                                    </div>
-                                </div>
-                            </div>
-                         
-                            
-                            <div class="col xs-12 col-sm-4 videos item">
-                                <div class="filter-content">
-                                    <img src="{% static 'img/2.png' %}" alt="" class="img-responsive" />
-                                    <div class="image-content">
-                                        <h4>Caso de Uso</h4>
-                                        <p class="hidden-xs hidden-sm">
-                                            Caso de uso que descreve elaboração de provas.
-                                        </p>
-                                        <a href="{% static 'img/2.png' %}" class="btn btn-sm btn-warning colorbox-button">Visualizar</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="divide60"></div>
-        </section>
-        <!--/PORTFOLIO UNIT  -->
-        
-        <!-- PARALLAX DIALOGUE UNIT-->
-
-            <!-- do something...  -->
-
-        <!--/PARALLAX DIALOGUE UNIT-->
-        
-        <!-- FEATURES UNIT -->
-        <section id="features" class="color-light">
-            <div class="container">
-                <div class="divide40"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                            <h2 class="text-center">
-                            <span class="bigintro">Recursos & Tecnologia</span>
-                            </h2>
-                    </div>
-                </div>
-                <div class="divide60"></div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="feature">
-                            <i class="extralarge fa fa-bar-chart-o"></i>
-                            <br/><br/>
-                            <h3>JavaScript</h3>
-                            <br/>
-                            <p>JavaScript é uma linguagem de programação interpretada2. Originalmente implementada como parte dos navegadores web para que scripts pudessem ser executados do lado do cliente e interagissem com o usuário sem a necessidade deste script passar pelo servidor, realizando comunicação assíncrona e alterando o conteúdo do documento.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="feature">
-                            <i class="extralarge fa fa-thumbs-up"></i>
-                            <br/><br/>
-                            <h3>Praticidade</h3>
-                            <br/>
-                            <p>A modalidade online permite superar as desvantagens e constrangimentos do formato papel. A grande parte dos cursos online permite que os alunos tenham o seu próprio horário para estudar e realizar as provas.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="feature">
-                            <i class="extralarge fa fa-check"></i>
-                            <br/><br/>
-                            <h3>Python</h3>
-                            <br/>
-                            <p>Python é uma linguagem de programação de alto nível4 , interpretada, imperativa, orientada a objetos, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991. Atualmente possui um modelo de desenvolvimento comunitário, aberto e gerenciado pela organização sem fins lucrativos Python Software Foundation. </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="feature">
-                            <i class="extralarge fa fa-smile-o"></i>
-                            <br/><br/>
-                            <h3>Django</h3>
-                            <br/>
-                            <p>Django é um framework para desenvolvimento rápido para web, escrito em Python, que utiliza o padrão MTV (model - template - view). Foi criado originalmente como sistema para gerenciar um site jornalístico na cidade de Lawrence, no Kansas. Tornou-se um projeto de código aberto e foi publicado sob a licença BSD em 2005. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="divide60"></div>
-            </div>
-        </section>
-        <!--/FEATURES UNIT  -->
-                        
-        <!-- SIGNUP -->
-        <section id="signup-again" class="color-primary pattern text-center">
-            <section class="container">
-                <div class="divide20"></div>
-                <div class="row">
-                    <a href="{% url 'account_signup' %}"><button type="submit" class="btn btn-warning btn-lg">Cadastre-se</button></a>
-                </div>
-                <div class="divide20"></div>
-            </section>
-        </section>
-        <!--/SIGNUP -->
-                
-        <!-- ABOUT UNIT -->
-        <section id="about" class="color-light text-center">
-            <div class="container">
-                <div class="divide40"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                            <h2 class="text-center">
-                            <span class="bigintro">Sobre o projeto</span>
-                            </h2>
-                    </div>
-                </div>
-                <div class="divide20"></div>
-                <div class="row">
-                    <div class="col-md-12 about">
-                        <p>O software criado tem como objetivo principal impulsionar o método de avaliação tradicional de todos os ângulos do usuário (docente e aluno), onde, através desse é possível aplicar provas e acompanhar o desenvolvimento unitário e geral dos alunos, tornando mais rápido todo o processo burocrático que existe entre elaboração, aplicação, resolução e correção de provas. O aluno contará com a facilidade de ter a nota da avaliação de forma instantânea, não precisando esperar ate que seja corrigida e evitando que o docente perca horas corrigindo as avaliações. </p>
-                    </div>
-                </div>
-            </div>
-            <div class="divide40"></div>
-        </section>
-        <!-- /ABOUT UNIT -->
-            
-        <!-- TEAM UNIT -->
-        <section id="team" class="color-light text-center">
-            <div class="container">
-                <div class="divide40"></div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-6">
-                            <h2 class="text-center">
-                            <span class="bigintro">Desenvolvedores</span>
-                            </h2>
-                    </div>
-                </div>
-                <div class="divide60"></div>
-                <div class="row">
-                    <div class="col-md-12 col-sm-6">
-                    <div class="col-md-6 col-sm-6" >
-                        <div class="team">
-                            <img alt="" src="{% static 'img/img3.jpg' %}">
-                            <h3>Alexsander Falcucci</h3>
-                            <h4>Web Developer</h4>
-                            <a class="facebook" title="facebook" href="https://www.facebook.com/alexsanderfalcucciGuitarBand" target="__blank"><i class="fa fa-facebook"></i></a>
-                            <a class="twitter" title="twitter" href="https://twitter.com/AlexFalcucci"><i class="fa fa-twitter"></i></a>
-                            <a class="linkedin" title="linkedin" href="https://twitter.com/AlexFalcucci"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6" >
-                        <div class="team">
-                            <img alt="" src="{% static 'img/img4.jpg' %}">
-                            <h3>Leandro Cristino</h3>
-                            <h4>Web Developer</h4>
-                            <a class="facebook" title="facebook" href="https://www.facebook.com/leandro.cristino.3?fref=ts"><i class="fa fa-facebook"></i></a>
-                            <a class="twitter" title="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                            <a class="linkedin" title="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="divide60"></div>
-            </div>
-        </section>
-        <!--/TEAM UNIT  -->
-                            
-        <!-- SOCIAL BAR -->
-        <section class="color-danger social text-center">
-            <section class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>Acompanhe o desenvolvimento, siga-nos</h3>
-                            <a href="https://twitter.com/AlexFalcucci" target="__blank"><i class="fa fa-twitter-square fa-2x darkred rm20 bm10"></i></a>
-                            <a href="https://www.facebook.com/sistemasga?ref=hl" target="__blank"><i class="fa fa-facebook-square fa-2x darkred rm20 bm10"></i></a>
-                            <a href="https://www.linkedin.com/in/alexfalcucci" target="__blank"><i class="fa fa-linkedin-square fa-2x darkred rm20 bm10"></i></a>
-                            <a href="https://plus.google.com/u/0/100410465240429698625/posts" target="__blank"><i class="fa fa-google-plus-square fa-2x darkred rm20 bm10"></i></a>
-                    </div>
-                </div>
-            </section>
-        </section>
-        <!--/SOCIAL BAR -->
-        
-        <!-- CONTACT-US -->
-        <section id="parallax-3" data-type="background" data-speed="10" class="pages text-center">
-            <div class="parallax-overlay">
-                <section id="contact">
-                    <section class="container">
-                        <div class="divide40"></div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                    <h2 class="text-center">
-                                    <span class="bigintro-light">Deixe sua opinião</span>
-                                    </h2>
-                            </div>
-                        </div>
-                        <div class="divide20"></div>
-                        <div class="row">
-                        <form action="." method="POST" id="subscribeForm">
-                        {% csrf_token %}
-                            <div class="col-md-6 col-md-offset-3 form-input">
-                                {{form.business}}
-                            </div>
-                            <div class="col-md-6 col-md-offset-3 form-input">
-                                {{form.name}}
-                            </div>
-                            <div class="col-md-6 col-md-offset-3 form-input">
-                                {{form.email}}
-                            </div>
-                            <div class="col-md-6 col-md-offset-3 form-input">
-                                {{form.message}}
-                            </div>
-                            <div class="col-md-6 col-md-offset-3 form-submit">
-                                <button id="submit" class="btn btn-warning btn-lg" type="submit">ENVIAR</button>
-                            </div>
-                        </form>
-                        <span id="result" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
-                            <p class='alert alert-success' style='text-align: center;'><b>Mensagem enviada com sucesso!</b></p>
-                        </span>
-                        <span id="result1" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
-                            <p class='alert alert-info' style='text-align: center;'><b>Aguarde...</b></p>
-                        </span>
-                        </div>
-                        <div class="divide60"></div>
-                    </section>
-                </section>
-            </div>
-        </section>
-        <!--/CONTACT-US -->
-        
-        <!-- FOOTER -->
-        <section id="footer" class="color-light pattern">
-            <div class="container">
-                <div id="column-footer" class="row-fluid">
-                    <div class="col-sm-4">
-                        <h3>Saiba mais</h3>
-                        <ul>
-                            <li><a href="#">Como funciona?</a></li>
-                            <li><a href="#">O que o sistema faz?</a></li>
-                            <li><a href="#">Por que Django?</a></li>
-                            <li><a href="#">Porque uma aplicação online?</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <h3>Informações</h3>
-                        <ul>
-                            <li><a href="#">Dependências</a></li>
-                            <li><a href="#">Porque Python?</a></li>
-
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <h3>S.G.A</h3>
-                        <ul>
-                            <li><a href="/accounts/login/">Login</a></li>
-                            <li><a href="/accounts/signup/">Cadastro</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-              </div>
-        </section>
-        <!--/FOOTER -->
     </div>
-    <!--/PAGE -->
-    
-    <!-- JAVASCRIPTS -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'js/jquery-1.9.1.min.js' %}"></script>
-    <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/waypoints.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.scrollTo.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.nav.js' %}"></script>
-    <script src="{% static 'js/jquery.isotope.min.js' %}" type="text/javascript"></script>
-    <!-- COLORBOX -->
-    <script type="text/javascript" src="{% static 'js/jquery.colorbox.min.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <div class="divide60"></div>
+</section>
+<!--/PORTFOLIO UNIT  -->
 
-    <script type="text/javascript">
+<!-- PARALLAX DIALOGUE UNIT-->
+
+<!-- do something...  -->
+
+<!--/PARALLAX DIALOGUE UNIT-->
+
+<!-- FEATURES UNIT -->
+<section id="features" class="color-light">
+    <div class="container">
+        <div class="divide40"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">
+                    <span class="bigintro">Recursos & Tecnologia</span>
+                </h2>
+            </div>
+        </div>
+        <div class="divide60"></div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="feature">
+                    <i class="extralarge fa fa-bar-chart-o"></i>
+                    <br/><br/>
+                    <h3>JavaScript</h3>
+                    <br/>
+                    <p>JavaScript é uma linguagem de programação interpretada2. Originalmente implementada como parte dos navegadores web para que scripts pudessem ser executados do lado do cliente e interagissem com o usuário sem a necessidade deste script passar pelo servidor, realizando comunicação assíncrona e alterando o conteúdo do documento.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature">
+                    <i class="extralarge fa fa-thumbs-up"></i>
+                    <br/><br/>
+                    <h3>Praticidade</h3>
+                    <br/>
+                    <p>A modalidade online permite superar as desvantagens e constrangimentos do formato papel. A grande parte dos cursos online permite que os alunos tenham o seu próprio horário para estudar e realizar as provas.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature">
+                    <i class="extralarge fa fa-check"></i>
+                    <br/><br/>
+                    <h3>Python</h3>
+                    <br/>
+                    <p>Python é uma linguagem de programação de alto nível4 , interpretada, imperativa, orientada a objetos, de tipagem dinâmica e forte. Foi lançada por Guido van Rossum em 1991. Atualmente possui um modelo de desenvolvimento comunitário, aberto e gerenciado pela organização sem fins lucrativos Python Software Foundation. </p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="feature">
+                    <i class="extralarge fa fa-smile-o"></i>
+                    <br/><br/>
+                    <h3>Django</h3>
+                    <br/>
+                    <p>Django é um framework para desenvolvimento rápido para web, escrito em Python, que utiliza o padrão MTV (model - template - view). Foi criado originalmente como sistema para gerenciar um site jornalístico na cidade de Lawrence, no Kansas. Tornou-se um projeto de código aberto e foi publicado sob a licença BSD em 2005. </p>
+                </div>
+            </div>
+        </div>
+        <div class="divide60"></div>
+    </div>
+</section>
+<!--/FEATURES UNIT  -->
+
+<!-- SIGNUP -->
+<section id="signup-again" class="color-primary pattern text-center">
+    <section class="container">
+        <div class="divide20"></div>
+        <div class="row">
+            <a href="{% url 'account_signup' %}"><button type="submit" class="btn btn-warning btn-lg">Cadastre-se</button></a>
+        </div>
+        <div class="divide20"></div>
+    </section>
+</section>
+<!--/SIGNUP -->
+
+<!-- ABOUT UNIT -->
+<section id="about" class="color-light text-center">
+    <div class="container">
+        <div class="divide40"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">
+                    <span class="bigintro">Sobre o projeto</span>
+                </h2>
+            </div>
+        </div>
+        <div class="divide20"></div>
+        <div class="row">
+            <div class="col-md-12 about">
+                <p>O software criado tem como objetivo principal impulsionar o método de avaliação tradicional de todos os ângulos do usuário (docente e aluno), onde, através desse é possível aplicar provas e acompanhar o desenvolvimento unitário e geral dos alunos, tornando mais rápido todo o processo burocrático que existe entre elaboração, aplicação, resolução e correção de provas. O aluno contará com a facilidade de ter a nota da avaliação de forma instantânea, não precisando esperar ate que seja corrigida e evitando que o docente perca horas corrigindo as avaliações. </p>
+            </div>
+        </div>
+    </div>
+    <div class="divide40"></div>
+</section>
+<!-- /ABOUT UNIT -->
+
+<!-- TEAM UNIT -->
+<section id="team" class="color-light text-center">
+    <div class="container">
+        <div class="divide40"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-6">
+                <h2 class="text-center">
+                    <span class="bigintro">Desenvolvedores</span>
+                </h2>
+            </div>
+        </div>
+        <div class="divide60"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-6">
+                <div class="col-md-6 col-sm-6" >
+                    <div class="team">
+                        <img alt="" src="{% static 'img/img3.jpg' %}">
+                        <h3>Alexsander Falcucci</h3>
+                        <h4>Web Developer</h4>
+                        <a class="facebook" title="facebook" href="https://www.facebook.com/alexsanderfalcucciGuitarBand" target="__blank"><i class="fa fa-facebook"></i></a>
+                        <a class="twitter" title="twitter" href="https://twitter.com/AlexFalcucci"><i class="fa fa-twitter"></i></a>
+                        <a class="linkedin" title="linkedin" href="https://twitter.com/AlexFalcucci"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6" >
+                    <div class="team">
+                        <img alt="" src="{% static 'img/img4.jpg' %}">
+                        <h3>Leandro Cristino</h3>
+                        <h4>Web Developer</h4>
+                        <a class="facebook" title="facebook" href="https://www.facebook.com/leandro.cristino.3?fref=ts"><i class="fa fa-facebook"></i></a>
+                        <a class="twitter" title="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                        <a class="linkedin" title="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divide60"></div>
+    </div>
+</section>
+<!--/TEAM UNIT  -->
+
+<!-- SOCIAL BAR -->
+<section class="color-danger social text-center">
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Acompanhe o desenvolvimento, siga-nos</h3>
+                <a href="https://twitter.com/AlexFalcucci" target="__blank"><i class="fa fa-twitter-square fa-2x darkred rm20 bm10"></i></a>
+                <a href="https://www.facebook.com/sistemasga?ref=hl" target="__blank"><i class="fa fa-facebook-square fa-2x darkred rm20 bm10"></i></a>
+                <a href="https://www.linkedin.com/in/alexfalcucci" target="__blank"><i class="fa fa-linkedin-square fa-2x darkred rm20 bm10"></i></a>
+                <a href="https://plus.google.com/u/0/100410465240429698625/posts" target="__blank"><i class="fa fa-google-plus-square fa-2x darkred rm20 bm10"></i></a>
+            </div>
+        </div>
+    </section>
+</section>
+<!--/SOCIAL BAR -->
+
+<!-- CONTACT-US -->
+<section id="parallax-3" data-type="background" data-speed="10" class="pages text-center">
+    <div class="parallax-overlay">
+        <section id="contact">
+            <section class="container">
+                <div class="divide40"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center">
+                            <span class="bigintro-light">Deixe sua opinião</span>
+                        </h2>
+                    </div>
+                </div>
+                <div class="divide20"></div>
+                <div class="row">
+                    <form action="." method="POST" id="subscribeForm">
+                        {% csrf_token %}
+                        <div class="col-md-6 col-md-offset-3 form-input">
+                            {{form.business}}
+                        </div>
+                        <div class="col-md-6 col-md-offset-3 form-input">
+                            {{form.name}}
+                        </div>
+                        <div class="col-md-6 col-md-offset-3 form-input">
+                            {{form.email}}
+                        </div>
+                        <div class="col-md-6 col-md-offset-3 form-input">
+                            {{form.message}}
+                        </div>
+                        <div class="col-md-6 col-md-offset-3 form-submit">
+                            <button id="submit" class="btn btn-warning btn-lg" type="submit">ENVIAR</button>
+                        </div>
+                    </form>
+                    <span id="result" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
+                        <p class='alert alert-success' style='text-align: center;'><b>Mensagem enviada com sucesso!</b></p>
+                    </span>
+                    <span id="result1" class="col-md-6 col-md-offset-3" style="display: none; margin-top: 10px;">
+                        <p class='alert alert-info' style='text-align: center;'><b>Aguarde...</b></p>
+                    </span>
+                </div>
+                <div class="divide60"></div>
+            </section>
+        </section>
+    </div>
+</section>
+<!--/CONTACT-US -->
+
+<!-- FOOTER -->
+<section id="footer" class="color-light pattern">
+    <div class="container">
+        <div id="column-footer" class="row-fluid">
+            <div class="col-sm-4">
+                <h3>Saiba mais</h3>
+                <ul>
+                    <li><a href="#">Como funciona?</a></li>
+                    <li><a href="#">O que o sistema faz?</a></li>
+                    <li><a href="#">Por que Django?</a></li>
+                    <li><a href="#">Porque uma aplicação online?</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <h3>Informações</h3>
+                <ul>
+                    <li><a href="#">Dependências</a></li>
+                    <li><a href="#">Porque Python?</a></li>
+
+                </ul>
+            </div>
+            <div class="col-sm-4">
+                <h3>S.G.A</h3>
+                <ul>
+                    <li><a href="/accounts/login/">Login</a></li>
+                    <li><a href="/accounts/signup/">Cadastro</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/FOOTER -->
+</div>
+<!--/PAGE -->
+
+<!-- JAVASCRIPTS -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'js/jquery-1.9.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/waypoints.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.scrollTo.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.nav.js' %}"></script>
+<script src="{% static 'js/jquery.isotope.min.js' %}" type="text/javascript"></script>
+<!-- COLORBOX -->
+<script type="text/javascript" src="{% static 'js/jquery.colorbox.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+
+<script type="text/javascript">
     $(function () {
-    $("#subscribeForm").submit(function () {
-                $("#result1").show(0);
-                $.ajax({
-                    url: '/contact/',
-                    data: $('#subscribeForm').serialize(),
-                    type: 'post',
-                    cache: false,
-                    beforeSend: function(){
-                        $("#result1").show(0)
-                        .delay(1000);
-                    },
-                    complete: function() { 
-                        $('#result1').hide('slow'); 
-                    },
-                    success: function(data) {
-                      if(data == 'ok') {
-                        $("#result").slideDown(1000)
-                        .show(0)
-                        .delay(2000)
-                        .slideUp(1000)
-                        .hide(0);
-                        $('input#id_name').val('').focus();
-                        $('input#id_email').val('');
-                        $('input#id_business').val('');
-                        $('textarea#id_message').val('');
-                      }
-                    }
-                });
-                return false;
-            });
+        $("#subscribeForm").submit(function () {
+            $("#result1").show(0);
+            $.ajax({
+                url: '/contact/',
+                data: $('#subscribeForm').serialize(),
+                type: 'post',
+                cache: false,
+                beforeSend: function(){
+                    $("#result1").show(0)
+                    .delay(1000);
+                },
+                complete: function() { 
+                    $('#result1').hide('slow'); 
+                },
+                success: function(data) {
+                  if(data == 'ok') {
+                    $("#result").slideDown(1000)
+                    .show(0)
+                    .delay(2000)
+                    .slideUp(1000)
+                    .hide(0);
+                    $('input#id_name').val('').focus();
+                    $('input#id_email').val('');
+                    $('input#id_business').val('');
+                    $('textarea#id_message').val('');
+                }
+            }
         });
+            return false;
+        });
+});
 
-    </script>
+</script>
 
 </body>
 </html>

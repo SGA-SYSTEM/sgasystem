@@ -3,23 +3,23 @@
 
 <h2>{% trans 'Usuários' %}</h2>
 {% if results %}
-  <ul class="users-results">
-    {% for user_result in results %}
-      <li username="{{ user.username }}">
-        <h5>
-        {% if user_result.picture %}
-          <img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_30,w_30/{{ user_result.picture }}.jpg" class="result-user">
-          {% else %}
-          <img src="{% static 'img/picture.jpg' %}" class="result-user">
-        {% endif %}
-          <a href="{% url 'my_profile' user_result.username %}">
-            {{ user_result.my_profile.get_screen_name }}
-            <small>({{ user_result.username }})</small>
-          </a>
-        </h5>
-      </li>
-    {% endfor %}
-  </ul>
+<ul class="users-results">
+  {% for user_result in results %}
+  <li username="{{ user.username }}">
+    <h5>
+      {% if user_result.picture %}
+      <img src="http://res.cloudinary.com/alexfalcucci/image/upload/c_fill,h_30,w_30/{{ user_result.picture }}.jpg" class="result-user">
+      {% else %}
+      <img src="{% static 'img/picture.jpg' %}" class="result-user">
+      {% endif %}
+      <a href="{% url 'my_profile' user_result.username %}">
+        {{ user_result.my_profile.get_screen_name }}
+        <small>({{ user_result.username }})</small>
+      </a>
+    </h5>
+  </li>
+  {% endfor %}
+</ul>
 {% else %}
-  <h4 class="no-result">{% trans 'Nenhum usuário encontrado' %} <i class="fa fa-frown-o fa-fw"></i</h4>
+<h4 class="no-result">{% trans 'Nenhum usuário encontrado' %} <i class="fa fa-frown-o fa-fw"></i</h4>
 {% endif %}

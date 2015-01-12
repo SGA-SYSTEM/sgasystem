@@ -2,33 +2,33 @@
 {% load i18n %}
 
 {% block content %}
-  <ol class="breadcrumb" style="margin-top: 10px;">
-    <li><a href="{% url 'articles' %}">{% trans 'Artigos' %}</a></li>
-    <li><a href="{% url 'drafts' %}">{% trans 'Rascunhos' %}</a></li>
-    <li class="active">{% trans 'Editar' %}</li>
-  </ol>
-  <form action="{% url 'edit_article' form.instance.pk %}" method="post" role="form">
-    {% csrf_token %}
-    {{ form.status }}
-    {% for field in form.visible_fields %}
-      <div class="form-group{% if field.errors %} has-error{% endif %}">
-        <label for="{{ field.label }}" class="control-label">{{ field.label }}</label>
-        {% if field.label == 'Content' %}
-          {% include 'markdown_editor.html' with textarea='id_content' %}
-        {% endif %}
-        {{ field }}
-        {% if field.help_text %}
-          <span class="help-block">{{ field.help_text }}</span>
-        {% endif %}
-        {% for error in field.errors %}
-          <label class="control-label">{{ error }}</label>
-        {% endfor %}
-      </div>
+<ol class="breadcrumb" style="margin-top: 10px;">
+  <li><a href="{% url 'articles' %}">{% trans 'Artigos' %}</a></li>
+  <li><a href="{% url 'drafts' %}">{% trans 'Rascunhos' %}</a></li>
+  <li class="active">{% trans 'Editar' %}</li>
+</ol>
+<form action="{% url 'edit_article' form.instance.pk %}" method="post" role="form">
+  {% csrf_token %}
+  {{ form.status }}
+  {% for field in form.visible_fields %}
+  <div class="form-group{% if field.errors %} has-error{% endif %}">
+    <label for="{{ field.label }}" class="control-label">{{ field.label }}</label>
+    {% if field.label == 'Content' %}
+    {% include 'markdown_editor.html' with textarea='id_content' %}
+    {% endif %}
+    {{ field }}
+    {% if field.help_text %}
+    <span class="help-block">{{ field.help_text }}</span>
+    {% endif %}
+    {% for error in field.errors %}
+    <label class="control-label">{{ error }}</label>
     {% endfor %}
-    <div class="form-group">
-      <button type="button" class="btn btn-primary publish">{% trans 'Publicar' %}</button>
-      <button type="button" class="btn btn-default draft">{% trans 'Salvar Rascunho' %}</button>
-      <a href="{% url 'drafts' %}" class="btn btn-default">{% trans 'Cancelar' %}</a>
-    </div>
-  </form>
+  </div>
+  {% endfor %}
+  <div class="form-group">
+    <button type="button" class="btn btn-primary publish">{% trans 'Publicar' %}</button>
+    <button type="button" class="btn btn-default draft">{% trans 'Salvar Rascunho' %}</button>
+    <a href="{% url 'drafts' %}" class="btn btn-default">{% trans 'Cancelar' %}</a>
+  </div>
+</form>
 {% endblock content %}

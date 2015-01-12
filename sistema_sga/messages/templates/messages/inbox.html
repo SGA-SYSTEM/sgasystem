@@ -4,44 +4,44 @@
 {% load cloudinary %}
 
 {% block container %}
-  {% if messages %}
-  <ul class="conversation">
-    {% for message in messages %}
-      {% include 'messages/includes/partial_message.html' with message=message %}
-    {% endfor %}
-    <li class="send-message">
-      {% cloudinary user.profile.picture %}
-      <div style="margin-top: .3em">
-        <form role="form" method="post" action="{% url 'send_message' %}" id="send">
-          {% csrf_token %}
-          <input type="hidden" name="to" value="{{ active }}">
-          <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off" style="width: 500px; margin-left: -50px; margin-top: -16px;">
-        </form>
-      </div>
-    </li>
-  </ul>
-  {% else %}
-     <form class="form-horizontal" role="form" method="post">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="to" class="col-sm-2 control-label">Para</label>
-      <div class="col-sm-10">
-        <input class="form-control typeahead" type="text" id="to" name="to">
-      </div>
+{% if messages %}
+<ul class="conversation">
+  {% for message in messages %}
+  {% include 'messages/includes/partial_message.html' with message=message %}
+  {% endfor %}
+  <li class="send-message">
+    {% cloudinary user.profile.picture %}
+    <div style="margin-top: .3em">
+      <form role="form" method="post" action="{% url 'send_message' %}" id="send">
+        {% csrf_token %}
+        <input type="hidden" name="to" value="{{ active }}">
+        <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off" style="width: 500px; margin-left: -50px; margin-top: -16px;">
+      </form>
     </div>
-    <div class="form-group">
-      <label for="to" class="col-sm-2 control-label">Mensagem</label>
-      <div class="col-sm-10">
-        <textarea class="form-control" id="message" name="message" placeholder="Escreva uma mensagem ou solicite uma prova..." rows="4"></textarea>
-      </div>
+  </li>
+</ul>
+{% else %}
+<form class="form-horizontal" role="form" method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="to" class="col-sm-2 control-label">Para</label>
+    <div class="col-sm-10">
+      <input class="form-control typeahead" type="text" id="to" name="to">
     </div>
-    <div class="form-group">
-      <div class="col-sm-10 col-sm-offset-2">
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </div>
+  </div>
+  <div class="form-group">
+    <label for="to" class="col-sm-2 control-label">Mensagem</label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="message" name="message" placeholder="Escreva uma mensagem ou solicite uma prova..." rows="4"></textarea>
     </div>
-  </form>
-  <script src="{% static 'js/messages.typehead.js' %}"></script>
-  {% endif %}
+  </div>
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+  </div>
+</form>
+<script src="{% static 'js/messages.typehead.js' %}"></script>
+{% endif %}
 {% endblock container %}
 

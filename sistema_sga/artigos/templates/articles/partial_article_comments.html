@@ -23,8 +23,8 @@
 </div>
 <div class="well well-sm" id="comment-list">
   {% for comment in article.get_comments %}
-    {% include 'articles/partial_article_comment.html' with comment=comment %}
+  {% include 'articles/partial_article_comment.html' with comment=comment %}
   {% empty %}
-    <div style="padding: .6em 0">{% trans 'Seja o primeiro a comentar!' %}</div>
+  <div style="padding: .6em 0">{% trans 'Seja o primeiro a comentar!' %}</div>
   {% endfor %}
 </div>

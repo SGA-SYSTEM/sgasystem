@@ -16,10 +16,8 @@ from unipath import Path
 BASE_DIR = Path(__file__).parent
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
@@ -71,7 +69,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     # shell_plus
     'django_extensions',
-    #debug-toolbar
+    # debug-toolbar
     'debug_toolbar',
     # crispy
     'crispy_forms',
@@ -143,7 +141,7 @@ USE_L10N = True
 USE_TZ = True
 
 ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
-ACCOUNT_AUTHENTICATION_METHOD = "username_email" 
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = "optional"
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = LOGIN_REDIRECT_URL
@@ -159,7 +157,7 @@ ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
-#ACCOUNT_USER_DISPLAY (=a callable returning user.username)
+# ACCOUNT_USER_DISPLAY (=a callable returning user.username)
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 ACCOUNT_USERNAME_BLACKLIST = ['some_username_youdon\t_want']
 ACCOUNT_USERNAME_REQUIRED = True
@@ -170,10 +168,10 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 # Account information to facebook login
 SOCIALACCOUNT_PROVIDERS = \
     {'facebook':
-       {'SCOPE': ['email', 'publish_stream'],
-        'AUTH_PARAMS': {'auth_type': 'https'},
-        'METHOD': 'oauth2',
-        'VERIFIED_EMAIL': False}}
+     {'SCOPE': ['email', 'publish_stream'],
+      'AUTH_PARAMS': {'auth_type': 'https'},
+      'METHOD': 'oauth2',
+      'VERIFIED_EMAIL': False}}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
@@ -207,15 +205,15 @@ CACHE_ACTIVE = config('CACHE_ACTIVE', default=False, cast=bool)
 if CACHE_ACTIVE:
     CACHES = {
         'default': {
-                'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-                'BINARY': True,
-                'LOCATION': config('CACHE_LOCATION'),
-                'OPTIONS': {
-                    'ketama': True,
-                    'tcp_nodelay': True,
-                },
-                'TIMEOUT': config('CACHE_TIMEOUT', default=500, cast=int),
+            'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+            'BINARY': True,
+            'LOCATION': config('CACHE_LOCATION'),
+            'OPTIONS': {
+                'ketama': True,
+                'tcp_nodelay': True,
             },
+            'TIMEOUT': config('CACHE_TIMEOUT', default=500, cast=int),
+        },
     }
 else:  # Assume development mode
     CACHES = {
@@ -225,6 +223,8 @@ else:  # Assume development mode
     }
 
 # Logging
+
+
 def skip_on_testing(record):
     return not TESTING
 
@@ -242,12 +242,12 @@ LOGGING = {
         },
     },
     'filters': {
-     'require_debug_true': {
-         '()': 'django.utils.log.RequireDebugTrue',
-         },
-     'skip_on_testing': {
-        '()': 'django.utils.log.CallbackFilter',
-        'callback': skip_on_testing,
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'skip_on_testing': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': skip_on_testing,
         },
     },
     'handlers': {

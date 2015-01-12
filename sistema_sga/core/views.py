@@ -9,23 +9,21 @@ from sistema_sga.core.models import Profile
 from sistema_sga.core.forms import ContactForm
 from django.conf import settings
 from django.views.generic import View
-from django.core.urlresolvers import reverse as r
 from .forms import ProfileForm
 from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
-from allauth.socialaccount.models import SocialApp, SocialAccount, SocialLogin
 from django.dispatch import receiver
 from allauth.account.signals import user_signed_up, password_reset
-from django.template.loader import render_to_string, get_template
+from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
 
-from sistema_sga.prova.models import Prova, UsuarioProva
-from django.db.models import Avg, Count, F, Max, Min, Sum, Q
+from sistema_sga.prova.models import Prova
 from django.template import Context
+
 
 def home(request):
     print request.user.id
-    return render(request, 'core/home.html', {'form':ContactForm()})
+    return render(request, 'core/home.html', {'form': ContactForm()})
 
 
 class ProfileView(View):
@@ -50,11 +48,13 @@ class ProfileView(View):
 
         return render(request, self.template_name, locals())
 
+
 @receiver(user_signed_up)
 def set_attribute(sender, **kwargs):
     user = kwargs.pop('user')
     try:
-        extra_data = user.socialaccount_set.filter(provider='facebook')[0].extra_data
+        extra_data = user.socialaccount_set.filter(
+            provider='facebook')[0].extra_data
     except Exception:
         extra_data = None
     if extra_data is not None:
@@ -76,15 +76,15 @@ def set_attribute(sender, **kwargs):
         user.last_name = last_name
         user.save()
 
-        #try to send welcome email
+        # try to send welcome email
         subject = 'Sistema S.G.A'
         from_email = settings.EMAIL_HOST_USER
         to_list = [email, settings.EMAIL_HOST_USER]
         to = email
         text_content = 'A description...'
         html_content = render_to_string(
-            'account/email/email_confirmation_message.html', {'equipe':'sga'}
-            )
+            'account/email/email_confirmation_message.html', {'equipe': 'sga'}
+        )
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
@@ -95,27 +95,31 @@ def set_attribute(sender, **kwargs):
         to = user.email
         text_content = 'A description...'
         html_content = render_to_string(
-            'account/email/email_confirmation_message.html', {'equipe':'sga'}
-            )
+            'account/email/email_confirmation_message.html', {'equipe': 'sga'}
+        )
         msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
         msg.attach_alternative(html_content, "text/html")
         msg.send()
         try:
             prova = Prova.objects.get(titulo='Demo')
             if prova:
-                usuario_prova = UsuarioProva.objects.create(user=user, prova=prova, data_expiracao='2015-05-02')
+                usuario_prova = UsuarioProva.objects.create(
+                    user=user, prova=prova, data_expiracao='2015-05-02')
                 usuario_prova.save()
         except Exception, e:
             prova = None
+
 
 @receiver(password_reset)
 def password_reset(sender, request, **kwargs):
     print 'Redirect to url reset password! :)'
 
+
 @login_required
 def rede(request):
     users = Profile.objects.filter(is_active=True).order_by('username')
-    return render(request, 'core/rede.html', {'users': users,})
+    return render(request, 'core/rede.html', {'users': users, })
+
 
 @login_required
 def profile(request, username):
@@ -124,31 +128,41 @@ def profile(request, username):
     provas = Prova.objects.all().order_by('id')[0:5]
     titulos = list(set([u.titulo for u in provas]))
     try:
-        query_data_user1 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[0])
-        dump1 = max(list(set([i.get_score_for_pie() for i in query_data_user1])))
+        query_data_user1 = UsuarioProva.objects.filter(
+            user__username=username, prova__titulo=titulos[0])
+        dump1 = max(
+            list(set([i.get_score_for_pie() for i in query_data_user1])))
     except:
         dump1 = 0
     try:
-        query_data_user2 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[1])
-        dump2 = max(list(set([i.get_score_for_pie() for i in query_data_user2])))
+        query_data_user2 = UsuarioProva.objects.filter(
+            user__username=username, prova__titulo=titulos[1])
+        dump2 = max(
+            list(set([i.get_score_for_pie() for i in query_data_user2])))
     except:
         dump2 = 0
     try:
-        query_data_user3 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[2])
-        dump3 = max(list(set([i.get_score_for_pie() for i in query_data_user3])))
+        query_data_user3 = UsuarioProva.objects.filter(
+            user__username=username, prova__titulo=titulos[2])
+        dump3 = max(
+            list(set([i.get_score_for_pie() for i in query_data_user3])))
     except:
         dump3 = 0
     try:
-        query_data_user4 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[3])
-        dump4 = max(list(set([i.get_score_for_pie() for i in query_data_user4])))
+        query_data_user4 = UsuarioProva.objects.filter(
+            user__username=username, prova__titulo=titulos[3])
+        dump4 = max(
+            list(set([i.get_score_for_pie() for i in query_data_user4])))
     except:
         dump4 = 0
     try:
-        query_data_user5 = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulos[4])
-        dump5 = max(list(set([i.get_score_for_pie() for i in query_data_user5])))
+        query_data_user5 = UsuarioProva.objects.filter(
+            user__username=username, prova__titulo=titulos[4])
+        dump5 = max(
+            list(set([i.get_score_for_pie() for i in query_data_user5])))
     except:
         dump5 = 0
-    #for titulo in titulos:
+    # for titulo in titulos:
     #    get_result = UsuarioProva.objects.filter(user__username=username, prova__titulo=titulo)[0:5]
     #    for i in get_result:
     #        if i.get_status() != 'Em Andamento':
@@ -156,7 +170,7 @@ def profile(request, username):
     pending = len([p for p in query_user if p.get_status() != 'Finalizada!'])
     success = len([p for p in query_user if p.get_status() == 'Finalizada!'])
     context = {
-        'grid_user': grid_user, 
+        'grid_user': grid_user,
         'username': username,
         'titulos': titulos,
         'score1': dump1,
@@ -169,6 +183,7 @@ def profile(request, username):
     }
     return render(request, 'core/profile.html', context)
 
+
 def contact(request):
     form = ContactForm(request.POST or None)
     if form.is_valid() and request.is_ajax():
@@ -180,8 +195,8 @@ def contact(request):
         to = save_it.email
         text_content = 'Obrigado por entrar em contato. Em breve teremos muitas novidades!'
         c = Context({
-                'user': save_it.name,
-                })
+            'user': save_it.name,
+        })
         html_content = render_to_string(
             'emails/welcome.html', c
         )

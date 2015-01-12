@@ -12,19 +12,19 @@
   {% endcomment %}
 
   {% for conversation in conversations %}
-    <a href="{% url 'messages' conversation.user.username %}" 
-      class="list-group-item{% if active == conversation.user.username %} active{% endif %}">
-      {% if conversation.user.picture %}
-      {% cloudinary conversation.user.picture width=30 height=30 crop="fill" %}
-      {% else %}
-      <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="30" height="30">
-      {% endif %}
-      {{ conversation.user.username }}
-      {% if conversation.unread > 0 %}
-        <span class="badge pull-right">{{ conversation.unread }}</span>
-      {% endif %}
-    </a>
-  {% empty %}
-    <a href="{% url 'new_message' %}" class="list-group-item">{% trans 'Iniciar conversa' %}</a>
-  {% endfor %}
+  <a href="{% url 'messages' conversation.user.username %}" 
+  class="list-group-item{% if active == conversation.user.username %} active{% endif %}">
+  {% if conversation.user.picture %}
+  {% cloudinary conversation.user.picture width=30 height=30 crop="fill" %}
+  {% else %}
+  <img src="{% static 'img/picture.jpg' %}" alt="Usuário" width="30" height="30">
+  {% endif %}
+  {{ conversation.user.username }}
+  {% if conversation.unread > 0 %}
+  <span class="badge pull-right">{{ conversation.unread }}</span>
+  {% endif %}
+</a>
+{% empty %}
+<a href="{% url 'new_message' %}" class="list-group-item">{% trans 'Iniciar conversa' %}</a>
+{% endfor %}
 </div>

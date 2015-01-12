@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseForbidden, HttpResponseBadRequest, HttpResponse
+from django.http import HttpResponseBadRequest,\
+    HttpResponse
 from sistema_sga.artigos.models import Article, Tag, ArticleComment
 from sistema_sga.artigos.forms import ArticleForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from sistema_sga.decorators import ajax_required
 import markdown
 from django.template.loader import render_to_string
 
 # Create your views here.
+
 
 def _articles(request, articles):
     paginator = Paginator(articles, 10)
@@ -26,15 +27,18 @@ def _articles(request, articles):
         'popular_tags': popular_tags
     })
 
+
 @login_required
 def articles(request):
     all_articles = Article.get_published()
     return _articles(request, all_articles)
 
+
 @login_required
 def article(request, slug):
     article = get_object_or_404(Article, slug=slug, status=Article.PUBLISHED)
     return render(request, 'articles/article.html', {'article': article})
+
 
 @login_required
 def write(request):
@@ -56,6 +60,7 @@ def write(request):
         form = ArticleForm()
     return render(request, 'articles/write.html', {'form': form})
 
+
 @login_required
 def tag(request, tag_name):
     tags = Tag.objects.filter(tag=tag_name)
@@ -64,6 +69,7 @@ def tag(request, tag_name):
         if tag.article.status == Article.PUBLISHED:
             articles.append(tag.article)
     return _articles(request, articles)
+
 
 @login_required
 @ajax_required
@@ -75,21 +81,27 @@ def comment(request):
             comment = request.POST.get('comment')
             comment = comment.strip()
             if len(comment) > 0:
-                article_comment = ArticleComment(user=request.user, article=article, comment=comment)
+                article_comment = ArticleComment(
+                    user=request.user, article=article, comment=comment)
                 article_comment.save()
             html = u''
             for comment in article.get_comments():
-                html = u'{0}{1}'.format(html, render_to_string('articles/partial_article_comment.html', {'comment': comment}))
+                html = u'{0}{1}'.format(html, render_to_string(
+                    'articles/partial_article_comment.html',
+                    {'comment': comment}))
             return HttpResponse(html)
         else:
             return HttpResponseBadRequest()
-    except Exception, e:
+    except Exception:
         return HttpResponseBadRequest()
+
 
 @login_required
 def drafts(request):
-    drafts = Article.objects.filter(create_user=request.user, status=Article.DRAFT)
+    drafts = Article.objects.filter(
+        create_user=request.user, status=Article.DRAFT)
     return render(request, 'articles/drafts.html', {'drafts': drafts})
+
 
 @login_required
 @ajax_required
@@ -103,8 +115,9 @@ def preview(request):
             return HttpResponse(html)
         else:
             return HttpResponseBadRequest()
-    except Exception, e:
+    except Exception:
         return HttpResponseBadRequest()
+
 
 @login_required
 def edit(request, id):

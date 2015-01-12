@@ -10,19 +10,19 @@
 
 
 {% block content %}
-	<div class="content-box-large" style="margin-top: 31px;">
-    <a href="{% url 'new_message' %}" class="btn btn-primary pull-right">Solicitar provas</a>
-    <h2 style="margin-top: -9px;">Notificações</h2>
-  	
-  	<div class="row" style="">
+<div class="content-box-large" style="margin-top: 31px;">
+  <a href="{% url 'new_message' %}" class="btn btn-primary pull-right">Solicitar provas</a>
+  <h2 style="margin-top: -9px;">Notificações</h2>
+  
+  <div class="row" style="">
     <div class="col-md-3">
-    {% include 'messages/includes/partial_conversations.html' with conversations=conversations active=active %}
+      {% include 'messages/includes/partial_conversations.html' with conversations=conversations active=active %}
     </div>
     <div class="col-md-6">
       {% block container %}
 
       {% endblock container %}
     </div>
-  	</div>
-  	</div>
+  </div>
+</div>
 {% endblock content %}

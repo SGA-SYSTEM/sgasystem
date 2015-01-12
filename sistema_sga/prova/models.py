@@ -1,17 +1,14 @@
 # coding: utf-8
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-import datetime
 from django.utils import timezone
-import datetime
-from sistema_sga.core.models import Profile
 
-# import user
-from django.contrib.auth.models import User
 
 class Prova(models.Model):
-    titulo = models.CharField(_('titulo'), max_length=200, blank=True, null=False)
-    created_at = models.DateTimeField(_('criado em'), auto_now_add=True, auto_now=False)
+    titulo = models.CharField(
+        _('titulo'), max_length=200, blank=True, null=False)
+    created_at = models.DateTimeField(
+        _('criado em'), auto_now_add=True, auto_now=False)
     sobre = models.ForeignKey('ProvaSobre')
     questoes = models.ManyToManyField('Questao', verbose_name=_('Questões'))
     duracao = models.IntegerField(_('Período'))
@@ -23,6 +20,7 @@ class Prova(models.Model):
     def __unicode__(self):
         return self.titulo
 
+
 class ProvaSobre(models.Model):
     assunto = models.CharField(max_length=50)
 
@@ -33,12 +31,13 @@ class ProvaSobre(models.Model):
     def __unicode__(self):
         return self.assunto
 
+
 class Questao(models.Model):
     TIPO = (
-            (u'ME', u'Multipla Escolha'),
-            (u'VF', u'Verdadeiro ou Falso'),
-            (u'ES', u'Escolha Simples'),
-        )
+        (u'ME', u'Multipla Escolha'),
+        (u'VF', u'Verdadeiro ou Falso'),
+        (u'ES', u'Escolha Simples'),
+    )
 
     questao = models.CharField(_('Questao'), max_length=300)
     sobre = models.ForeignKey('QuestaoSobre')
@@ -54,6 +53,7 @@ class Questao(models.Model):
     def __unicode__(self):
         return self.questao
 
+
 class Resposta(models.Model):
     questao = models.ForeignKey(Questao)
     resposta = models.CharField(_('Resposta'), max_length=500)
@@ -66,7 +66,8 @@ class Resposta(models.Model):
 
     def __unicode__(self):
         return self.resposta
-            
+
+
 class QuestaoSobre(models.Model):
     sobre = models.CharField(max_length=100)
 
@@ -76,6 +77,7 @@ class QuestaoSobre(models.Model):
 
     def __unicode__(self):
         return self.sobre
+
 
 class QuestaoDificuldade(models.Model):
     dificuldade = models.CharField(_('dificuldade'), max_length=10)
@@ -87,6 +89,7 @@ class QuestaoDificuldade(models.Model):
 
     def __unicode__(self):
         return self.dificuldade
+
 
 class UsuarioProva(models.Model):
     user = models.ForeignKey('core.Profile', blank=True, null=True)
@@ -100,12 +103,12 @@ class UsuarioProva(models.Model):
         verbose_name_plural = 'Aplicar Provas'
 
     def __unicode__(self):
-        return u"%s %s" %(self.user, self.prova)
+        return u"%s %s" % (self.user, self.prova)
 
     def has_finished(self):
         if self.tempo_inicial and self.tempo_final:
             return True
-        else: 
+        else:
             return False
         get_finished.boolean = True
         get_finished.short_description = 'Prova concluida?'
@@ -123,14 +126,17 @@ class UsuarioProva(models.Model):
 
     def get_progress(self):
         total_questoes = self.prova.questoes.count()
-        questoes_respondidas = UsuarioProvaResposta.objects.filter(usuario_prova__id=self.id).count()
-        current_progress = float(questoes_respondidas) / float(total_questoes) * 100
+        questoes_respondidas = UsuarioProvaResposta.objects.filter(
+            usuario_prova__id=self.id).count()
+        current_progress = float(
+            questoes_respondidas) / float(total_questoes) * 100
         current_progress = int(round(current_progress))
         return '{progress}%'.format(progress=current_progress)
 
     def get_score_for_pie(self):
         questoes = self.prova.questoes.count()
-        respostas = self.usuarioprovaresposta_set.filter(resposta_alternativa__correta=True).count()
+        respostas = self.usuarioprovaresposta_set.filter(
+            resposta_alternativa__correta=True).count()
         score_exam = (float(respostas) / float(questoes)) * 100
         return int(round(score_exam))
 
@@ -139,7 +145,8 @@ class UsuarioProva(models.Model):
 
     def get_score(self):
         questoes = self.prova.questoes.count()
-        respostas = self.usuarioprovaresposta_set.filter(resposta_alternativa__correta=True).count()
+        respostas = self.usuarioprovaresposta_set.filter(
+            resposta_alternativa__correta=True).count()
         score_exam = (float(respostas) / float(questoes)) * 100
         score_exam = int(round(score_exam))
         return '{score}%'.format(score=score_exam)
@@ -171,7 +178,8 @@ class UsuarioProva(models.Model):
 
     def get_exams_pending(self):
         query_user = UsuarioProva.objects.filter(user__id=self.id)
-        exams_pending = [i.get_progress() for i in query_user if i.get_progress() != '100%']
+        exams_pending = [i.get_progress()
+                         for i in query_user if i.get_progress() != '100%']
         return len(exams_pending)
 
     def get_status(self):
@@ -184,6 +192,7 @@ class UsuarioProva(models.Model):
         else:
             return 'Nova'
     get_status.short_description = 'Status'
+
 
 class UsuarioProvaResposta(models.Model):
     usuario_prova = models.ForeignKey(UsuarioProva)

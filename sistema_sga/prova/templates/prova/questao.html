@@ -1,7 +1,7 @@
 {% extends 'base_sga.html' %}
 {% load staticfiles %}
 {% block content %}
-    <div class="content-box-large" style="margin-top: 10px;">
+<div class="content-box-large" style="margin-top: 10px;">
     <h3>{{questao.questao}}</h3>
     <p>Escolha a resposta correta:</p>
     {% if respostas %}
@@ -13,12 +13,12 @@
         <label class="radio"><input type="radio" name="rb-answer" value="{{resposta.id}}"{% if usuario_resposta.resposta_alternativa.id == resposta.id %} checked {% endif %}> {{resposta.alternativa}} - {{resposta.resposta}}</label>
         {% endfor %}
         <div class="form-actions">
-        <a href="/prova/{{usuario_prova.id}}/" class="btn btn-small btn-default" >Responder próxima</a>
-    
-    </form>
+            <a href="/prova/{{usuario_prova.id}}/" class="btn btn-small btn-default" >Responder próxima</a>
+
+        </form>
     </div>
     {% endif %}
     <span id="result" class="col-md-12" style="display: none; margin-top: 30px;">
         <p class='alert alert-success' style='text-align: center;'><b>Resposta enviada com sucesso!</b></p>
     </span>
-{% endblock content %}
+    {% endblock content %}

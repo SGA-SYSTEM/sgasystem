@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 <html>
-  <head>
+<head>
     <title>S.G.A</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'img/book-logo-icon.png' %}" class="ico" type="image/x-icon"/>
@@ -33,14 +33,14 @@
     <script src="{% static 'js/articles.js' %}"></script>
     <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
     <script src="{% static 'js/messages.typehead.js' %}"></script>
-  <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
+    <script src="{% static 'js/jquery.typeahead.bundle.js' %}"></script>
     {% block head_extra %}
     {% endblock head_extra %}
-  </head>
+</head>
 <body>
-{% block base %}
+    {% block base %}
 
-<div id="wrapper">
+    <div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -138,14 +138,14 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <form role="search" action="{% url 'search' %}">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" name="q" placeholder="Usuários, artigos...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" name="q" placeholder="Usuários, artigos...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
                             </form>
                             <!-- /input-group -->
                         </li>
@@ -164,7 +164,7 @@
                         <li>
                             <a href="{% url 'articles' %}"><i class="fa fa-file-text fa-fw"></i> Artigos</a>
                         </li>
-                       
+                        
                         
                     </ul>
                 </div>
@@ -190,12 +190,12 @@
     </div>
     <!-- /#wrapper -->
 
-{% endblock base %}
+    {% endblock base %}
 
 </body>
 <script>
-{% block js %}
-{% endblock js %}
+    {% block js %}
+    {% endblock js %}
 </script>
 {% include 'footer_sga.html' %}
 </html>

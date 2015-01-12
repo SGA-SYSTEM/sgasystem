@@ -1,70 +1,70 @@
 <div class="row" style='margin-top: 10px;'>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-users fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{ count_user }}</div>
-                                    <div>Usuários!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{% url 'network' %}">
-                            <div class="panel-footer">
-                                <span class="pull-left">Visualizar Network</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-users fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{ count_user }}</div>
+                        <div>Usuários!</div>
                     </div>
                 </div>
-                {% if request.user.is_superuser %}
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-plus-square fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{ exams }}</div>
-                                    <div>Provas disponíveis!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{% url 'admin:index' %}">
-                            <div class="panel-footer">
-                                <span class="pull-left">Aplicar Provas</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                {% endif %}
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-edit fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{ exams_pending }}</div>
-                                    <div>Provas pendentes!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{% url 'list_exam' %}">
-                            <div class="panel-footer">
-                                <span class="pull-left">Visualizar provas pendentes</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>       
             </div>
+            <a href="{% url 'network' %}">
+                <div class="panel-footer">
+                    <span class="pull-left">Visualizar Network</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% if request.user.is_superuser %}
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-plus-square fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{ exams }}</div>
+                        <div>Provas disponíveis!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'admin:index' %}">
+                <div class="panel-footer">
+                    <span class="pull-left">Aplicar Provas</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-edit fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">{{ exams_pending }}</div>
+                        <div>Provas pendentes!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'list_exam' %}">
+                <div class="panel-footer">
+                    <span class="pull-left">Visualizar provas pendentes</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>       
+</div>
